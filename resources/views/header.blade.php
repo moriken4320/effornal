@@ -3,15 +3,24 @@
 <nav class="navbar navbar-expand navbar-dark shadow-none">
 
   <div class="row no-gutters">
-    <a class="navbar-brand font-weight-bold shadow-none" href="/">Effornal</a>
+    <a class="navbar-brand font-weight-bold shadow-none app-logo" href="/">Effornal</a>
   </div>
 
   <ul class="navbar-nav ml-auto">
+
+    @guest
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+    </li>
+    @endguest
+
     @auth
     {{-- ドロップダウンで表示 --}}
     <li class="nav-item dropdown mr-2">
-      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px">
         <i class="fas fa-user-circle mr-2"></i>
         {{ Auth::user()->name }}
       </a>

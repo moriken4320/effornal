@@ -4,5 +4,29 @@
 .navbar-brand {
   color: white;
   line-height: 100%;
-  font-size: 40px;
+  font-size: 35px;
+}
+.google {
+  opacity: 0.8;
+}
+.google:hover {
+  opacity: 1;
+}
+.caution {
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  padding: 3px 5px;
+  margin-left: 10px;
+}
+.app-logo {
+  color: white;
+  font-size: 50px;
+}
+.app-logo:hover {
+  opacity: 0.8;
+  color: white;
+}
+.container {
+  margin-top: 20px;
 }

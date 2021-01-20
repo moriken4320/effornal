@@ -1,77 +1,57 @@
 @extends('layouts.app')
 
+@section('title', 'ユーザー登録 / Effornal')
+
 @section('content')
-<div class="container">
+
+<body style="background-color: rgb(0, 63, 0);">
+  <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+      <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
+        <a class="navbar-brand font-weight-bold shadow-none app-logo" href="/">Effornal</a>
+        <div class="card mt-3">
+          <div class="card-body text-center">
+            <h2 class="h3 card-title text-center mt-2 font-weight-bold">ユーザー登録</h2>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            {{-- @include('common.errors') --}}
+            
+            <div class="card-text">
+              <form method="POST" action="{{ route('register') }}">
+                {{ csrf_field() }}
+                <div class="md-form">
+                  <label for="name">ユーザー名</label>
+                  <input class="form-control" type="text" id="name" name="name" required value="{{ old('name') }}">
                 </div>
+                <div class="md-form">
+                  <label for="email">メールアドレス</label>
+                  <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}" >
+                </div>
+                <div class="md-form">
+                  <label for="password">パスワード<small class="caution">半角文字／6文字〜</small></label>
+                  <input class="form-control" type="password" id="password" name="password" required>
+                </div>
+                <div class="md-form">
+                  <label for="password_confirmation">パスワード(確認)</label>
+                  <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required>
+                </div>
+                <button class="btn btn-block shadow-none text-white bg-primary mt-3" type="submit">ユーザー登録</button>
+              </form>
+
+              {{-- Googleで登録 --}}
+              <a href="{{ route('socialOAuth', ['provider' => 'google']) }}" class="btn btn-block btn-danger shadow-none mt-2 google">
+                <i class="fab fa-google mr-1"></i>Googleで登録
+              </a>
+
+              <div class="mt-3">
+                <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
+              </div>
+              
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</body>
+
 @endsection

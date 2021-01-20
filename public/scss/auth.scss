@@ -1,0 +1,15 @@
+.google{
+  opacity: .8;
+
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.caution{
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  padding: 3px 5px;
+  margin-left: 10px;
+}
