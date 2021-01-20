@@ -20,9 +20,11 @@
 
     <!-- Styles -->
     @if(app('env')=='local')
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     <link href="{{ asset('css/application.css') }}" rel="stylesheet">
     @endif
     @if(app('env')=='production')
+    <link href="{{ secure_asset('css/reset.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/application.css') }}" rel="stylesheet">
     @endif
   </head>
