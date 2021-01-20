@@ -12,3 +12,18 @@
 */
 
 Route::get('/', 'PostsController@index');
+
+Auth::routes();
+
+Route::prefix('auth')->middleware('guest')->group(function() {
+
+    Route::get('/{provider}', 'Auth\OAuthController@socialOAuth')
+        ->where('provider','google')
+        ->name('socialOAuth');
+ 
+     Route::get('/{provider}/callback', 'Auth\OAuthController@handleProviderCallback')
+         ->where('provider','google')
+         ->name('oauthCallback');
+ });
+
+Route::get('/home', 'PostsController@index')->name('home');
