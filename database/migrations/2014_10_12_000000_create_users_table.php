@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->longText('image')->nullable();
 
             // 複合ユニークキー
             $table->unique(['provider_id', 'provider_name']);

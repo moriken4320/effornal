@@ -6,3 +6,17 @@
   line-height: 100%;
   font-size: 35px;
 }
+.header-user-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px black;
+  transition: 0.2s;
+  cursor: pointer;
+  user-select: none;
+  border: solid 2px lightgreen;
+}
+.header-user-icon:hover {
+  transform: scale(1.1);
+}

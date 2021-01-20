@@ -20,10 +20,14 @@
     @auth
     {{-- ドロップダウンで表示 --}}
     <li class="nav-item dropdown mr-2">
-      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px">
-        <i class="fas fa-user-circle mr-2"></i>
-        {{ Auth::user()->name }}
-      </a>
+      <div class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @if (Auth::user()->image)
+            {{-- base64という形式の画像データを表示する --}}
+            <img class="header-user-icon" src="data:image/png;base64,{{ Auth::user()->image }}" />
+        @else
+            <img class="header-user-icon" src="{{ asset('/images/blank_profile.png') }}"/>
+        @endif
+      </div>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         {{-- <button class="dropdown-item" type="button"
         onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">

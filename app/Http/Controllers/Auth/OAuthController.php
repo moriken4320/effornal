@@ -39,6 +39,7 @@ class OAuthController extends Controller
         $user->name = $socialUser->getName();
         $user->provider_id = $socialUser->getId();
         $user->provider_name = $provider;
+        $user->image = base64_encode(file_get_contents($socialUser->getAvatar()));
         $user->save();
         
         Auth::login($user);
