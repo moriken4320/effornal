@@ -13,7 +13,7 @@
                     <div class="card-body text-center">
                         <h2 class="h3 card-title text-center mt-2 font-weight-bold">ログイン</h2>
 
-                        {{-- @include('common.errors') --}}
+                        @include('common.errors')
 
                         <div class="card-text">
                             <form method="POST" action="{{ route('login') }}">
