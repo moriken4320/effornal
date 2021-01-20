@@ -1,0 +1,45 @@
+.user-show{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+  padding: 0 20px 5px;
+  
+  &-left{
+    display: flex;
+
+    &-user-icon{
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 1px 1px 3px black;
+      user-select: none;
+      border: solid 1px lightgreen;
+    }
+    
+    &-user-name{
+      font-size: 20px;
+      
+      span{
+        font-size: 30px;
+        padding: 0 10px 0 20px;
+      }
+    }
+  }
+
+  &-right{
+
+    &-user-config{
+      font-size: 30px;
+      color: gray;
+      cursor: pointer;
+      user-select: none;
+      transition: .2s;
+      
+      &:hover{
+        opacity: .8;
+      }
+    }
+  }
+}

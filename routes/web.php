@@ -13,10 +13,9 @@
 
 Route::get('/', 'PostsController@index');
 
+// ユーザー認証関連
 Auth::routes();
-
 Route::prefix('auth')->middleware('guest')->group(function() {
-
     Route::get('/{provider}', 'Auth\OAuthController@socialOAuth')
         ->where('provider','google')
         ->name('socialOAuth');
@@ -25,5 +24,13 @@ Route::prefix('auth')->middleware('guest')->group(function() {
          ->where('provider','google')
          ->name('oauthCallback');
  });
-
 Route::get('/home', 'PostsController@index')->name('home');
+
+// ユーザー詳細
+Route::get('users/{user_id}', 'UsersController@show')->name('users.show');
+
+// ユーザー情報編集
+Route::post('users/edit', 'UsersController@edit')->name('users.edit');
+
+// ユーザー情報更新
+Route::post('users/update', 'UsersController@update')->name('users.update');

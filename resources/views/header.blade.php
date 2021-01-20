@@ -29,11 +29,11 @@
         @endif
       </div>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        {{-- <button class="dropdown-item" type="button"
-        onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">
-        マイリスト
-        </button> --}}
-        {{-- <div class="dropdown-divider"></div> --}}
+        <button class="dropdown-item" type="button"
+        onclick="location.href='{{ route('users.show', ['user_id' => Auth::user()->id]) }}'">
+        マイページ
+        </button>
+        <div class="dropdown-divider"></div>
         <button form="logout-button" class="dropdown-item" type="submit">
           ログアウト
         </button>

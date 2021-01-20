@@ -33,6 +33,42 @@
   padding: 3px 5px;
   margin-left: 10px;
 }
+.user-show {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+  padding: 0 20px 5px;
+}
+.user-show-left {
+  display: flex;
+}
+.user-show-left-user-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px black;
+  user-select: none;
+  border: solid 1px lightgreen;
+}
+.user-show-left-user-name {
+  font-size: 20px;
+}
+.user-show-left-user-name span {
+  font-size: 30px;
+  padding: 0 10px 0 20px;
+}
+.user-show-right-user-config {
+  font-size: 30px;
+  color: gray;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+}
+.user-show-right-user-config:hover {
+  opacity: 0.8;
+}
 .app-logo {
   color: white;
   font-size: 50px;
