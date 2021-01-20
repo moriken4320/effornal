@@ -1,3 +1,8 @@
-h1 {
-  color: red;
+.navbar {
+  background-color: #003f00;
+}
+.navbar-brand {
+  color: white;
+  line-height: 100%;
+  font-size: 40px;
 }

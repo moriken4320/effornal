@@ -1,3 +1,9 @@
-h1{
-  color: red;
+.navbar{
+  background-color: rgb(0, 63, 0);
+
+  &-brand{
+    color: white;
+    line-height: 100%;
+    font-size: 40px;
+  }
 }
