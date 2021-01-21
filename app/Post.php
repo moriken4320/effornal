@@ -12,9 +12,9 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    // hasOneの設定
+    // belongsToの設定
     public function subject()
     {
-        return $this->hasOne('App\Subject');
+        return $this->belongsTo('App\Subject');
     }
 }
