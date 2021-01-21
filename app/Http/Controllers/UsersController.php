@@ -44,7 +44,7 @@ class UsersController extends Controller
 
         $user = Auth::user();
         $user->name = $request->name;
-        if ($request->image !=null) {
+        if ($request->image !=null && $request->image->getFilename() != null) {
             // アップロードされた画像ファイルをbase64という形式に変換
             $user->image = base64_encode(file_get_contents($request->image));
         }

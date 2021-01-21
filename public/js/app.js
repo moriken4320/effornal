@@ -102,10 +102,16 @@ module.exports = __webpack_require__(2);
 /* 2 */
 /***/ (function(module, exports) {
 
-// $(function(){
-//   console.log("test");
-// });
-console.log("test");
+$(function () {
+  if (document.URL.match(/users\/edit/)) {
+    console.log("test");
+    //画像変更時、プロフィールの画像も即時に変更
+    $("#input-user-image").on("change", function (e) {
+      var blob = window.URL.createObjectURL(e.target.files[0]);
+      $("#user-image").attr("src", blob);
+    });
+  }
+});
 
 /***/ })
 /******/ ]);

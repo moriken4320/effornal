@@ -19,17 +19,17 @@
               <form method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data" accept-charset="UTF-8">
                 {{ csrf_field() }}
                 <div class="user-image">
-                  <label for="user_image">
+                  <label for="input-user-image">
                     @if ($user->image)
                     {{-- base64という形式の画像データを表示する --}}
-                    <img class="user-image-photo" src="data:image/png;base64,{{ $user->image }}" alt="avatar" />
+                    <img class="user-image-photo" src="data:image/png;base64,{{ $user->image }}" alt="avatar" id="user-image" />
                     @else
-                    <img class="user-image-photo" src="{{ asset('/images/blank_profile.png') }}" />
+                    <img class="user-image-photo" src="{{ asset('/images/blank_profile.png') }}" id="user-image" />
                     @endif
                     <div class="btn btn-success btn-sm" style="display: block">画像変更</div>
                   </label>
                   <input type="file" name="image" accept="image/jpeg,image/gif,image/png" class="hidden"
-                    id="user_image" />
+                    id="input-user-image" />
                 </div>
                 <div class="md-form">
                   <label for="name">ユーザー名</label>
