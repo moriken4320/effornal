@@ -16,9 +16,11 @@
       @endif
       <p class="user-show-left-user-name"><span class="font-weight-bold">{{ $user->name }}</span>さんのページ</p>
     </div>
-    @if ($user->id == Auth::user()->id)
+    @if (Auth::check() && $user->id == Auth::user()->id)
     <div class="user-show-right">
-      <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
+      <a href="{{ route('users.edit') }}">
+        <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
+      </a>
     </div>
     @endif
   </div>

@@ -1,6 +1,12 @@
 @import "header";
 @import "auth";
 @import "user_show";
+@import "user_edit";
+
+body{
+  width: 100%;
+  min-height: 100vh;
+}
 
 .app-logo{
   color: white;
@@ -13,5 +19,5 @@
 }
 
 .container{
-  margin-top: 20px;
+  padding-top: 20px;
 }

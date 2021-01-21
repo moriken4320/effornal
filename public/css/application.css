@@ -69,6 +69,23 @@
 .user-show-right-user-config:hover {
   opacity: 0.8;
 }
+.user-image-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px black;
+  user-select: none;
+  border: solid 1px lightgreen;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+}
 .app-logo {
   color: white;
   font-size: 50px;
@@ -78,5 +95,5 @@
   color: white;
 }
 .container {
-  margin-top: 20px;
+  padding-top: 20px;
 }
