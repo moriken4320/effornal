@@ -27,6 +27,8 @@
     <link href="{{ secure_asset('css/reset.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/application.css') }}" rel="stylesheet">
     @endif
+    <!-- JavaScript -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
 
   <body>

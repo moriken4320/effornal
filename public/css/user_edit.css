@@ -1,0 +1,13 @@
+.user-image-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px black;
+  user-select: none;
+  border: solid 1px lightgreen;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}

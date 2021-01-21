@@ -26,11 +26,14 @@ Route::prefix('auth')->middleware('guest')->group(function() {
  });
 Route::get('/home', 'PostsController@index')->name('home');
 
+// ログインしていなかったらログインページに戻す
+Route::group(['middleware' => 'auth'], function () {
+    // ユーザー情報編集
+    Route::get('users/edit', 'UsersController@edit')->name('users.edit');
+    
+    // ユーザー情報更新
+    Route::post('users/update', 'UsersController@update')->name('users.update');
+});
+
 // ユーザー詳細
 Route::get('users/{user_id}', 'UsersController@show')->name('users.show');
-
-// ユーザー情報編集
-Route::post('users/edit', 'UsersController@edit')->name('users.edit');
-
-// ユーザー情報更新
-Route::post('users/update', 'UsersController@update')->name('users.update');
