@@ -1,0 +1,61 @@
+.card{
+  padding: 0;
+  margin-bottom: 30px;
+
+  .card-header{
+    display: flex;
+    align-items: center;
+    
+    .post-user-image{
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .post-user-name{
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 13px;
+      color: rgb(44, 44, 44);
+
+      &:hover{
+        opacity: .8;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .card-body{
+
+    .post-main{
+      border-bottom: dotted 1px rgba(0, 0, 0, 0.8);
+      margin-bottom: 7px;
+      padding: 0 5px;
+      
+      &:nth-child(even){
+        margin-bottom: 20px;
+      }
+    }
+    
+    .post-text{
+      padding: 0 5px;
+    }
+  }
+
+  .card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+
+    .fa-heart{
+      padding-right: 10px;
+    }
+  }
+
+  .fa-ellipsis-v{
+    font-size: 20px;
+  }
+}
