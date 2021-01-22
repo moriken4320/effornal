@@ -129,6 +129,8 @@
 }
 .card .fa-ellipsis-v {
   font-size: 20px;
+  padding: 10px;
+  color: gray;
 }
 body {
   width: 100%;
