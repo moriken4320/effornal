@@ -11,8 +11,8 @@ if(isset($post))
 
 {{ csrf_field() }}
 <div class="md-form">
-  <label>科目名</label>
-  <input type="text" name="name" class="form-control" required value="{{ $post->subject->name ?? old('name') }}">
+  <label for="subject-title">科目名</label>
+  <input type="text" name="name" id="subject-title" class="form-control" required value="{{ $post->subject->name ?? old('name') }}">
 </div>
 
 <div class="md-form">
