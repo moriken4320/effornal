@@ -13,7 +13,7 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->path() == 'posts' || $this->path() == 'posts/{post_id}'){
+        if($this->path() == 'posts' || $this->is('posts/*')){
             return true;
         }else{
             return false;

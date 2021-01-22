@@ -12,7 +12,7 @@
         <div class="card-body pt-0">
           @include('common.errors')
           <div class="card-text">
-            <form method="POST" action="{{ route('posts.update') }}">
+            <form method="POST" action="{{ route('posts.update',['post_id'=>$post->id]) }}">
               @include('post.form')
               <button type="submit" class="btn btn-block shadow-none text-white create-post-btn">更新</button>
             </from>

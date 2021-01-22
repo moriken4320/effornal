@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     // 投稿編集画面
     Route::get('/posts/{post_id}', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
     // 投稿更新
-    Route::put('/posts/{post_id}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
+    Route::post('/posts/{post_id}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
     // 投稿削除
     Route::delete('/posts/{post_id}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
 });

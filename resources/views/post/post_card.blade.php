@@ -21,7 +21,7 @@ $study_time_min = $post->study_time % 60;
           <i class="fas fa-ellipsis-v"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="{{ route('posts.edit', ['post'=>$post]) }}">
+          <a class="dropdown-item" href="{{ route('posts.edit', ['post_id'=>$post->id]) }}">
             <i class="fas fa-pen mr-1"></i>編集する
           </a>
           <div class="dropdown-divider"></div>
