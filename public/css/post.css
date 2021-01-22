@@ -1,0 +1,50 @@
+.card {
+  padding: 0;
+  margin-bottom: 30px;
+}
+.card .card-header {
+  display: flex;
+  align-items: center;
+}
+.card .card-header .post-user-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.card .card-header .post-user-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 13px;
+  color: #2c2c2c;
+}
+.card .card-header .post-user-name:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+.card .card-body .post-main {
+  border-bottom: dotted 1px rgba(0, 0, 0, 0.8);
+  margin-bottom: 7px;
+  padding: 0 5px;
+}
+.card .card-body .post-main:nth-child(even) {
+  margin-bottom: 20px;
+}
+.card .card-body .post-text {
+  padding: 0 5px;
+}
+.card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+}
+.card .card-footer .fa-heart {
+  padding-right: 10px;
+}
+.card .fa-ellipsis-v {
+  font-size: 20px;
+  padding: 10px;
+  color: gray;
+}
