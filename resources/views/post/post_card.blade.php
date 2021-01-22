@@ -41,7 +41,7 @@ $study_time_min = $post->study_time % 60;
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+          <form method="POST" action="{{ route('posts.destroy', ['post_id' => $post->id]) }}">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="DELETE">
             <div class="modal-body text-center">
