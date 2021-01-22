@@ -1,39 +1,41 @@
+@import "./variables.scss";
+
 .navbar{
-  background-color: rgb(0, 63, 0);
+  background-color: $main_color;
 
   &-brand{
     color: white;
     line-height: 100%;
     font-size: 35px;
   }
-}
-
-.header-user-icon{
-  width: 45px;
-  height: 45px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 1px 1px 5px black;
-  transition: .2s;
-  cursor: pointer;
-  user-select: none;
-  border: solid 2px lightgreen;
-
-  &:hover{
-    transform: scale(1.1);
-  }
-}
-
-.new-post-btn{
-  font-size: 15px;
-  padding: 0px 15px;
-  display: flex !important;
-  align-items: center;
-  height: 40px;
-  min-width: 40px;
-  align-self: center;
   
-  p{
-    margin-left: 10px;
+  .header-user-icon{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px black;
+    transition: .2s;
+    cursor: pointer;
+    user-select: none;
+    border: solid 2px lightgreen;
+    
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+  
+  .new-post-btn{
+    font-size: 15px;
+    padding: 0px 15px;
+    display: flex !important;
+    align-items: center;
+    height: 40px;
+    min-width: 40px;
+    align-self: center;
+    
+    p{
+      margin-left: 10px;
+    }
   }
 }
