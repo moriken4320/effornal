@@ -48,3 +48,31 @@
   padding: 10px;
   color: gray;
 }
+.create-post-btn {
+  background-color: #003f00;
+}
+.study-time-wrap {
+  display: flex;
+  padding: 0.6rem 0 0.4rem;
+  border-bottom: 1px solid #ced4da;
+  align-items: center;
+}
+.study-time-wrap p {
+  font-size: 1rem;
+  color: #757575;
+  margin-right: 15px;
+}
+.study-time-wrap p select {
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  background-color: #00c851;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  text-align-last: center;
+  padding: 1px 0px;
+}

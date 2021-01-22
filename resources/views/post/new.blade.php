@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '投稿編集 / Effornal')
+@section('title', '投稿作成 / Effornal')
     
 @include('header')
 
@@ -12,9 +12,9 @@
         <div class="card-body pt-0">
           @include('common.errors')
           <div class="card-text">
-            <form method="POST" action="{{ route('posts.update',['post_id'=>$post->id]) }}">
+            <form method="POST" action="{{ route('posts.create') }}">
               @include('post.form')
-              <button type="submit" class="btn btn-block shadow-none text-white create-post-btn">更新</button>
+              <button type="submit" class="btn btn-block shadow-none text-white create-post-btn">投稿</button>
             </from>
           </div>
         </div>

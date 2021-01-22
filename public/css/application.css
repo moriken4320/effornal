@@ -6,7 +6,7 @@
   line-height: 100%;
   font-size: 35px;
 }
-.header-user-icon {
+.navbar .header-user-icon {
   width: 45px;
   height: 45px;
   object-fit: cover;
@@ -17,8 +17,20 @@
   user-select: none;
   border: solid 2px lightgreen;
 }
-.header-user-icon:hover {
+.navbar .header-user-icon:hover {
   transform: scale(1.1);
+}
+.navbar .new-post-btn {
+  font-size: 15px;
+  padding: 0px 15px;
+  display: flex !important;
+  align-items: center;
+  height: 40px;
+  min-width: 40px;
+  align-self: center;
+}
+.navbar .new-post-btn p {
+  margin-left: 10px;
 }
 .google {
   opacity: 0.8;
@@ -132,13 +144,41 @@
   padding: 10px;
   color: gray;
 }
+.create-post-btn {
+  background-color: #003f00;
+}
+.study-time-wrap {
+  display: flex;
+  padding: 0.6rem 0 0.4rem;
+  border-bottom: 1px solid #ced4da;
+  align-items: center;
+}
+.study-time-wrap p {
+  font-size: 1rem;
+  color: #757575;
+  margin-right: 15px;
+}
+.study-time-wrap p select {
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  background-color: #00c851;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  text-align-last: center;
+  padding: 1px 0px;
+}
 body {
   width: 100%;
   min-height: 100vh;
 }
 .app-logo {
   color: white;
-  font-size: 50px;
+  font-size: 40px;
 }
 .app-logo:hover {
   opacity: 0.8;

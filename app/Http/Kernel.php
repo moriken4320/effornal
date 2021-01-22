@@ -46,6 +46,10 @@ class Kernel extends HttpKernel
         'contributor' => [
             \App\Http\Middleware\ContributorMiddleware::class,
         ],
+
+        'studyTimeCalc' => [
+            \App\Http\Middleware\StudyTimeCalcMiddleware::class,
+        ],
     ];
 
     /**

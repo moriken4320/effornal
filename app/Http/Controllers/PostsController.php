@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Subject;
+use Auth;
+use Validator;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,31 +17,52 @@ class PostsController extends Controller
         return view('post.index', ['posts'=>$posts]);
     }
 
-    public function create()
+    public function new()
     {
-        return view('post.create');
+        return view('post.new');
     }
     
-    public function store()
+    public function create(PostRequest $request)
     {
+        // Subjectモデルの作成
+        $subject = Subject::firstOrCreate(['name'=>$request->name]);
 
+        // Postモデル作成
+        $post = new Post;
+        $post->subject_id = $subject->id;
+        $post->study_time = $request->study_time;
+        $post->text = $request->text;
+        $post->user_id = Auth::user()->id;
+        $post->save();
+
+        return redirect('/');
     }
     
-    public function edit($post)
+    public function edit($post_id)
     {
-        $post_instance = Post::find($post);
-        return view('post.edit', ['post'=>$post_instance]);
+        $post = Post::find($post_id);
+        return view('post.edit', ['post'=>$post]);
     }
 
-    public function update($post)
+    public function update($post_id, PostRequest $request)
     {
+        // Subjectモデルの作成
+        $subject = Subject::firstOrCreate(['name'=>$request->name]);
 
+        // Postデータ取得
+        $post = Post::find($post_id);
+        $post->subject_id = $subject->id;
+        $post->study_time = $request->study_time;
+        $post->text = $request->text;
+        $post->save();
+
+        return redirect('/');
     }
 
-    public function destroy($post)
+    public function destroy($post_id)
     {
-        $post_instance = Post::find($post);
-        $post_instance->delete();
+        $post = Post::find($post_id);
+        $post->delete();
         return redirect()->back();
     }
 }

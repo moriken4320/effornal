@@ -6,7 +6,7 @@
   line-height: 100%;
   font-size: 35px;
 }
-.header-user-icon {
+.navbar .header-user-icon {
   width: 45px;
   height: 45px;
   object-fit: cover;
@@ -17,6 +17,18 @@
   user-select: none;
   border: solid 2px lightgreen;
 }
-.header-user-icon:hover {
+.navbar .header-user-icon:hover {
   transform: scale(1.1);
+}
+.navbar .new-post-btn {
+  font-size: 15px;
+  padding: 0px 15px;
+  display: flex !important;
+  align-items: center;
+  height: 40px;
+  min-width: 40px;
+  align-self: center;
+}
+.navbar .new-post-btn p {
+  margin-left: 10px;
 }
