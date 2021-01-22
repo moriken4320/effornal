@@ -21,11 +21,11 @@ Route::group(['middleware' => 'auth'], function () {
     // 投稿作成画面
     Route::get('/posts', 'PostsController@new')->name('posts.new');
     // 投稿作成
-    Route::post('/posts', 'PostsController@create')->name('posts.create');
+    Route::post('/posts', 'PostsController@create')->name('posts.create')->middleware('studyTimeCalc');
     // 投稿編集画面
     Route::get('/posts/{post_id}', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
     // 投稿更新
-    Route::put('/posts/{post_id}', 'PostsController@update')->name('posts.update')->middleware('contributor');
+    Route::put('/posts/{post_id}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
     // 投稿削除
     Route::delete('/posts/{post_id}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
 });
