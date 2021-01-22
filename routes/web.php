@@ -15,7 +15,9 @@
 Route::get('/', 'PostsController@index');
 
 // 投稿関連
-Route::resource('/posts', 'PostsController')->except(['index','show'])->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('/posts', 'PostsController')->except(['index','show'])->middleware('contributor');
+});
 
 // ユーザー認証関連
 Auth::routes();
