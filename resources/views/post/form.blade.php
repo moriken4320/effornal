@@ -15,10 +15,14 @@ if(isset($post))
   <input type="text" name="name" id="subject-title" class="form-control" required value="{{ $post->subject->name ?? old('name') }}">
 </div>
 
-<div class="md-form">
+<div class="md-form study-time-wrap">
   <p>勉強時間</p>
-  {{  Form::select('study_time_hour', ['hour'=>range(0,23)], $study_time_hour ?? old('study_time_hour'))  }}
-  {{  Form::select('study_time_min', ['min'=>range(0,59)], $study_time_min ?? old('study_time_min'))  }}
+  <p>
+    {{  Form::select('study_time_hour', ['hour'=>range(0,23)], $study_time_hour ?? old('study_time_hour'))  }} h
+  </p>
+  <p>
+    {{  Form::select('study_time_min', ['min'=>range(0,59)], $study_time_min ?? old('study_time_min'))  }} m
+  </p>
 </div>
 
 <div class="form-group">
