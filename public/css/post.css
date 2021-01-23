@@ -1,6 +1,6 @@
 .card {
   padding: 0;
-  margin-bottom: 20px;
+  margin: 20px 10px;
 }
 .card .card-header {
   display: flex;
@@ -77,14 +77,4 @@
   user-select: none;
   text-align-last: center;
   padding: 1px 0px;
-}
-.index-posts-list {
-  padding: 5px;
-  height: 90vh;
-  overflow: scroll;
-}
-.show-posts-list {
-  padding: 5px;
-  height: 70vh;
-  overflow: scroll;
 }

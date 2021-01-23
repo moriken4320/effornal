@@ -1,3 +1,11 @@
+#fixed-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: white;
+  padding: 20px 10px 0;
+}
 .user-show {
   display: flex;
   align-items: center;
@@ -34,4 +42,27 @@
 }
 .user-show-right-user-config:hover {
   opacity: 0.8;
+}
+.time-sum-wrap {
+  padding: 0;
+  user-select: none;
+  margin-bottom: 20px;
+}
+.time-sum-wrap .dropdown {
+  padding: 0;
+}
+.time-sum-wrap .dropdown a {
+  display: block;
+  padding: 10px 0 2px;
+}
+.time-sum-wrap .dropdown a:hover {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+}
+.time-sum-wrap .dropdown .dropdown-menu {
+  right: 0 !important;
+  overflow: scroll;
+  max-height: 50vh;
+}
+.time-sum-wrap .dropdown strong {
+  font-size: 20px;
 }

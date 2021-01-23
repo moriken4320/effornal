@@ -1,4 +1,4 @@
-<div class="card col-xl-8 col-lg-8 col-md-10 col-sm-12 mx-auto">
+<div class="card">
   <div class="card-header">
     @if ($post->user->image)
     {{-- base64という形式の画像データを表示する --}}
