@@ -35,7 +35,7 @@ class PostsController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
-        return redirect('/');
+        return redirect(route("users.show",Auth::user()->id));
     }
     
     public function edit($post_id)
@@ -56,7 +56,7 @@ class PostsController extends Controller
         $post->text = $request->text;
         $post->save();
 
-        return redirect('/');
+        return redirect(route("users.show",Auth::user()->id));
     }
 
     public function destroy($post_id)
