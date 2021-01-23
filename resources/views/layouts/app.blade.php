@@ -35,6 +35,7 @@
     @yield('header')
 
     <div id="app">
+      @yield('user-show-fixed')
       @yield('content')
     </div>       
 

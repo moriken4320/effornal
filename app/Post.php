@@ -17,4 +17,10 @@ class Post extends Model
     {
         return $this->belongsTo('App\Subject');
     }
+
+    // 引数に指定したユーザーの投稿データを取得
+    public static function getTargetOfPosts($user)
+    {
+        return self::where('user_id', $user->id)->with('user')->with('subject');
+    }
 }

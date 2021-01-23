@@ -1,6 +1,6 @@
 .card {
   padding: 0;
-  margin-bottom: 30px;
+  margin: 20px 10px;
 }
 .card .card-header {
   display: flex;
@@ -33,6 +33,8 @@
 }
 .card .card-body .post-text {
   padding: 0 5px;
+  font-size: 13px;
+  color: #505050;
 }
 .card .card-footer {
   display: flex;

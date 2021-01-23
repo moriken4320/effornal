@@ -1,9 +1,4 @@
-@php
-$study_time_hour = intdiv($post->study_time, 60);
-$study_time_min = $post->study_time % 60;
-@endphp
-
-<div class="card col-xl-8 col-lg-8 col-md-10 col-sm-12 mx-auto">
+<div class="card">
   <div class="card-header">
     @if ($post->user->image)
     {{-- base64という形式の画像データを表示する --}}
@@ -60,7 +55,7 @@ $study_time_min = $post->study_time % 60;
   </div>
   <div class="card-body">
     <p class="post-main">科目名： {{ $post->subject->name }}</p>
-    <p class="post-main">勉強時間： {{ $study_time_hour }}h {{ $study_time_min }}m</p>
+    <p class="post-main">勉強時間： {{ intdiv($post->study_time, 60) }}h {{ $post->study_time % 60 }}m</p>
     <p class="post-text">{{ $post->text }}</p>
   </div>
   <div class="card-footer">

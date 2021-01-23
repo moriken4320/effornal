@@ -68,7 +68,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(2);
+__webpack_require__(2);
+module.exports = __webpack_require__(3);
 
 
 /***/ }),
@@ -104,12 +105,22 @@ module.exports = __webpack_require__(2);
 
 $(function () {
   if (document.URL.match(/users\/edit/)) {
-    console.log("test");
     //画像変更時、プロフィールの画像も即時に変更
     $("#input-user-image").on("change", function (e) {
       var blob = window.URL.createObjectURL(e.target.files[0]);
       $("#user-image").attr("src", blob);
     });
+  }
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+$(function () {
+  $("#app").css("padding-top", 66);
+  if (document.URL.match(/users\/\d+/)) {
+    $("#post-list").css("padding-top", 189);
   }
 });
 

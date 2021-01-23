@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
+use App\Subject;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -20,7 +22,32 @@ class UsersController extends Controller
             return redirect('/');
         }
 
-        return view('user.show',['user'=>$user]);
+        // ユーザーの投稿データを取得
+        $posts = Post::getTargetOfPosts($user)->orderBy('created_at','desc')->get();
+
+        // 合計勉強時間を取得
+        $sum_study_time = $posts->sum('study_time');
+        
+        // 1日あたりの最大勉強時間を取得
+        $max_study_time = $posts->max('study_time');
+        
+        // ユーザーが勉強した科目名と勉強時間を取得
+        $distinct_subject_posts = Post::getTargetOfPosts($user)->select('subject_id')->distinct()->get();
+        $subjects = [];
+        foreach($distinct_subject_posts as $d_s_post)
+        {
+            $subject_sum_study_time = Post::getTargetOfPosts($user)->where('subject_id', $d_s_post->subject->id)->sum('study_time');
+            $subjects[] = ["name"=>$d_s_post->subject->name, 'sum_study_time'=>$subject_sum_study_time];
+        }
+
+        // 科目と勉強時間関連のデータを格納
+        $study_data = [
+            'sum_study_time'=>$sum_study_time,
+            'max_study_time'=>$max_study_time,
+            'subjects'=>$subjects,
+        ];
+
+        return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$study_data]);
     }
     
     public function edit()

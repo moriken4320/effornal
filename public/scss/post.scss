@@ -2,7 +2,7 @@
 
 .card{
   padding: 0;
-  margin-bottom: 30px;
+  margin: 20px 10px;
 
   .card-header{
     display: flex;
@@ -43,6 +43,8 @@
     
     .post-text{
       padding: 0 5px;
+      font-size: 13px;
+      color: rgb(80, 80, 80);
     }
   }
 
