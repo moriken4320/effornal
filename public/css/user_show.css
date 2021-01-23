@@ -4,6 +4,7 @@
   justify-content: space-between;
   border-bottom: solid 1px black;
   padding: 0 20px 5px;
+  margin-bottom: 30px;
 }
 .user-show-left {
   display: flex;

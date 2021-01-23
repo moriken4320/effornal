@@ -24,5 +24,19 @@
     </div>
     @endif
   </div>
+  <div class="mx-auto time-sum-wrap">
+    <p>総勉強時間：{{ $study_data['sum_study_time'] }}</p>
+    <p>1日の最大勉強時間：{{ $study_data['max_study_time'] }}</p>
+    <ul>
+      @foreach ($study_data['subjects'] as $subject)
+      <li>{{ $subject['name'] }}：{{ $subject['sum_study_time'] }}</li>
+      @endforeach
+    </ul>
+  </div>
+  <div class="show-posts-list">
+    @foreach ($posts as $post)
+      @include('post.post_card')
+    @endforeach
+  </div>
 </div>
 @endsection

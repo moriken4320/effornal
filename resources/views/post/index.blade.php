@@ -5,7 +5,7 @@
 @include('header')
 
 @section('content')
-<div class="container">
+<div class="container index-posts-list">
   @foreach ($posts as $post)
       @include('post.post_card')
   @endforeach
