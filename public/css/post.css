@@ -56,7 +56,7 @@
 #subject-input #subject-title {
   margin: 0;
 }
-#subject-input .subject-complement-list {
+#subject-input #subject-complement-list {
   position: absolute;
   border: 1px solid #4285f4;
   border-top: none;
@@ -67,10 +67,10 @@
   user-select: none;
   cursor: pointer;
 }
-#subject-input .subject-complement-list .subject-complement-item {
+#subject-input #subject-complement-list .subject-complement-item {
   padding: 3px 10px;
 }
-#subject-input .subject-complement-list .subject-complement-item:hover {
+#subject-input #subject-complement-list .subject-complement-item:hover {
   background-color: #5a9600;
   color: white;
 }
