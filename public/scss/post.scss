@@ -70,6 +70,35 @@
   background-color: $main_color;
 }
 
+// 投稿作成・編集の科目名フォームの自動補完
+#subject-input{
+  #subject-title{
+    margin: 0;
+  }
+
+  #subject-complement-list{
+    position: absolute;
+    border: 1px solid #4285f4;
+    border-top: none;
+    width: 100%;
+    background-color: white;
+    color: #757575;
+    z-index: 5;
+    user-select: none;
+    cursor: pointer;
+    
+    .subject-complement-item{
+      padding: 3px 10px;
+
+      &:hover{
+        background-color: rgb(90, 150, 0);
+        color: white;
+      }
+    }
+  }
+}
+
+// 投稿作成・編集の勉強時間フォーム
 .study-time-wrap{
   display: flex;
   padding: .6rem 0 .4rem;

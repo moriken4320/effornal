@@ -69,7 +69,8 @@
 
 __webpack_require__(1);
 __webpack_require__(2);
-module.exports = __webpack_require__(3);
+__webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 
 /***/ }),
@@ -118,10 +119,63 @@ $(function () {
 /***/ (function(module, exports) {
 
 $(function () {
-  $("#app").css("padding-top", 66);
+  $("#app").css("padding-top", 77);
   if (document.URL.match(/users\/\d+/)) {
     $("#post-list").css("padding-top", 189);
   }
+});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var set_function = function set_function() {
+
+  // 自動補完リストを選択したら
+  $(".subject-complement-item").on("mousedown touchstart", function () {
+    // inputフォームに値を入れ込む
+    $("#subject-title").val($(this).text());
+  });
+};
+
+$(function () {
+
+  // 科目名のフォームに何かしら入力されたら
+  $("#subject-title").on("keyup", function () {
+    var keyword = $("#subject-title").val();
+
+    // 何も入力されていない場合
+    if (!keyword) {
+      // 自動補完を削除
+      $("#subject-complement-list").remove();
+      return false;
+    }
+
+    $.ajax({
+      type: "get",
+      url: "/subjects/complement/" + keyword,
+      data: { "keyword": keyword },
+      dataType: "json"
+    }).done(function (data) {
+      // 自動補完を削除
+      $("#subject-complement-list").remove();
+      var subject_complement_list = $("<ul>").attr("id", "subject-complement-list");
+      data.forEach(function (subject) {
+        var subject_complement_item = $("<li>").addClass("subject-complement-item").text(subject.name);
+        subject_complement_list.append(subject_complement_item);
+      });
+      $("#subject-input").append(subject_complement_list);
+      set_function();
+    }).fail(function () {
+      alert("エラーが発生しました。");
+    });
+  });
+
+  // 科目名のinputフォームから外れた時
+  $("#subject-title").on("blur", function () {
+    // 自動補完リストを削除
+    $("#subject-complement-list").remove();
+  });
 });
 
 /***/ })

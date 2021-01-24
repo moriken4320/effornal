@@ -181,6 +181,27 @@
 .create-post-btn {
   background-color: #003f00;
 }
+#subject-input #subject-title {
+  margin: 0;
+}
+#subject-input #subject-complement-list {
+  position: absolute;
+  border: 1px solid #4285f4;
+  border-top: none;
+  width: 100%;
+  background-color: white;
+  color: #757575;
+  z-index: 5;
+  user-select: none;
+  cursor: pointer;
+}
+#subject-input #subject-complement-list .subject-complement-item {
+  padding: 3px 10px;
+}
+#subject-input #subject-complement-list .subject-complement-item:hover {
+  background-color: #5a9600;
+  color: white;
+}
 .study-time-wrap {
   display: flex;
   padding: 0.6rem 0 0.4rem;

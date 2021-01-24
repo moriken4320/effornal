@@ -29,21 +29,18 @@ class UsersController extends Controller
         $sum_study_time = $posts->sum('study_time');
         
         // 1日あたりの最大勉強時間を取得
-        $max_study_time = $posts->max('study_time');
+        // $max_study_time = $posts->max('study_time');
         
         // ユーザーが勉強した科目名と勉強時間を取得
-        $distinct_subject_posts = Post::getTargetOfPosts($user)->select('subject_id')->distinct()->get();
-        $subjects = [];
-        foreach($distinct_subject_posts as $d_s_post)
-        {
-            $subject_sum_study_time = Post::getTargetOfPosts($user)->where('subject_id', $d_s_post->subject->id)->sum('study_time');
-            $subjects[] = ["name"=>$d_s_post->subject->name, 'sum_study_time'=>$subject_sum_study_time];
-        }
+        $subjects = Post::getTargetOfPosts($user)->select('subject_id')->distinct()->get()->map(function($post) use($user){
+            $subject_sum_study_time = Post::getTargetOfPosts($user)->where('subject_id', $post->subject->id)->sum('study_time');
+            return ["name"=>$post->subject->name, 'sum_study_time'=>$subject_sum_study_time];
+        });
 
         // 科目と勉強時間関連のデータを格納
         $study_data = [
             'sum_study_time'=>$sum_study_time,
-            'max_study_time'=>$max_study_time,
+            // 'max_study_time'=>$max_study_time,
             'subjects'=>$subjects,
         ];
 
