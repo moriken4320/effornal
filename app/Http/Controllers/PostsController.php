@@ -65,4 +65,13 @@ class PostsController extends Controller
         $post->delete();
         return redirect()->back();
     }
+
+    // 科目名自動補完用アクション
+    public function Complement($keyword)
+    {
+        $subjects = Subject::where('name', 'like', '%' . $keyword . '%')->get()->map(function($subject){
+            return ['name'=>$subject->name];
+        });
+        return response()->json($subjects);
+    }
 }
