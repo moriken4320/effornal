@@ -12,9 +12,9 @@
         <div class="card-body pt-0">
           @include('common.errors')
           <div class="card-text">
-            <form method="POST" action="{{ route('posts.create') }}">
+            <form method="POST" action="{{ route('posts.create') }}" onsubmit="return false;">
               @include('post.form')
-              <button type="submit" class="btn btn-block shadow-none text-white create-post-btn">投稿</button>
+              <button type="button" class="btn btn-block shadow-none text-white create-post-btn" onclick="submit();">投稿</button>
             </from>
           </div>
         </div>
