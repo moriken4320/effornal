@@ -1,54 +1,50 @@
-#fixed-wrap{
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 5;
+.user-show-wrap{
   background-color: white;
-  padding: 20px 10px 0;
-}
-
-.user-show{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: solid 1px black;
-  padding: 0 20px 5px;
-  margin-bottom: 30px;
+  padding: 20px 10px 0 0;
   
-  &-left{
+  .user-show{
     display: flex;
-
-    &-user-icon{
-      width: 45px;
-      height: 45px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 1px 1px 3px black;
-      user-select: none;
-      border: solid 1px lightgreen;
-    }
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px black;
+    padding: 0 20px 5px;
+    margin-bottom: 30px;
     
-    &-user-name{
-      font-size: 20px;
+    &-left{
+      display: flex;
       
-      span{
-        font-size: 30px;
-        padding: 0 10px 0 20px;
+      &-user-icon{
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 1px 1px 3px black;
+        user-select: none;
+        border: solid 1px lightgreen;
+      }
+      
+      &-user-name{
+        font-size: 20px;
+        
+        span{
+          font-size: 30px;
+          padding: 0 10px 0 20px;
+        }
       }
     }
-  }
-
-  &-right{
-
-    &-user-config{
-      font-size: 30px;
-      color: gray;
-      cursor: pointer;
-      user-select: none;
-      transition: .2s;
+    
+    &-right{
       
-      &:hover{
-        opacity: .8;
+      &-user-config{
+        font-size: 30px;
+        color: gray;
+        cursor: pointer;
+        user-select: none;
+        transition: .2s;
+        
+        &:hover{
+          opacity: .8;
+        }
       }
     }
   }

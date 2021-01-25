@@ -32,10 +32,12 @@
   </head>
 
   <body>
-    @yield('header')
+    <div id="fixed-wrap" class="fixed-top">
+      @yield('header')
+      @yield('user-show-fixed')
+    </div>
 
     <div id="app">
-      @yield('user-show-fixed')
       @yield('content')
     </div>       
 

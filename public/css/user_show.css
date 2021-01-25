@@ -1,12 +1,8 @@
-#fixed-wrap {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 5;
+.user-show-wrap {
   background-color: white;
-  padding: 20px 10px 0;
+  padding: 20px 10px 0 0;
 }
-.user-show {
+.user-show-wrap .user-show {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,10 +10,10 @@
   padding: 0 20px 5px;
   margin-bottom: 30px;
 }
-.user-show-left {
+.user-show-wrap .user-show-left {
   display: flex;
 }
-.user-show-left-user-icon {
+.user-show-wrap .user-show-left-user-icon {
   width: 45px;
   height: 45px;
   object-fit: cover;
@@ -26,21 +22,21 @@
   user-select: none;
   border: solid 1px lightgreen;
 }
-.user-show-left-user-name {
+.user-show-wrap .user-show-left-user-name {
   font-size: 20px;
 }
-.user-show-left-user-name span {
+.user-show-wrap .user-show-left-user-name span {
   font-size: 30px;
   padding: 0 10px 0 20px;
 }
-.user-show-right-user-config {
+.user-show-wrap .user-show-right-user-config {
   font-size: 30px;
   color: gray;
   cursor: pointer;
   user-select: none;
   transition: 0.2s;
 }
-.user-show-right-user-config:hover {
+.user-show-wrap .user-show-right-user-config:hover {
   opacity: 0.8;
 }
 .time-sum-wrap {

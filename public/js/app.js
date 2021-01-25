@@ -120,10 +120,7 @@ $(function () {
 /***/ (function(module, exports) {
 
 $(function () {
-  $("#app").css("padding-top", 77);
-  if (document.URL.match(/users\/\d+/)) {
-    $("#post-list").css("padding-top", 189);
-  }
+  $("#app").css("padding-top", $("#fixed-wrap").outerHeight());
 });
 
 /***/ }),
