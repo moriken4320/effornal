@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     // 投稿削除
     Route::delete('/posts/{post_id}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
     // 科目名自動補完
-    Route::get('/subjects/complement/{keyword}', 'PostsController@Complement');
+    Route::get('/subjects/complement', 'PostsController@Complement');
 });
 
 // ユーザー認証関連

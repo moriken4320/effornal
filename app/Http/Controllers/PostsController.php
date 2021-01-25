@@ -67,9 +67,9 @@ class PostsController extends Controller
     }
 
     // 科目名自動補完用アクション
-    public function Complement($keyword)
+    public function Complement(Request $request)
     {
-        $subjects = Subject::where('name', 'like', '%' . $keyword . '%')->get()->map(function($subject){
+        $subjects = Subject::where('name', 'like', '%' . $request->keyword . '%')->get()->map(function($subject){
             return ['name'=>$subject->name];
         });
         return response()->json($subjects);

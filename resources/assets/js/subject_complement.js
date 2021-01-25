@@ -23,7 +23,7 @@ $(function(){
 
     $.ajax({
       type: "get",
-      url: "/subjects/complement/" + keyword,
+      url: "/subjects/complement",
       data: { "keyword": keyword },
       dataType: "json"
     })
