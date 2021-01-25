@@ -24,11 +24,11 @@ Route::group(['middleware' => 'auth'], function () {
     // 投稿作成
     Route::post('/posts', 'PostsController@create')->name('posts.create')->middleware('studyTimeCalc');
     // 投稿編集画面
-    Route::get('/posts/{post_id}', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
+    Route::get('/posts/{post}', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
     // 投稿更新
-    Route::post('/posts/{post_id}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
+    Route::post('/posts/{post}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
     // 投稿削除
-    Route::delete('/posts/{post_id}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
+    Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
     // 科目名自動補完
     Route::get('/subjects/complement', 'PostsController@Complement');
 });

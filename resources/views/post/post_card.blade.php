@@ -16,7 +16,7 @@
           <i class="fas fa-ellipsis-v"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="{{ route('posts.edit', ['post_id'=>$post->id]) }}">
+          <a class="dropdown-item" href="{{ route('posts.edit', ['post'=>$post]) }}">
             <i class="fas fa-pen mr-1"></i>編集する
           </a>
           <div class="dropdown-divider"></div>
@@ -36,7 +36,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form method="POST" action="{{ route('posts.destroy', ['post_id' => $post->id]) }}">
+          <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="DELETE">
             <div class="modal-body text-center">

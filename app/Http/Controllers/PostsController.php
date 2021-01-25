@@ -23,47 +23,53 @@ class PostsController extends Controller
         return view('post.new');
     }
     
-    public function create(PostRequest $request)
+    public function create(PostRequest $request, Post $post)
     {
         // Subjectモデルの作成
         $subject = Subject::firstOrCreate(['name'=>$request->name]);
 
         // Postモデル作成
-        $post = new Post;
+        $post->fill($request->all());
         $post->subject_id = $subject->id;
-        $post->study_time = $request->study_time;
-        $post->text = $request->text;
         $post->user_id = Auth::user()->id;
         $post->save();
 
         return redirect(route("users.show",Auth::user()->id));
     }
     
-    public function edit($post_id)
+    public function edit(Post $post)
     {
-        $post = Post::find($post_id);
         return view('post.edit', ['post'=>$post]);
     }
 
-    public function update($post_id, PostRequest $request)
+    public function update(PostRequest $request, Post $post)
     {
-        // Subjectモデルの作成
-        $subject = Subject::firstOrCreate(['name'=>$request->name]);
+        // 編集前のSubject
+        $before_subject = $post->subject;
+
+        // 編集後のSubject
+        $after_subject = Subject::firstOrCreate(['name'=>$request->name]);
 
         // Postデータ取得
-        $post = Post::find($post_id);
-        $post->subject_id = $subject->id;
-        $post->study_time = $request->study_time;
-        $post->text = $request->text;
+        $post->fill($request->all());
+        $post->subject_id = $after_subject->id;
         $post->save();
+        // 該当の科目名が使用されていなければデータベースから削除
+        if(Post::where('subject_id',$before_subject->id)->count() <= 0){
+            $before_subject->delete();
+        }
 
         return redirect(route("users.show",Auth::user()->id));
     }
 
-    public function destroy($post_id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($post_id);
+        $subject = $post->subject;
         $post->delete();
+        // 該当の科目名が使用されていなければデータベースから削除
+        if(Post::where('subject_id',$subject->id)->count() <= 0){
+            $subject->delete();
+        }
         return redirect()->back();
     }
 
