@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Like;
 use App\Post;
 use App\Subject;
 use Auth;
@@ -73,5 +74,28 @@ class PostsController extends Controller
             return ['name'=>$subject->name];
         });
         return response()->json($subjects);
+    }
+
+    // いいね関連
+    public function like(Request $request)
+    {
+        // ログインしていない場合、空のjsonを返す
+        if(!Auth::check()){
+            return response()->json();
+        }
+
+        $user_id = Auth::user()->id;
+        $post = Post::find($request->post_id);
+        $user_liked = $post->likes()->where('user_id', $user_id)->first();
+        
+        // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する
+        if($user_liked){
+            $user_liked->delete();
+            $data = ['liked'=>false, 'count'=>$post->likes()->count()];
+        }else{
+            Like::create(['user_id'=>$user_id, 'post_id'=>$post->id]);
+            $data = ['liked'=>true, 'count'=>$post->likes()->count()];
+        }
+        return response()->json($data);
     }
 }
