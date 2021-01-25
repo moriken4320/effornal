@@ -16,4 +16,5 @@ mix.js([
       'resources/assets/js/user_image_preview.js',
       'resources/assets/js/fixed.js',
       'resources/assets/js/subject_complement.js',
+      'resources/assets/js/like.js',
    ], 'public/js/app.js');
