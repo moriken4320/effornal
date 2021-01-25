@@ -54,14 +54,24 @@
 
   </div>
   <div class="card-body">
+    {{-- 科目名 --}}
     <p class="post-main">科目名： {{ $post->subject->name }}</p>
+    {{-- 勉強時間 --}}
     <p class="post-main">勉強時間： {{ intdiv($post->study_time, 60) }}h {{ $post->study_time % 60 }}m</p>
+    {{-- 詳細 --}}
     <p class="post-text">{{ $post->text }}</p>
   </div>
   <div class="card-footer">
+    {{-- いいね --}}
     <div>
-      <i class="fas fa-heart"></i>0
+      @if (Auth::check() && Auth::user()->like_check($post))
+      <i class="fas fa-heart heart liked" data-post-id="{{ $post->id }}"></i>
+      @else
+      <i class="fas fa-heart heart" data-post-id="{{ $post->id }}"></i>
+      @endif
+      <span class="like-count">{{ $post->likes()->count() }}</span>
     </div>
+    {{-- 投稿時間 --}}
     {{ $post->created_at }}
   </div>
 </div>

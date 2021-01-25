@@ -45,6 +45,19 @@
 .card .card-footer .fa-heart {
   padding-right: 10px;
 }
+.card .card-footer .heart {
+  user-select: none;
+  cursor: pointer;
+}
+.card .card-footer .heart:hover {
+  color: #2c2c2c;
+}
+.card .card-footer .liked {
+  color: #ff6161;
+}
+.card .card-footer .liked:hover {
+  color: red;
+}
 .card .fa-ellipsis-v {
   font-size: 20px;
   padding: 10px;
