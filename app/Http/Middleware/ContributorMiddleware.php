@@ -17,10 +17,8 @@ class ContributorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // リクエストのIDに該当する投稿が存在しない
-        // または、
         // ログインユーザーが投稿者本人でない場合は投稿一覧にリダイレクト
-        if(empty($request->post) || Auth::user()->id != $request->post->user_id)
+        if(Auth::user()->id != $request->post->user_id)
         {
             return redirect('/');
         }
