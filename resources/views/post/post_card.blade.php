@@ -59,7 +59,7 @@
     {{-- 勉強時間 --}}
     <p class="post-main">勉強時間： {{ intdiv($post->study_time, 60) }}h {{ $post->study_time % 60 }}m</p>
     {{-- 詳細 --}}
-    <p class="post-text">{{ $post->text }}</p>
+    <p class="post-text">{!! nl2br(e($post->text)) !!}</p>
   </div>
   <div class="card-footer">
     {{-- いいね --}}
