@@ -7,9 +7,9 @@ $(function(){
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      type: "post",
-      url: "/like",
-      data: { "post_id": post_id },
+      type: "put",
+      url: `/posts/${post_id}/like`,
+      // data: { "post_id": post_id },
       dataType: "json",
     })
     .done(function(data){

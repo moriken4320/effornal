@@ -83,7 +83,7 @@ class PostsController extends Controller
     }
 
     // いいね関連
-    public function like(Request $request)
+    public function like(Post $post)
     {
         // ログインしていない場合、空のjsonを返す
         if(!Auth::check()){
@@ -91,7 +91,6 @@ class PostsController extends Controller
         }
 
         $user_id = Auth::user()->id;
-        $post = Post::find($request->post_id);
         $user_liked = $post->likes()->where('user_id', $user_id)->first();
         
         // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する

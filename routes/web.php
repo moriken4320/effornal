@@ -14,8 +14,11 @@
 // 投稿一覧
 Route::get('/', 'PostsController@index');
 
-// 「いいね」関連
-Route::post('/like', 'PostsController@like')->name('like');
+// いいね機能
+// Route::post('/like', 'PostsController@like')->name('like');
+Route::prefix('posts')->name('posts.')->group(function (){
+    Route::put('/{post}/like', 'PostsController@like')->name('like');
+  });
 
 // 投稿関連
 Route::group(['middleware' => 'auth'], function () {
