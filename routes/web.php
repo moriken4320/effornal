@@ -14,10 +14,11 @@
 // 投稿一覧
 Route::get('/', 'PostsController@index');
 
+// 「いいね」関連
+Route::post('/like', 'PostsController@like')->name('like');
+
 // 投稿関連
 Route::group(['middleware' => 'auth'], function () {
-    // Route::resource('/posts', 'PostsController')->middleware('contributor');
-
     // 投稿作成画面
     Route::get('/posts', 'PostsController@new')->name('posts.new');
     // 投稿作成
