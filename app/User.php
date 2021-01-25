@@ -32,4 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
+
+    //hasMany設定
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

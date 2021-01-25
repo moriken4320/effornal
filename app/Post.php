@@ -18,6 +18,12 @@ class Post extends Model
         return $this->belongsTo('App\Subject');
     }
 
+    //hasMany設定
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
     // 引数に指定したユーザーの投稿データを取得
     public static function getTargetOfPosts($user)
     {
