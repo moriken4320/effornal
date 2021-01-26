@@ -17,4 +17,5 @@ mix.js([
       'resources/assets/js/fixed.js',
       'resources/assets/js/subject_complement.js',
       'resources/assets/js/like.js',
+      'resources/assets/js/flash.js',
    ], 'public/js/app.js');

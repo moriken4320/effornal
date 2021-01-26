@@ -1,6 +1,6 @@
 @section('header')
 
-<nav class="navbar navbar-expand navbar-dark shadow-none">
+<nav class="navbar navbar-expand navbar-dark">
 
   <div class="row no-gutters">
     <a class="navbar-brand font-weight-bold shadow-none app-logo" href="/">Effornal</a>
