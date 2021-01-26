@@ -74,6 +74,6 @@ class UsersController extends Controller
         }
         $user->save();
 
-        return redirect('/users/'.$user->id);
+        return redirect('/users/'.$user->id)->with('flash_message', 'ユーザー情報を更新しました');
     }
 }

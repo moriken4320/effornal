@@ -34,7 +34,7 @@ class PostsController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
-        return redirect(route("users.show",Auth::user()->id));
+        return redirect(route("users.show",Auth::user()->id))->with('flash_message', '投稿が完了しました');
     }
     
     public function edit(Post $post)
@@ -59,7 +59,7 @@ class PostsController extends Controller
             $before_subject->delete();
         }
 
-        return redirect(route("users.show",Auth::user()->id));
+        return redirect(route("users.show",Auth::user()->id))->with('flash_message', '更新が完了しました');
     }
 
     public function destroy(Post $post)
@@ -70,7 +70,7 @@ class PostsController extends Controller
         if(Post::where('subject_id',$subject->id)->count() <= 0){
             $subject->delete();
         }
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', '削除が完了しました');
     }
 
     // 科目名自動補完用アクション

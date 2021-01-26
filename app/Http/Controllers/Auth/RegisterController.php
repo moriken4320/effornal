@@ -68,4 +68,10 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    // ユーザー登録後の処理
+    protected function registered()
+    {
+        return redirect('/')->with('flash_message', 'ユーザー登録が完了しました');
+    }
 }
