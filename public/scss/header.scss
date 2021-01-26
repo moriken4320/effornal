@@ -39,3 +39,13 @@
     }
   }
 }
+
+.flash_message{
+  position: fixed;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 10;
+  color: white;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  display: none;
+}
