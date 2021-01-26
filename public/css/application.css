@@ -1,5 +1,6 @@
 .navbar {
   background-color: #003f00;
+  z-index: 5;
 }
 .navbar-brand {
   color: white;
@@ -32,11 +33,14 @@
 .navbar .new-post-btn p {
   margin-left: 10px;
 }
+.navbar .dropdown-menu {
+  z-index: 5;
+}
 .flash_message {
   position: fixed;
   width: 100%;
   padding: 10px 0;
-  z-index: 10;
+  z-index: 1;
   color: white;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   display: none;
@@ -56,7 +60,7 @@
 }
 .user-show-wrap {
   background-color: white;
-  padding: 20px 10px 1px 0;
+  padding: 20px 10px 1px;
 }
 .user-show-wrap .user-show {
   display: flex;
@@ -168,6 +172,17 @@
   padding: 0 5px;
   font-size: 13px;
   color: #505050;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+.card .card-body ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+.card .card-body ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 .card .card-footer {
   display: flex;

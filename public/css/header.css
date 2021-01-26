@@ -1,5 +1,6 @@
 .navbar {
   background-color: #003f00;
+  z-index: 5;
 }
 .navbar-brand {
   color: white;
@@ -32,11 +33,14 @@
 .navbar .new-post-btn p {
   margin-left: 10px;
 }
+.navbar .dropdown-menu {
+  z-index: 5;
+}
 .flash_message {
   position: fixed;
   width: 100%;
   padding: 10px 0;
-  z-index: 10;
+  z-index: 1;
   color: white;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   display: none;

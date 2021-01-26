@@ -35,6 +35,17 @@
   padding: 0 5px;
   font-size: 13px;
   color: #505050;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+.card .card-body ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+.card .card-body ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 .card .card-footer {
   display: flex;
