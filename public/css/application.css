@@ -2,11 +2,6 @@
   background-color: #003f00;
   z-index: 5;
 }
-.navbar-brand {
-  color: white;
-  line-height: 100%;
-  font-size: 35px;
-}
 .navbar .header-user-icon {
   width: 45px;
   height: 45px;
@@ -44,6 +39,12 @@
   color: white;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   display: none;
+}
+@media (max-width: 575px) {
+  .navbar .nav-link {
+    padding: 0.5rem 4px;
+    font-size: 13px;
+  }
 }
 .google {
   opacity: 0.8;
@@ -121,6 +122,31 @@
 }
 .time-sum-wrap .dropdown strong {
   font-size: 20px;
+}
+@media (max-width: 575px) {
+  .user-show-wrap {
+    padding: 20px 10px 1px;
+  }
+  .user-show-wrap .user-show {
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
+  .user-show-wrap .user-show-left-user-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .user-show-wrap .user-show-left-user-name {
+    font-size: 15px;
+    line-height: 20px;
+    padding: 10px 0;
+  }
+  .user-show-wrap .user-show-left-user-name span {
+    font-size: 20px;
+    padding: 0 5px 0 15px;
+  }
+  .time-sum-wrap .dropdown .dropdown-menu {
+    max-height: 40vh;
+  }
 }
 .user-image-photo {
   width: 150px;
@@ -267,6 +293,7 @@ body {
 .app-logo {
   color: white;
   font-size: 40px;
+  line-height: 100%;
 }
 .app-logo:hover {
   opacity: 0.8;
@@ -277,4 +304,9 @@ body {
 }
 #app {
   padding-top: 266px;
+}
+@media (max-width: 575px) {
+  .app-logo {
+    font-size: 30px;
+  }
 }

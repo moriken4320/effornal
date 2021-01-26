@@ -12,6 +12,7 @@ body{
 .app-logo{
   color: white;
   font-size: 40px;
+  line-height: 100%;
 
   &:hover{
     opacity: .8;
@@ -25,4 +26,10 @@ body{
 
 #app{
   padding-top: 266px;
+}
+
+@media(max-width: 575px){
+  .app-logo{
+    font-size: 30px;
+  }
 }

@@ -2,11 +2,6 @@
   background-color: #003f00;
   z-index: 5;
 }
-.navbar-brand {
-  color: white;
-  line-height: 100%;
-  font-size: 35px;
-}
 .navbar .header-user-icon {
   width: 45px;
   height: 45px;
@@ -44,4 +39,10 @@
   color: white;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   display: none;
+}
+@media (max-width: 575px) {
+  .navbar .nav-link {
+    padding: 0.5rem 4px;
+    font-size: 13px;
+  }
 }

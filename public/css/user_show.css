@@ -62,3 +62,28 @@
 .time-sum-wrap .dropdown strong {
   font-size: 20px;
 }
+@media (max-width: 575px) {
+  .user-show-wrap {
+    padding: 20px 10px 1px;
+  }
+  .user-show-wrap .user-show {
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
+  .user-show-wrap .user-show-left-user-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .user-show-wrap .user-show-left-user-name {
+    font-size: 15px;
+    line-height: 20px;
+    padding: 10px 0;
+  }
+  .user-show-wrap .user-show-left-user-name span {
+    font-size: 20px;
+    padding: 0 5px 0 15px;
+  }
+  .time-sum-wrap .dropdown .dropdown-menu {
+    max-height: 40vh;
+  }
+}
