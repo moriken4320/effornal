@@ -1,58 +1,81 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# effornal (エフォーナル)
+effort(努力) ＋ eternal(永遠の) → effornal  
+URL: https://effornal.herokuapp.com/
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# アプリ概要
+### 勉強した科目と時間を**記録**＆**投稿**できるアプリです！
+- 自分が何をどれくらい頑張ったのか、他の人が何を頑張っているのかを見ることできます。
+- 各ユーザーの「合計勉強時間」や「各科目の勉強時間」というデータを確認できます。
+- 頑張っている人には、「**いいね**」して応援できます。(反対に応援されることも！)
 
-## About Laravel
+| 投稿一覧ページ | ユーザー詳細ページ |
+| --- | --- |
+| ![投稿一覧]() | ![ユーザー詳細]() |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+# コンセプト
+- 自分の頑張りを可視化して、**モチベーション**を上げよう！
+- 誰かの頑張りを可視化して、**良い刺激**を受けよう！
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# テストアカウント
+### メールアドレス  
+test@user.com  
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+### パスワード  
+test0user
 
-## Learning Laravel
+# 作成期間
+- 2021/1/14 Laravel学習開始
+- 2021/1/20 effornal(本アプリ)開発開始
+- 2021/1/26 完成、デプロイ完了
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+# 使用言語技術
+### バックエンド
+- PHP 7.3.11
+- Laravel Framework 6.20.14
+### フロント
+- HTML
+- CSS
+- SCSS
+- JavaScript
+- jQuery
+- Bootstrap 4
+### データベース
+- MySQL
+### API
+- Google+ API
+### インフラ
+- Heroku
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+# 画面遷移図
+![画面遷移図](st.drawio.png)
 
-## Laravel Sponsors
+# データベース設計
+![ER図](er.drawio.png)
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+# 機能一覧
+## ユーザー関連
+- ユーザー登録、ログイン、ログアウト
+- Googleアカウントを利用したログイン
+- ユーザーアイコン(ユーザー新規登録者は用意してあるデフォルト画像、Googleログイン者はGoogleアカウントの画像がアイコンになる)
+- ユーザー情報編集(名前とアイコン画像を変更可能)
+## 投稿関連
+- 投稿作成・編集(科目名が空or勉強時間が0分or詳細が空、だと作成不可)
+- 科目名の入力時、投稿データに存在している科目名は自動補完される
+- 投稿削除
+- 投稿編集・削除によって、科目名が投稿データに存在しなくなる場合、その科目名のデータは削除され、自動補完として表示されなくなる
+- 投稿したデータを元に、各ユーザーの「合計勉強時間」と「各科目の勉強時間」を表示
+- ログイン中であれば「いいね」できる
+## その他
+- フラッシュメッセージを表示(ユーザー登録、ログイン、ログアウト、ユーザー情報更新、投稿作成、投稿編集、投稿削除)
+- エラーメッセージを日本語化
+- レスポンシブデザイン
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+# 今後実装したい機能
+- 各投稿に対してのコメント機能
+- フォロー機能
+- DM機能
+- 通知機能
+- 各科目ごとの勉強時間ランキング機能
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# URL
+https://effornal.herokuapp.com/
