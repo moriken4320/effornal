@@ -10,11 +10,11 @@ URL: https://effornal.herokuapp.com/
 
 | 投稿一覧ページ |
 | --- |
-| ![投稿一覧](./public/images/gifs/post_index.gif) |
+| ![投稿一覧](./laravel/public/images/gifs/post_index.gif) |
 
 | ユーザー詳細ページ |
 | --- |
-| ![ユーザー詳細](./public/images/gifs/user_show.gif) |
+| ![ユーザー詳細](./laravel/public/images/gifs/user_show.gif) |
 
 ## コンセプト
 - 自分の頑張りを可視化して、**モチベーション**を上げよう！
@@ -51,10 +51,10 @@ test0user
 - Heroku
 
 ## 画面遷移図
-![画面遷移図](st.drawio.png)
+![画面遷移図](./laravel/st.drawio.png)
 
 ## データベース設計
-![ER図](er.drawio.png)
+![ER図](./laravel/er.drawio.png)
 
 ## 機能一覧
 ### ユーザー関連
