@@ -33,19 +33,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    //hasMany設定
+    //belongsToMany設定
     public function likes()
     {
-        return $this->hasMany('App\Like');
-    }
-
-    // 該当の投稿に「いいね」をしているかチェック
-    public function like_check($post)
-    {
-        if($this->likes()->where('post_id',$post->id)->first()){
-            return true;
-        }else{
-            return false;
-        }
+        return $this->belongsToMany('App\Post', 'likes');
     }
 }

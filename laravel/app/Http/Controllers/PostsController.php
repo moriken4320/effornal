@@ -90,17 +90,26 @@ class PostsController extends Controller
             return response()->json();
         }
 
-        $user_id = Auth::user()->id;
-        $user_liked = $post->likes()->where('user_id', $user_id)->first();
+        $user = Auth::user();
+        // $user_liked = $post->likes()->where('user_id', $user_id)->first();
         
-        // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する
-        if($user_liked){
-            $user_liked->delete();
+        // // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する
+        // if($user_liked){
+        //     $user_liked->delete();
+        //     $data = ['liked'=>false, 'count'=>$post->likes()->count()];
+        // }else{
+            //     Like::create(['user_id'=>$user_id, 'post_id'=>$post->id]);
+            //     $data = ['liked'=>true, 'count'=>$post->likes()->count()];
+            // }
+            
+        if($post->isLikedBy($user)){
+            $post->likes()->detach($user->id);
             $data = ['liked'=>false, 'count'=>$post->likes()->count()];
         }else{
-            Like::create(['user_id'=>$user_id, 'post_id'=>$post->id]);
+            $post->likes()->attach($user->id);
             $data = ['liked'=>true, 'count'=>$post->likes()->count()];
         }
+
         return response()->json($data);
     }
 }

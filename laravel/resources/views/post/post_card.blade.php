@@ -64,7 +64,7 @@
   <div class="card-footer">
     {{-- いいね --}}
     <div>
-      @if (Auth::check() && Auth::user()->like_check($post))
+      @if (Auth::check() && $post->isLikedBy(Auth::user()))
       <i class="fas fa-heart heart liked" data-post-id="{{ $post->id }}"></i>
       @else
       <i class="fas fa-heart heart" data-post-id="{{ $post->id }}"></i>
