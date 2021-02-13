@@ -14,8 +14,6 @@ RUN apt-get update \
 git \
 zip \
 unzip \
-openssl \
-bash \
 && docker-php-ext-install pdo_mysql bcmath
 
 #コンテナ内に入った時のディレクトリを指定
