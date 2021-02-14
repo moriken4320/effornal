@@ -19,3 +19,5 @@ mix.js([
       'resources/assets/js/like.js',
       'resources/assets/js/flash.js',
    ], 'public/js/app.js');
+
+   mix.sass('public/scss/application.scss', 'public/css/application.css'); // assets/sass配下のapplication.scssを、public/css配下にapplication.cssとしてコンパイル
