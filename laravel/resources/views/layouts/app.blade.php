@@ -20,14 +20,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 
     <!-- Styles -->
-    {{-- @if(app('env')=='local') --}}
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     <link href="{{ asset('css/application.css') }}" rel="stylesheet">
-    {{-- @endif
-    @if(app('env')=='production')
-    <link href="{{ secure_asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/application.css') }}" rel="stylesheet">
-    @endif --}}
+
     <!-- JavaScript -->
     <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
