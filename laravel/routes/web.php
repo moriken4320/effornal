@@ -57,3 +57,13 @@ Route::post('users/update', 'UsersController@update')->name('users.update')->mid
 
 // ユーザー詳細
 Route::get('users/{user_id}', 'UsersController@show')->name('users.show');
+
+// リレーション関連
+Route::group(['middleware' => 'auth'], function () {
+    // フレンド一覧表示
+    Route::get('/friends', 'RelationsController@friends_index')->name('friends.index');
+    // 申請中のユーザー表示
+    Route::get('/receivers', 'RelationsController@receivers_index')->name('receivers.index');
+    // 承認待ちのユーザー表示
+    Route::get('/throwers', 'RelationsController@throwers_index')->name('throwers.index');
+});

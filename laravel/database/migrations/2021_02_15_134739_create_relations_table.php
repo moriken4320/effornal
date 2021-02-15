@@ -15,10 +15,10 @@ class CreateRelationsTable extends Migration
     {
         Schema::create('relations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('follower_id')->unsigned();
-            $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('following_id')->unsigned();
-            $table->foreign('following_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('receive_id')->unsigned();
+            $table->foreign('receive_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('throw_id')->unsigned();
+            $table->foreign('throw_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
