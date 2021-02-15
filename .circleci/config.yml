@@ -45,6 +45,7 @@ jobs:
             name: deploy
             command: |
               ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd effornal && \
+                git checkout * && \
                 git pull origin master && \
                 cd laravel && \
                 composer install -n --no-dev --prefer-dist && \

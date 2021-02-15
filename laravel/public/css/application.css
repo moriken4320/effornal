@@ -1,5 +1,5 @@
 .navbar {
-  background-color: red;
+  background-color: blue;
   z-index: 5;
 }
 
@@ -310,7 +310,7 @@
 }
 
 .create-post-btn {
-  background-color: red;
+  background-color: blue;
 }
 
 #subject-input #subject-title {
