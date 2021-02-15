@@ -32,13 +32,28 @@ class RelationsController extends Controller
     //     return view('relation.friends_index', ['friends'=>$friends, 'tab_name'=>'フレンド一覧']);
     // }
 
-    public function follow()
+    public function follow(User $user)
     {
-        
+        Auth::user()->receivers()->detach($user);
+        Auth::user()->receivers()->attach($user);
+        $f_message = '';
+        if(Auth::user()->friendCheck($user)){
+            $f_message = 'フレンドに追加しました';
+        }else{
+            $f_message = 'フレンド申請が完了しました';
+        }
+        return redirect()->back()->with('flash_message', $f_message);
     }
-
-    public function unFollow()
+    
+    public function unFollow(User $user)
     {
-
+        Auth::user()->receivers()->detach($user);
+        $f_message = '';
+        if(Auth::user()->throwerCheck($user)){
+            $f_message = 'フレンドを解除しました';
+        }else{
+            $f_message = 'フレンド申請を削除しました';
+        }
+        return redirect()->back()->with('flash_message', $f_message);
     }
 }

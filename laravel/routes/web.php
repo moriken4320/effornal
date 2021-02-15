@@ -66,4 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/receivers', 'RelationsController@receiversIndex')->name('receivers.index');
     // 承認待ちのユーザー表示
     Route::get('/throwers', 'RelationsController@throwersIndex')->name('throwers.index');
+    // リレーション作成
+    Route::put('/follow/{user}', 'RelationsController@follow')->name('relations.follow');
+    // リレーション取り消し
+    Route::delete('/un_follow/{user}', 'RelationsController@unFollow')->name('relations.unFollow');
 });
