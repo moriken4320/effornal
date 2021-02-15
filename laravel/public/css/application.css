@@ -90,6 +90,7 @@
 
 .user-show-wrap .user-show-left {
   display: flex;
+  align-items: center;
 }
 
 .user-show-wrap .user-show-left-user-icon {
@@ -108,11 +109,13 @@
 
 .user-show-wrap .user-show-left-user-name {
   font-size: 20px;
+  margin: 0 0 0 15px;
+  display: flex;
+  align-items: center;
 }
 
-.user-show-wrap .user-show-left-user-name span {
+.user-show-wrap .user-show-left-user-name .font-weight-bold {
   font-size: 30px;
-  padding: 0 10px 0 20px;
 }
 
 .user-show-wrap .user-show-right-user-config {
@@ -168,7 +171,7 @@
   }
 
   .user-show-wrap .user-show {
-    padding: 0 20px;
+    padding: 0 10px;
     margin-bottom: 10px;
   }
 
@@ -178,14 +181,14 @@
   }
 
   .user-show-wrap .user-show-left-user-name {
-    font-size: 15px;
-    line-height: 20px;
-    padding: 10px 0;
+    font-size: 12px;
+    margin: 10px 0 10px 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .user-show-wrap .user-show-left-user-name span {
-    font-size: 20px;
-    padding: 0 5px 0 15px;
+  .user-show-wrap .user-show-left-user-name .font-weight-bold {
+    font-size: 16px;
   }
 
   .time-sum-wrap .dropdown .dropdown-menu {
@@ -421,6 +424,32 @@
 
 .relation-btn .active {
   color: white;
+}
+
+@media (max-width: 575px) {
+  .relation-list .card-body {
+    padding: 0.6rem;
+  }
+
+  .relation-list .card-body .relation-user-image {
+    height: 40px;
+    width: 40px;
+  }
+
+  .relation-list .card-body .relation-user-name {
+    margin-left: 3px;
+    font-size: 15px;
+  }
+
+  .relation-btn {
+    font-size: 13px;
+    padding: 0.5rem !important;
+  }
+
+  .relation-btn .fa-handshake {
+    padding-right: 0;
+    font-size: 0;
+  }
 }
 
 body {

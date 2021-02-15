@@ -6,7 +6,7 @@
 
 @section('content')
 {{-- 全ての投稿データを表示 --}}
-<div class="container col-xl-5 col-lg-7 col-md-8 col-sm-12 mx-auto relation-list">
+<div class="container col-xl-7 col-lg-7 col-md-10 col-sm-12 mx-auto relation-list">
   <ul class="nav nav-tabs nav-justified mt-3">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown"
