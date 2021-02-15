@@ -70,4 +70,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/follow/{user}', 'RelationsController@follow')->name('relations.follow');
     // リレーション取り消し
     Route::delete('/un_follow/{user}', 'RelationsController@unFollow')->name('relations.unFollow');
+    // ユーザー検索
+    Route::get('/search', 'RelationsController@searchUsersIndex')->name('searchUsers.index');
 });

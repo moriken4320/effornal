@@ -26,14 +26,27 @@ class RelationsController extends Controller
         return view('relation.index', ['relations'=>$relations, 'tab_name'=>'承認待ちのユーザー']);
     }
 
-    // public function friendsIndex()
-    // {
-    //     $friends = Auth::user()->getFriends();
-    //     return view('relation.friends_index', ['friends'=>$friends, 'tab_name'=>'フレンド一覧']);
-    // }
+    public function searchUsersIndex(Request $request)
+    {
+        if($request->search == null){
+            return view('relation.index', ['relations'=>[], 'tab_name'=>'ユーザー検索']);
+        }
+
+        $relations = User::where('name', 'like', '%' . $request->search . '%')->get()->map(function($relation){
+            if($relation != Auth::user()){
+                return $relation;
+            }
+        })->reject(function ($relation) {
+            return $relation == null;
+        });
+        return view('relation.index', ['relations'=>$relations, 'tab_name'=>'ユーザー検索']);
+    }
 
     public function follow(User $user)
     {
+        if(Auth::user() == $user){
+            return redirect()->back();
+        }
         Auth::user()->receivers()->detach($user);
         Auth::user()->receivers()->attach($user);
         $f_message = '';

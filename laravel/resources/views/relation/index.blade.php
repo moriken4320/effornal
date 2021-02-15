@@ -19,10 +19,13 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('throwers.index') }}">承認待ちのユーザー</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#!">ユーザー検索</a>
+        <a class="dropdown-item" href="{{ route('searchUsers.index') }}">ユーザー検索</a>
       </div>
     </li>
   </ul>
+  @if ($tab_name == 'ユーザー検索')
+  <div>検索窓</div>
+  @endif
   @foreach ($relations as $relation)
   <div class="card">
     <div class="card-body">
