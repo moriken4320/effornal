@@ -6,7 +6,7 @@
 
 @section('content')
 {{-- 全ての投稿データを表示 --}}
-<div class="container col-xl-5 col-lg-7 col-md-8 col-sm-12 mx-auto post-list">
+<div class="container col-xl-5 col-lg-7 col-md-8 col-sm-12 mx-auto relation-list">
   <ul class="nav nav-tabs nav-justified mt-3">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -26,7 +26,18 @@
   @foreach ($relations as $relation)
   <div class="card">
     <div class="card-body">
-        {{ $relation->name }}
+      <div>
+        @if ($relation->image)
+        {{-- base64という形式の画像データを表示する --}}
+        <img class="relation-user-image" src="data:image/png;base64,{{ $relation->image }}" alt="avatar" />
+        @else
+        <img class="relation-user-image" src="{{ asset('/images/blank_profile.png') }}" alt="avatar" />
+        @endif
+        <a class="relation-user-name" href="{{ route('users.show', ['user_id'=>$relation->id]) }}">{{ $relation->name }}</a>
+      </div>
+      <div>
+        @include('relation.button', ['user'=>$relation])
+      </div>
     </div>
   </div>
   @endforeach

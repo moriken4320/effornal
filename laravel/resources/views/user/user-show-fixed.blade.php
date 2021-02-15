@@ -14,12 +14,16 @@
       <p class="user-show-left-user-name"><span class="font-weight-bold">{{ $user->name }}</span>さんのページ</p>
     </div>
     {{-- ユーザー編集画面に遷移するボタン --}}
-    @if (Auth::check() && $user->id == Auth::user()->id)
-    <div class="user-show-right">
-      <a href="{{ route('users.edit') }}">
-        <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
-      </a>
-    </div>
+    @if (Auth::check())
+      @if ($user->id == Auth::user()->id)
+      <div class="user-show-right">
+        <a href="{{ route('users.edit') }}">
+          <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
+        </a>
+      </div>
+      @else
+      @include('relation.button', ['user'=>$user])
+      @endif
     @endif
   </div>
   {{-- 勉強時間関連の情報欄 --}}

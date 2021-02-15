@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable
 {
@@ -89,5 +90,41 @@ class User extends Authenticatable
             }
         });
         return $receivers;
+    }
+
+    // フレンドか判定
+    public function friendCheck(User $user): bool
+    {
+        $flag = false;
+        $this->getFriends()->each(function($value) use($user, &$flag){
+            if($value->attributes == $user->attributes){
+                $flag = true;
+            }
+        });
+        return $flag;
+    }
+
+    // フレンド申請されているか(承認待ちか)判定
+    public function throwerCheck(User $user): bool
+    {
+        $flag = false;
+        $this->getThrowers()->each(function($value) use($user, &$flag){
+            if($value->attributes == $user->attributes){
+                $flag = true;
+            }
+        });
+        return $flag;
+    }
+    
+    // フレンド申請中か判定
+    public function receiverCheck(User $user): bool
+    {
+        $flag = false;
+        $this->getReceivers()->each(function($value) use($user, &$flag){
+            if($value->attributes == $user->attributes){
+                $flag = true;
+            }
+        });
+        return $flag;
     }
 }

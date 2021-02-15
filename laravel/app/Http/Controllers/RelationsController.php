@@ -8,27 +8,37 @@ use App\User;
 
 class RelationsController extends Controller
 {
-    public function friends_index()
+    public function friendsIndex()
     {
         $relations = Auth::user()->getFriends();
         return view('relation.index', ['relations'=>$relations, 'tab_name'=>'フレンド一覧']);
     }
 
-    public function receivers_index()
+    public function receiversIndex()
     {
         $relations = Auth::user()->getReceivers();
         return view('relation.index', ['relations'=>$relations, 'tab_name'=>'申請中のユーザー']);
     }
     
-    public function throwers_index()
+    public function throwersIndex()
     {
         $relations = Auth::user()->getThrowers();
         return view('relation.index', ['relations'=>$relations, 'tab_name'=>'承認待ちのユーザー']);
     }
 
-    // public function friends_index()
+    // public function friendsIndex()
     // {
     //     $friends = Auth::user()->getFriends();
     //     return view('relation.friends_index', ['friends'=>$friends, 'tab_name'=>'フレンド一覧']);
     // }
+
+    public function follow()
+    {
+        
+    }
+
+    public function unFollow()
+    {
+
+    }
 }

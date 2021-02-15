@@ -373,6 +373,56 @@
   padding: 1px 0px;
 }
 
+.relation-list .nav-item {
+  background-color: #003f00;
+  border-radius: 5px;
+}
+
+.relation-list .nav-item > a {
+  color: white;
+}
+
+.relation-list .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relation-list .card-body .relation-user-image {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.relation-list .card-body .relation-user-name {
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.relation-list .card-body .relation-user-name:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.relation-btn {
+  padding: 0.6rem !important;
+  font-size: 15px;
+}
+
+.relation-btn .fa-handshake {
+  color: #4285f4;
+  padding-right: 0.5rem;
+}
+
+.relation-btn .active {
+  color: white;
+}
+
 body {
   width: 100%;
   min-height: 100vh;
