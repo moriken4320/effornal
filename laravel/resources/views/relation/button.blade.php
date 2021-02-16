@@ -1,3 +1,5 @@
+@if ($user->id != Auth::user()->id)
+    
 <form method="POST">
   {{ csrf_field() }}
 
@@ -15,7 +17,7 @@
   @elseif (Auth::user()->receiverCheck($user))
 
   <input type="hidden" name="_method" value="DELETE">
-  <p class="text-right assist-text">相手の承認を待ちです</p>
+  <p class="text-right assist-text">相手の承認待ちです</p>
   <button type="submit" class="btn btn-primary relation-btn" formaction="{{ route('relations.unFollow', ['user'=>$user]) }}"><i class="fas fa-handshake active"></i>フレンド申請中</button>
 
   @else
@@ -26,3 +28,5 @@
   @endif
 
 </form>
+
+@endif

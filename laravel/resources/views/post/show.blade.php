@@ -12,7 +12,7 @@
   {{-- いいねされた件数といいねしたアカウント一覧画面へのリンク --}}
   @if ($post->likes()->count() > 0)
   <hr>
-  <a href="" class="text-center">
+  <a href="{{ route('posts.likeIndex', ['post'=>$post]) }}" class="text-center">
     <p><strong>{{ $post->likes()->count() }}</strong>名に「いいね」されています。</p>
   </a>
   <hr>

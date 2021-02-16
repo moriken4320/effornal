@@ -19,6 +19,8 @@ Route::prefix('posts')->name('posts.')->group(function (){
     Route::put('/{post}/like', 'PostsController@like')->name('like');
     // 投稿詳細
     Route::get('/{post}/show', 'PostsController@show')->name('show');
+    // 該当する投稿にいいねしたユーザー表示
+    Route::get('/{post}/like_index', 'PostsController@likeIndex')->name('likeIndex');
   });
 
 // 投稿関連

@@ -196,6 +196,10 @@
   .time-sum-wrap .dropdown .dropdown-menu {
     max-height: 40vh;
   }
+
+  .previous-link {
+    font-size: 13px;
+  }
 }
 
 .user-image-photo {
@@ -417,13 +421,13 @@
   color: white;
 }
 
-.relation-list .card-body {
+.user-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.relation-list .card-body .relation-user-image {
+.user-card .relation-user-image {
   border-radius: 50%;
   height: 50px;
   width: 50px;
@@ -432,14 +436,14 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.relation-list .card-body .relation-user-name {
+.user-card .relation-user-name {
   margin-left: 20px;
   color: black;
   font-size: 20px;
   font-weight: bold;
 }
 
-.relation-list .card-body .relation-user-name:hover {
+.user-card .relation-user-name:hover {
   opacity: 0.8;
   text-decoration: underline;
 }
@@ -490,16 +494,16 @@
 }
 
 @media (max-width: 575px) {
-  .relation-list .card-body {
+  .user-card {
     padding: 0.6rem;
   }
 
-  .relation-list .card-body .relation-user-image {
+  .user-card .relation-user-image {
     height: 40px;
     width: 40px;
   }
 
-  .relation-list .card-body .relation-user-name {
+  .user-card .relation-user-name {
     margin-left: 3px;
     font-size: 15px;
   }
