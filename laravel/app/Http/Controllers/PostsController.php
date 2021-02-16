@@ -27,7 +27,7 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        $comments = Comment::where('post_id', $post->id)->with('user')->get();
+        $comments = Comment::where('post_id', $post->id)->orderBy('created_at','desc')->with('user')->get();
         return view('post.show', ['post'=>$post, 'comments'=>$comments]);
     }
     
