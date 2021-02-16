@@ -160,6 +160,11 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+var likes_count_link_html = function likes_count_link_html(post_id, like_count) {
+  var html = "\n  <hr>\n    <a href=\"".concat(location.origin, "/posts/").concat(post_id, "/like_index\" class=\"text-center\">\n      <p><strong>").concat(like_count, "</strong>\u540D\u306B\u300C\u3044\u3044\u306D\u300D\u3055\u308C\u3066\u3044\u307E\u3059\u3002</p>\n    </a>\n  <hr>\n  ");
+  return html;
+};
+
 $(function () {
   $(".heart").on('click', function () {
     var post_id = $(this).data("post-id");
@@ -170,7 +175,6 @@ $(function () {
       },
       type: "put",
       url: "/posts/".concat(post_id, "/like"),
-      // data: { "post_id": post_id },
       dataType: "json"
     }).done(function (data) {
       // ログインしていない場合
@@ -185,6 +189,12 @@ $(function () {
       }
 
       like_element.siblings('.like-count').text(data['count']);
+
+      if (data['count'] != 0) {
+        $("#likes-count-link").html(likes_count_link_html(post_id, data['count']));
+      } else {
+        $("#likes-count-link").html('');
+      }
     }).fail(function (data, xhr, err) {
       alert("エラーが発生しました。");
     });
