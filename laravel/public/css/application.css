@@ -217,17 +217,7 @@
   display: none;
 }
 
-.card {
-  padding: 0;
-  margin: 20px 10px;
-}
-
-.card .card-header {
-  display: flex;
-  align-items: center;
-}
-
-.card .card-header .post-user-image {
+.post-user-image {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -236,7 +226,7 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.card .card-header .post-user-name {
+.post-user-name {
   font-size: 20px;
   font-weight: bold;
   margin-left: 13px;
@@ -244,9 +234,19 @@
   z-index: 3;
 }
 
-.card .card-header .post-user-name:hover {
-  opacity: 0.8;
+.post-user-name:hover {
+  color: #555555;
   text-decoration: underline;
+}
+
+.card {
+  padding: 0;
+  margin: 20px 10px;
+}
+
+.card .card-header {
+  display: flex;
+  align-items: center;
 }
 
 .card .card-header .fa-ellipsis-v {
@@ -516,6 +516,10 @@ body {
 
 #app {
   padding-top: 266px;
+}
+
+.main-back-color {
+  background-color: #003f00;
 }
 
 @media (max-width: 575px) {

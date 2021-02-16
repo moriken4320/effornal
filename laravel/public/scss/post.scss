@@ -1,5 +1,26 @@
 @import "./variables.scss";
 
+.post-user-image{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.post-user-name{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 13px;
+  color: rgb(44, 44, 44);
+  z-index: 3;
+
+  &:hover{
+    color: rgb(85, 85, 85);
+    text-decoration: underline;
+  }
+}
+
 .card{
   padding: 0;
   margin: 20px 10px;
@@ -8,26 +29,6 @@
     display: flex;
     align-items: center;
     
-    .post-user-image{
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    .post-user-name{
-      font-size: 20px;
-      font-weight: bold;
-      margin-left: 13px;
-      color: rgb(44, 44, 44);
-      z-index: 3;
-
-      &:hover{
-        opacity: .8;
-        text-decoration: underline;
-      }
-    }
 
     // 編集ボタン
     .fa-ellipsis-v{
