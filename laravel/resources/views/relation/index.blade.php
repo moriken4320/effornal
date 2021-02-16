@@ -24,7 +24,16 @@
     </li>
   </ul>
   @if ($tab_name == 'ユーザー検索')
-  <div>検索窓</div>
+  <div>
+    <form method="GET" action="{{ route('searchUsers.index') }}" class="search-form mt-3">
+      <span></span>
+      <input name="search" type="search" placeholder="ユーザー名で検索" value="{{ isset($search) ? $search : '' }}" class="form-control">
+      <button type="submit" class="btn btn-success">検索</button>
+    </form>
+  </div>
+  @endif
+  @if (count($relations) == 0)
+  <div class="text-center mt-5">該当するユーザーは存在しません</div>
   @endif
   @foreach ($relations as $relation)
   <div class="card">
