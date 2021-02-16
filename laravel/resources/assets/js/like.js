@@ -1,3 +1,14 @@
+const likes_count_link_html = (post_id, like_count)=>{
+  const html = `
+  <hr>
+    <a href="${location.origin}/posts/${post_id}/like_index" class="text-center">
+      <p><strong>${like_count}</strong>名に「いいね」されています。</p>
+    </a>
+  <hr>
+  `;
+  return html;
+};
+
 $(function(){
   $(".heart").on('click',function(){
     const post_id = $(this).data("post-id");
@@ -9,7 +20,6 @@ $(function(){
       },
       type: "put",
       url: `/posts/${post_id}/like`,
-      // data: { "post_id": post_id },
       dataType: "json",
     })
     .done(function(data){
@@ -25,6 +35,12 @@ $(function(){
         like_element.removeClass('liked')
       }
       like_element.siblings('.like-count').text(data['count']);
+
+      if(data['count'] != 0){
+        $("#likes-count-link").html(likes_count_link_html(post_id, data['count']));
+      }else{
+        $("#likes-count-link").html('');
+      }
       
     })
     .fail(function(data, xhr, err){
