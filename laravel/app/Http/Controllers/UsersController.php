@@ -57,7 +57,7 @@ class UsersController extends Controller
     {
         //バリデーション（入力値チェック）
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:15',
+            'name' => 'required|string|max:8',
         ]);
 
         //バリデーションの結果がエラーの場合

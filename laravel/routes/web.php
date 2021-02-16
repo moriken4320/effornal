@@ -57,3 +57,19 @@ Route::post('users/update', 'UsersController@update')->name('users.update')->mid
 
 // ユーザー詳細
 Route::get('users/{user_id}', 'UsersController@show')->name('users.show');
+
+// リレーション関連
+Route::group(['middleware' => 'auth'], function () {
+    // フレンド一覧表示
+    Route::get('/friends', 'RelationsController@friendsIndex')->name('friends.index');
+    // 申請中のユーザー表示
+    Route::get('/receivers', 'RelationsController@receiversIndex')->name('receivers.index');
+    // 承認待ちのユーザー表示
+    Route::get('/throwers', 'RelationsController@throwersIndex')->name('throwers.index');
+    // リレーション作成
+    Route::put('/follow/{user}', 'RelationsController@follow')->name('relations.follow');
+    // リレーション取り消し
+    Route::delete('/un_follow/{user}', 'RelationsController@unFollow')->name('relations.unFollow');
+    // ユーザー検索
+    Route::get('/search', 'RelationsController@searchUsersIndex')->name('searchUsers.index');
+});

@@ -12,6 +12,7 @@
     
     &-left{
       display: flex;
+      align-items: center;
       
       &-user-icon{
         width: 45px;
@@ -25,10 +26,12 @@
       
       &-user-name{
         font-size: 20px;
+        margin: 0 0 0 15px;
+        display: flex;
+        align-items: center;
         
-        span{
+        .font-weight-bold{
           font-size: 30px;
-          padding: 0 10px 0 20px;
         }
       }
     }
@@ -84,7 +87,7 @@
     padding: 20px 10px 1px;
     
     .user-show{
-      padding: 0 20px;
+      padding: 0 10px;
       margin-bottom: 10px;
       
       &-left{
@@ -95,13 +98,13 @@
         }
         
         &-user-name{
-          font-size: 15px;
-          line-height: 20px;
-          padding: 10px 0;
+          font-size: 12px;
+          margin: 10px 0 10px 10px;
+          flex-direction: column;
+          align-items: flex-start;
           
-          span{
-            font-size: 20px;
-            padding: 0 5px 0 15px;
+          .font-weight-bold{
+            font-size: 16px;
           }
         }
       }

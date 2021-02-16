@@ -1,7 +1,7 @@
 @section('user-show-fixed')
 
 {{-- ページ固定 --}}
-<div class="col-xl-5 col-lg-7 col-md-8 col-sm-12 mx-auto user-show-wrap">
+<div class="col-xl-7 col-lg-7 col-md-10 col-sm-12 mx-auto user-show-wrap">
   {{-- 〇〇さんのページ --}}
   <div class="mx-auto user-show">
     <div class="user-show-left">
@@ -11,15 +11,19 @@
       @else
       <img class="user-show-left-user-icon" src="{{ asset('/images/blank_profile.png') }}" />
       @endif
-      <p class="user-show-left-user-name"><span class="font-weight-bold">{{ $user->name }}</span>さんのページ</p>
+      <p class="user-show-left-user-name"><span class="font-weight-bold">{{ $user->name }}</span><span>さんのページ</span></p>
     </div>
     {{-- ユーザー編集画面に遷移するボタン --}}
-    @if (Auth::check() && $user->id == Auth::user()->id)
-    <div class="user-show-right">
-      <a href="{{ route('users.edit') }}">
-        <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
-      </a>
-    </div>
+    @if (Auth::check())
+      @if ($user->id == Auth::user()->id)
+      <div class="user-show-right">
+        <a href="{{ route('users.edit') }}">
+          <i class="fas fa-cog user-show-right-user-config" id="modal_btn"></i>
+        </a>
+      </div>
+      @else
+      @include('relation.button', ['user'=>$user])
+      @endif
     @endif
   </div>
   {{-- 勉強時間関連の情報欄 --}}

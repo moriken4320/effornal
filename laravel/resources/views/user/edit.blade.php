@@ -34,7 +34,7 @@
                 <div class="md-form">
                   <label for="name">ユーザー名</label>
                   <input class="form-control" type="text" id="name" name="name" required
-                    value="{{ old('name', $user->name) }}">
+                    value="{{ old('name', $user->name) }}" maxlength="8">
                 </div>
                 <button class="btn btn-block shadow-none text-white bg-primary mt-3" type="submit">更新</button>
               </form>
