@@ -444,6 +444,12 @@
   text-decoration: underline;
 }
 
+.assist-text {
+  color: gray;
+  font-size: 13px;
+  padding-right: 6px;
+}
+
 .relation-btn {
   padding: 0.6rem !important;
   font-size: 15px;
@@ -496,6 +502,11 @@
   .relation-list .card-body .relation-user-name {
     margin-left: 3px;
     font-size: 15px;
+  }
+
+  .assist-text {
+    font-size: 10px;
+    padding-right: 0.5rem;
   }
 
   .relation-btn {

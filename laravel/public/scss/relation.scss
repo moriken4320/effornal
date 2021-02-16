@@ -39,6 +39,12 @@
 
 }
 
+.assist-text{
+  color: gray;
+  font-size: 13px;
+  padding-right: 6px;
+}
+
 .relation-btn{
   padding: .6rem !important;
   font-size: 15px;
@@ -94,6 +100,11 @@
         font-size: 15px;
       }
     }
+  }
+
+  .assist-text{
+    font-size: 10px;
+    padding-right: .5rem;
   }
   
   .relation-btn{
