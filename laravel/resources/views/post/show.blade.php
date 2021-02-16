@@ -40,14 +40,28 @@
       <p class="mb-0 text-center"><a href="{{ route('login') }}">ログイン</a>してコメントしてみよう。</p>
       @endif
     </li>
-    <li class="list-group-item text-center">
-      <p class="mb-0 text-muted">コメントはまだありません。</p>
-      {{-- @if ($post->user->image) --}}
-      {{-- base64という形式の画像データを表示する --}}
-      {{-- <img class="post-user-image" src="data:image/png;base64,{{ $post->user->image }}" alt="avatar" />
+    <li class="list-group-item">
+      @if (count($comments) == 0)
+      <p class="mb-0 text-muted text-center">コメントはまだありません。</p>
       @else
-      <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
-      @endif --}}
+        @foreach ($comments as $comment)
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            @if ($comment->user->image)
+            {{-- base64という形式の画像データを表示する --}}
+            <img class="post-user-image" src="data:image/png;base64,{{ $post->user->image }}" alt="avatar" />
+            @else
+            <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
+            @endif
+            <a class="post-user-name" href="{{ route('users.show', ['user_id'=>$comment->user->id]) }}">{{ $comment->user->name }}</a>
+          </div>
+          <p style="color: gray">{{ $comment->created_at }}</p>
+        </div>
+        <div class="p-4">
+          {{ $comment->comment }}
+        </div>
+        @endforeach
+      @endif
     </li>
   </ul>
 </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Like;
 use App\Post;
 use App\Subject;
+use App\Comment;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        return view('post.show', ['post'=>$post]);
+        $comments = Comment::where('post_id', $post->id)->with('user')->get();
+        return view('post.show', ['post'=>$post, 'comments'=>$comments]);
     }
     
     public function create(PostRequest $request, Post $post)
