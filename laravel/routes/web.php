@@ -14,10 +14,11 @@
 // 投稿一覧
 Route::get('/', 'PostsController@index');
 
-// いいね機能
-// Route::post('/like', 'PostsController@like')->name('like');
 Route::prefix('posts')->name('posts.')->group(function (){
+    // いいね機能
     Route::put('/{post}/like', 'PostsController@like')->name('like');
+    // 投稿詳細
+    Route::get('/{post}/show', 'PostsController@show')->name('show');
   });
 
 // 投稿関連
@@ -27,13 +28,15 @@ Route::group(['middleware' => 'auth'], function () {
     // 投稿作成
     Route::post('/posts', 'PostsController@create')->name('posts.create')->middleware('studyTimeCalc');
     // 投稿編集画面
-    Route::get('/posts/{post}', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
+    Route::get('/posts/{post}/edit', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
     // 投稿更新
     Route::post('/posts/{post}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
     // 投稿削除
     Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
     // 科目名自動補完
     Route::get('/subjects/complement', 'PostsController@Complement');
+    // コメント作成
+    Route::post('/posts/{post}/comment', 'CommentsController@create')->name('comment.create');
 });
 
 // ユーザー認証関連

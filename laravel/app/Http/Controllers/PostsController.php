@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Like;
 use App\Post;
 use App\Subject;
+use App\Comment;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -21,6 +22,12 @@ class PostsController extends Controller
     public function new()
     {
         return view('post.new');
+    }
+
+    public function show(Post $post)
+    {
+        $comments = Comment::where('post_id', $post->id)->with('user')->get();
+        return view('post.show', ['post'=>$post, 'comments'=>$comments]);
     }
     
     public function create(PostRequest $request, Post $post)
@@ -70,7 +77,7 @@ class PostsController extends Controller
         if(Post::where('subject_id',$subject->id)->count() <= 0){
             $subject->delete();
         }
-        return redirect()->back()->with('flash_message', '削除が完了しました');
+        return redirect(route('users.show',Auth::user()->id))->with('flash_message', '削除が完了しました');
     }
 
     // 科目名自動補完用アクション

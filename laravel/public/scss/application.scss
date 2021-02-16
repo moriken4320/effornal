@@ -29,6 +29,10 @@ body{
   padding-top: 266px;
 }
 
+.main-back-color{
+  background-color: $main_color;
+}
+
 @media(max-width: 575px){
   .app-logo{
     font-size: 30px;
