@@ -308,10 +308,6 @@
   align-items: center;
 }
 
-.card .card-footer .fa-heart {
-  padding-right: 10px;
-}
-
 .card .card-footer .heart {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -321,7 +317,7 @@
 }
 
 .card .card-footer .heart:hover {
-  color: #2c2c2c;
+  color: #5e5e5e;
 }
 
 .card .card-footer .liked {
@@ -330,6 +326,10 @@
 
 .card .card-footer .liked:hover {
   color: red;
+}
+
+.card .card-footer .comment-icon-wrap {
+  margin-left: 15px;
 }
 
 .create-post-btn {

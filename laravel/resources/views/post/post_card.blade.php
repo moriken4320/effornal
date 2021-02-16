@@ -64,13 +64,19 @@
   </div>
   <div class="card-footer">
     {{-- いいね --}}
-    <div>
-      @if (Auth::check() && $post->isLikedBy(Auth::user()))
-      <i class="fas fa-heart heart liked" data-post-id="{{ $post->id }}"></i>
-      @else
-      <i class="fas fa-heart heart" data-post-id="{{ $post->id }}"></i>
-      @endif
-      <span class="like-count">{{ $post->likes()->count() }}</span>
+    <div class="d-flex flex-row">
+      <div class="heart-icon-wrap">
+        @if (Auth::check() && $post->isLikedBy(Auth::user()))
+        <i class="fas fa-heart heart liked" data-post-id="{{ $post->id }}"></i>
+        @else
+        <i class="fas fa-heart heart" data-post-id="{{ $post->id }}"></i>
+        @endif
+        <span class="like-count">{{ $post->likes()->count() }}</span>
+      </div>
+      <div class="comment-icon-wrap">
+        <a href="{{ route('posts.show', ['post'=>$post]) }}"><i class="fas fa-comment"></i></a>
+        <span class="comment-count">{{ $post->comments()->count() }}</span>
+      </div>
     </div>
     {{-- 投稿時間 --}}
     <p class="create-time">
