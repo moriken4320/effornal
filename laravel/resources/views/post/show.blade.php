@@ -12,6 +12,7 @@
     <li class="card-header text-white justify-content-center main-back-color">コメント</li>
     <li class="list-group-item">
       @if (Auth::check())
+      {{-- コメント作成部分 --}}
       <form method="POST" action="{{ route('comment.create', ['post'=>$post]) }}">
         {{ csrf_field() }}
         <div class="form-group row mb-0">
@@ -45,13 +46,14 @@
       <p class="mb-0 text-muted text-center">コメントはまだありません。</p>
     </li>
     @else
+    {{-- コメント一覧 --}}
     @foreach ($comments as $comment)
     <li class="list-group-item">
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
           @if ($comment->user->image)
           {{-- base64という形式の画像データを表示する --}}
-          <img class="post-user-image" src="data:image/png;base64,{{ $post->user->image }}" alt="avatar" />
+          <img class="post-user-image" src="data:image/png;base64,{{ $comment->user->image }}" alt="avatar" />
           @else
           <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
           @endif
