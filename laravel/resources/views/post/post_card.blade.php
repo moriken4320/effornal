@@ -54,6 +54,7 @@
 
   </div>
   <div class="card-body">
+    <a href="{{ route('posts.show', ['post'=>$post]) }}" class="full-range-link"></a>
     {{-- 科目名 --}}
     <p class="post-main">科目名： {{ $post->subject->name }}</p>
     {{-- 勉強時間 --}}

@@ -22,6 +22,11 @@ class PostsController extends Controller
     {
         return view('post.new');
     }
+
+    public function show(Post $post)
+    {
+        return view('post.show', ['post'=>$post]);
+    }
     
     public function create(PostRequest $request, Post $post)
     {
