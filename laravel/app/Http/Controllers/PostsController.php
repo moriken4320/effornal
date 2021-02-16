@@ -77,7 +77,7 @@ class PostsController extends Controller
         if(Post::where('subject_id',$subject->id)->count() <= 0){
             $subject->delete();
         }
-        return redirect()->back()->with('flash_message', '削除が完了しました');
+        return redirect(route('users.show',Auth::user()->id))->with('flash_message', '削除が完了しました');
     }
 
     // 科目名自動補完用アクション

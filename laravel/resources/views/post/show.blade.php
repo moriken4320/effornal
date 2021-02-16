@@ -12,7 +12,7 @@
     <li class="card-header text-white justify-content-center main-back-color">コメント</li>
     <li class="list-group-item">
       @if (Auth::check())
-      <form method="POST" action="#">
+      <form method="POST" action="{{ route('comment.create', ['post'=>$post]) }}">
         {{ csrf_field() }}
         <div class="form-group row mb-0">
           <div class="col-md-12 p-3 w-100 d-flex align-items-center">
@@ -25,8 +25,8 @@
             <a href="{{ route('users.show', ['user_id'=>Auth::user()->id]) }}" class="post-user-name">{{ Auth::user()->name }}</a>
           </div>
           <div class="col-md-12">
-            {{-- <input type="hidden" name="article_id" value="2804"> --}}
-            <textarea name="comment" rows="4" placeholder="コメントを入力してください。" class="form-control"></textarea>
+            @include('common.errors')
+            <textarea name="comment" rows="4" placeholder="コメントを入力してください。" class="form-control">{{ old('comment') }}</textarea>
           </div>
         </div>
         <div class="form-group row mb-0">
@@ -40,29 +40,31 @@
       <p class="mb-0 text-center"><a href="{{ route('login') }}">ログイン</a>してコメントしてみよう。</p>
       @endif
     </li>
+    @if (count($comments) == 0)
     <li class="list-group-item">
-      @if (count($comments) == 0)
       <p class="mb-0 text-muted text-center">コメントはまだありません。</p>
-      @else
-        @foreach ($comments as $comment)
-        <div class="d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            @if ($comment->user->image)
-            {{-- base64という形式の画像データを表示する --}}
-            <img class="post-user-image" src="data:image/png;base64,{{ $post->user->image }}" alt="avatar" />
-            @else
-            <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
-            @endif
-            <a class="post-user-name" href="{{ route('users.show', ['user_id'=>$comment->user->id]) }}">{{ $comment->user->name }}</a>
-          </div>
-          <p style="color: gray">{{ $comment->created_at }}</p>
-        </div>
-        <div class="p-4">
-          {{ $comment->comment }}
-        </div>
-        @endforeach
-      @endif
     </li>
+    @else
+    @foreach ($comments as $comment)
+    <li class="list-group-item">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          @if ($comment->user->image)
+          {{-- base64という形式の画像データを表示する --}}
+          <img class="post-user-image" src="data:image/png;base64,{{ $post->user->image }}" alt="avatar" />
+          @else
+          <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
+          @endif
+          <a class="post-user-name" href="{{ route('users.show', ['user_id'=>$comment->user->id]) }}">{{ $comment->user->name }}</a>
+        </div>
+        <p class="create-time">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+      </div>
+      <div class="p-3">
+        {!! nl2br(e($comment->comment)) !!}
+      </div>
+    </li>
+    @endforeach
+    @endif
   </ul>
 </div>
 @endsection

@@ -73,6 +73,8 @@
       <span class="like-count">{{ $post->likes()->count() }}</span>
     </div>
     {{-- 投稿時間 --}}
-    {{ $post->created_at }}
+    <p class="create-time">
+      {{ $post->created_at->format('Y-m-d H:i') }}
+    </p>
   </div>
 </div>

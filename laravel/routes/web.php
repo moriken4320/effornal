@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
     // 科目名自動補完
     Route::get('/subjects/complement', 'PostsController@Complement');
+    // コメント作成
+    Route::post('/posts/{post}/comment', 'CommentsController@create')->name('comment.create');
 });
 
 // ユーザー認証関連

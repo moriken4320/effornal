@@ -25,6 +25,10 @@
   padding: 0;
   margin: 20px 10px;
 
+  .create-time{
+    color: gray;
+  }
+
   .card-header{
     display: flex;
     align-items: center;
@@ -84,7 +88,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: gray;
 
     // いいねのハート
     .fa-heart{
@@ -167,6 +170,22 @@
       user-select: none;
       text-align-last: center;
       padding: 1px 0px;
+    }
+  }
+}
+
+@media(max-width: 575px){
+
+  .post-user-name{
+    font-size: 17px;
+    margin-left: 13px;
+  }
+
+  .card{
+
+    .create-time{
+      color: gray;
+      font-size: 12px;
     }
   }
 }

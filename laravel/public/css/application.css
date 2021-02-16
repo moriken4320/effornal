@@ -244,6 +244,10 @@
   margin: 20px 10px;
 }
 
+.card .create-time {
+  color: gray;
+}
+
 .card .card-header {
   display: flex;
   align-items: center;
@@ -302,7 +306,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: gray;
 }
 
 .card .card-footer .fa-heart {
@@ -391,6 +394,18 @@
   -moz-text-align-last: center;
        text-align-last: center;
   padding: 1px 0px;
+}
+
+@media (max-width: 575px) {
+  .post-user-name {
+    font-size: 17px;
+    margin-left: 13px;
+  }
+
+  .card .create-time {
+    color: gray;
+    font-size: 12px;
+  }
 }
 
 .relation-list .nav-item {
