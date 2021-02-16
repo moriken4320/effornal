@@ -1,7 +1,7 @@
 @section('user-show-fixed')
 
 {{-- ページ固定 --}}
-<div class="col-xl-7 col-lg-7 col-md-10 col-sm-12 mx-auto user-show-wrap">
+<div class="col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto user-show-wrap">
   {{-- 〇〇さんのページ --}}
   <div class="mx-auto user-show">
     <div class="user-show-left">
