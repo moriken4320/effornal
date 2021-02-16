@@ -1,7 +1,7 @@
 @section('user-show-fixed')
 
 {{-- ページ固定 --}}
-<div class="col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto user-show-wrap">
+<div class="col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto user-show-wrap relation-list">
   {{-- 〇〇さんのページ --}}
   <div class="mx-auto user-show">
     <div class="user-show-left">
@@ -56,6 +56,21 @@
       </div>
     </div>
   </div>
+  {{-- マイページの場合プルダウンメニュー表示 --}}
+  @if (Auth::check() && $user->id == Auth::user()->id)
+  <ul class="nav nav-tabs nav-justified mt-3">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+      href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      {{ $tab_name }}</a>
+      <div class="dropdown-menu text-center" style="right:0;">
+        <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">マイ投稿</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('users.likedPosts') }}">いいねした投稿</a>
+      </div>
+    </li>
+  </ul>
+  @endif
 </div>
 
 @endsection
