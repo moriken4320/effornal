@@ -54,11 +54,14 @@ Route::prefix('auth')->middleware('guest')->group(function() {
  });
 Route::get('/home', 'PostsController@index')->name('home');
 
-// ユーザー情報編集
-Route::get('users/edit', 'UsersController@edit')->name('users.edit')->middleware('auth');;
+// ログインユーザー情報編集
+Route::get('users/edit', 'UsersController@edit')->name('users.edit')->middleware('auth');
 
-// ユーザー情報更新
+// ログインユーザー情報更新
 Route::post('users/update', 'UsersController@update')->name('users.update')->middleware('auth');
+
+// ログインユーザーがいいねした投稿取得
+Route::get('users/likes_posts', 'UsersController@likedPosts')->name('users.likedPosts')->middleware('auth');
 
 // ユーザー詳細
 Route::get('users/{user_id}', 'UsersController@show')->name('users.show');

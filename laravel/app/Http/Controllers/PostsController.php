@@ -10,6 +10,7 @@ use App\Comment;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class PostsController extends Controller
 {
@@ -66,7 +67,7 @@ class PostsController extends Controller
             $before_subject->delete();
         }
 
-        return redirect(route("users.show",Auth::user()->id))->with('flash_message', '更新が完了しました');
+        return redirect(route('posts.show', $post))->with('flash_message', '更新が完了しました');
     }
 
     public function destroy(Post $post)
