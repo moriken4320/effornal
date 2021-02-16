@@ -40,6 +40,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Post', 'likes');
     }
 
+    //hasMany設定
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     //belongsToMany設定
     // ログインユーザーにフレンド申請を投げているユーザー
     public function throwers()

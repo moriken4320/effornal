@@ -9,7 +9,7 @@
 <div class="container col-xl-7 col-lg-7 col-md-10 col-sm-12 mx-auto">
   @include('post.post_card')
   <ul class="list-group card mt-3 post-show">
-    <li class="card-header text-white text-center main-back-color">コメント</li>
+    <li class="card-header text-white justify-content-center main-back-color">コメント</li>
     <li class="list-group-item">
       @if (Auth::check())
       <form method="POST" action="#">

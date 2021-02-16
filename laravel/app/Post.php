@@ -29,6 +29,12 @@ class Post extends Model
         return $this->belongsToMany('App\User', 'likes');
     }
 
+    //hasMany設定
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     // 引数に指定したユーザーの投稿データを取得
     public static function getTargetOfPosts($user)
     {
