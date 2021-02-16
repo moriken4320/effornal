@@ -35,23 +35,8 @@
   @if (count($relations) == 0)
   <div class="text-center mt-5">該当するユーザーは存在しません</div>
   @endif
-  @foreach ($relations as $relation)
-  <div class="card">
-    <div class="card-body">
-      <div>
-        @if ($relation->image)
-        {{-- base64という形式の画像データを表示する --}}
-        <img class="relation-user-image" src="data:image/png;base64,{{ $relation->image }}" alt="avatar" />
-        @else
-        <img class="relation-user-image" src="{{ asset('/images/blank_profile.png') }}" alt="avatar" />
-        @endif
-        <a class="relation-user-name" href="{{ route('users.show', ['user_id'=>$relation->id]) }}">{{ $relation->name }}</a>
-      </div>
-      <div>
-        @include('relation.button', ['user'=>$relation])
-      </div>
-    </div>
-  </div>
+  @foreach ($relations as $user)
+  @include('common.user_card')
   @endforeach
 </div>
 @endsection

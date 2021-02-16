@@ -11,32 +11,38 @@
     }
   }
 
-  .card-body{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+}
 
-    .relation-user-image{
-      border-radius: 50%;
-      height: 50px;
-      width: 50px; 
-      object-fit:cover;
-      box-shadow: 1px 1px 3px rgb(0 0 0 / 50%);
-    }
-    
-    .relation-user-name{
-      margin-left: 20px;
-      color: black;
-      font-size: 20px;
-      font-weight: bold;
-  
-      &:hover{
-        opacity: .8;
-        text-decoration: underline;
-      }
-    }
+.user-card{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .relation-user-image{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px; 
+    object-fit:cover;
+    box-shadow: 1px 1px 3px rgb(0 0 0 / 50%);
   }
 
+  .relation-user-name{
+    margin-left: 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    
+    &:hover{
+      opacity: .8;
+      text-decoration: underline;
+    }
+  }
+}
+
+.assist-text{
+  color: gray;
+  font-size: 13px;
+  padding-right: 6px;
 }
 
 .relation-btn{
@@ -79,21 +85,24 @@
 }
 
 @media(max-width: 575px){
-  .relation-list{
 
-    .card-body{
-      padding: .6rem;
+  .user-card{
+    padding: .6rem;
 
-      .relation-user-image{
-        height: 40px;
-        width: 40px; 
-      }
-      
-      .relation-user-name{
-        margin-left: 3px;
-        font-size: 15px;
-      }
+    .relation-user-image{
+      height: 40px;
+      width: 40px; 
     }
+    
+    .relation-user-name{
+      margin-left: 3px;
+      font-size: 15px;
+    }
+  }
+
+  .assist-text{
+    font-size: 10px;
+    padding-right: .5rem;
   }
   
   .relation-btn{

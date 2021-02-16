@@ -110,4 +110,11 @@ class PostsController extends Controller
 
         return response()->json($data);
     }
+
+    // いいねしたユーザーリスト表示
+    public function likeIndex(Post $post)
+    {
+        $users = $post->likes;
+        return view('like.index', ['users'=>$users]);
+    }
 }

@@ -31,6 +31,7 @@
     <div id="fixed-wrap" class="fixed-top">
       @yield('header')
       @include('common.flash')
+      @yield('middle-header')
       @yield('user-show-fixed')
     </div>
 

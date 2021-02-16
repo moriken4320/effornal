@@ -40,7 +40,6 @@ class RelationsController extends Controller
             return $relation == null;
         });
         return view('relation.index', ['relations'=>$relations, 'tab_name'=>'ユーザー検索', 'search'=>$request->search]);
-        // return redirect()->back()->withInput()->with(['relations'=>$relations, 'tab_name'=>'ユーザー検索']);
     }
 
     public function follow(User $user)
