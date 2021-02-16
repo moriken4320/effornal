@@ -8,6 +8,17 @@
 {{-- 投稿の詳細データを表示 --}}
 <div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto">
   @include('post.post_card')
+  
+  {{-- いいねされた件数といいねしたアカウント一覧画面へのリンク --}}
+  @if ($post->likes()->count() > 0)
+  <hr>
+  <a href="" class="text-center">
+    <p><strong>{{ $post->likes()->count() }}</strong>名に「いいね」されています。</p>
+  </a>
+  <hr>
+  @endif
+  
+  {{-- コメント全体 --}}
   <ul class="list-group card mt-3 post-show">
     <li class="card-header text-white justify-content-center main-back-color">コメント</li>
     <li class="list-group-item">
