@@ -135,7 +135,7 @@ class PostsController extends Controller
         }
 
         $query_posts = session('posts')->map(function($post) use($keyword){
-            if(preg_match('/' . $keyword . '/', mb_strtolower($post->subject->name)) > 0){
+            if(preg_match('/' . mb_convert_kana(mb_strtolower($keyword), "ASHc") . '/', mb_convert_kana(mb_strtolower($post->subject->name), "ASHc")) > 0){
                 return $post;
             }
         })->reject(function ($post) {
