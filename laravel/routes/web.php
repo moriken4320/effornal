@@ -47,6 +47,9 @@ Route::get('/subjects/complement', 'PostsController@Complement')->middleware('au
 // ランキング
 Route::get('/ranking', 'UsersController@ranking')->name('ranking');
 
+// 投稿検索
+Route::get('/post_search', 'PostsController@postSearch')->name('postSearch');
+
 // ユーザー認証関連
 Auth::routes();
 Route::prefix('auth')->middleware('guest')->group(function() {
@@ -58,7 +61,6 @@ Route::prefix('auth')->middleware('guest')->group(function() {
          ->where('provider','google')
          ->name('oauthCallback');
  });
-Route::get('/home', 'PostsController@index')->name('home');
 
 // ユーザー関連
 Route::prefix('users')->name('users.')->group(function (){

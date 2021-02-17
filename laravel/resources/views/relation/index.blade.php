@@ -26,9 +26,8 @@
   @if ($tab_name == 'ユーザー検索')
   <div>
     <form method="GET" action="{{ route('searchUsers.index') }}" class="search-form mt-3">
-      <span></span>
       <input name="search" type="search" placeholder="ユーザー名で検索" value="{{ isset($search) ? $search : '' }}" class="form-control">
-      <button type="submit" class="btn btn-success">検索</button>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-search" style="font-size: 15px"></i></button>
     </form>
   </div>
   @endif

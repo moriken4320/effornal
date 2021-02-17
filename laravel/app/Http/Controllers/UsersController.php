@@ -26,7 +26,14 @@ class UsersController extends Controller
         // 科目と勉強時間関連のデータを格納
         $data = self::studyTimeCalc($user);
 
-        return view('user.show',['user'=>$user, 'posts'=>$data['posts'], 'study_data'=>$data['study_data'], 'tab_name'=>'マイ投稿']);
+        if(session()->has('query_posts')){
+            $posts = session('query_posts');
+        }else{
+            $posts = $data['posts'];
+            session(['posts'=>$posts]);
+        }
+
+        return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$data['study_data'], 'tab_name'=>'マイ投稿', 'post_search'=>session('post_search')]);
     }
     
     public function edit()
@@ -63,12 +70,17 @@ class UsersController extends Controller
     {
         $user = Auth::user();
         
-        $posts = $user->likes()->orderBy('created_at','desc')->get();
-
         // 科目と勉強時間関連のデータを格納
         $data = self::studyTimeCalc($user);
+        
+        if(session()->has('query_posts')){
+            $posts = session('query_posts');
+        }else{
+            $posts = $user->likes()->orderBy('created_at','desc')->get();
+            session(['posts'=>$posts]);
+        }
 
-        return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$data['study_data'], 'tab_name'=>'いいねした投稿']);
+        return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$data['study_data'], 'tab_name'=>'いいねした投稿', 'post_search'=>session('post_search')]);
     }
 
     public function ranking()

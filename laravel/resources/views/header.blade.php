@@ -1,17 +1,27 @@
 @section('header')
 
-<nav class="navbar navbar-expand navbar-dark">
+<nav class="navbar navbar-expand navbar-dark d-flex justify-content-between">
 
   <div class="row no-gutters">
     <a class="navbar-brand font-weight-bold shadow-none app-logo" href="/">Effornal</a>
   </div>
 
-  <ul class="navbar-nav ml-auto d-flex align-items-center">
+  {{-- 検索フォーム --}}
+  @if (request()->path() == '/' || preg_match('/users\/\d+/', request()->path()) || request()->path() == 'users/likes_posts' || request()->path() == 'post_search')
+  <div>
+    <form method="GET" action="{{ route('postSearch') }}" class="search-form form-inline d-none d-sm-flex">
+      <input name="post_search" type="search" placeholder="科目名で投稿を検索" value="{{ isset($post_search) ? $post_search : '' }}" class="form-control">
+      <button type="submit" class="btn btn-primary header-btn"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  @endif
+
+  <ul class="navbar-nav align-items-center">
 
     {{-- ランキングボタン --}}
     <a href="{{ route('ranking') }}" class="btn btn-warning header-btn">
       <i class="fas fa-crown"></i>
-      <p class="d-none d-sm-block">ランキング</p>
+      <p class="d-none d-lg-block">ランキング</p>
     </a>
 
     {{-- ログアウト中に表示 --}}
@@ -29,7 +39,7 @@
       {{-- 投稿作成ボタン --}}
       <a class="btn btn-success header-btn" href="{{ route('posts.new') }}">
         <i class="fas fa-external-link-alt"></i>
-        <p class="d-none d-sm-block">投稿する</p>
+        <p class="d-none d-md-block">投稿する</p>
       </a>
 
       {{-- ユーザーアイコン --}}
