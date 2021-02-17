@@ -20,7 +20,7 @@
     }
   }
   
-  .new-post-btn{
+  .header-btn{
     font-size: 15px;
     padding: 0px 15px;
     display: flex !important;
@@ -55,6 +55,13 @@
     .nav-link{
       padding: .5rem 4px;
       font-size: 13px;
+    }
+
+    .header-btn{
+      font-size: 13px;
+      padding: 0px 10px;
+      height: 30px;
+      min-width: 30px;
     }
   }
 }
