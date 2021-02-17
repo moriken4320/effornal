@@ -58,7 +58,6 @@ Route::prefix('auth')->middleware('guest')->group(function() {
          ->where('provider','google')
          ->name('oauthCallback');
  });
-Route::get('/home', 'PostsController@index')->name('home');
 
 // ユーザー関連
 Route::prefix('users')->name('users.')->group(function (){

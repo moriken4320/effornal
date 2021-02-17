@@ -33,7 +33,7 @@ class OAuthController extends Controller
         // すでに会員になっている場合の処理を書く
         if ($user->exists) {
             Auth::login($user);
-            return redirect()->route('home')->with('flash_message', 'ログインしました');
+            return redirect('/')->with('flash_message', 'ログインしました');
         }
         
         $user->name = $socialUser->getName();
@@ -44,6 +44,6 @@ class OAuthController extends Controller
         
         Auth::login($user);
 
-        return redirect()->route('home')->with('flash_message', 'ログインしました');
+        return redirect('/')->with('flash_message', 'ログインしました');
     }
 }
