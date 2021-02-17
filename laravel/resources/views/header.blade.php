@@ -9,7 +9,7 @@
   <ul class="navbar-nav ml-auto d-flex align-items-center">
 
     {{-- ランキングボタン --}}
-    <a href="#" class="btn btn-warning header-btn">
+    <a href="{{ route('ranking') }}" class="btn btn-warning header-btn">
       <i class="fas fa-crown"></i>
       <p class="d-none d-sm-block">ランキング</p>
     </a>

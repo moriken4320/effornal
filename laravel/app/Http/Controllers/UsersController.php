@@ -73,7 +73,8 @@ class UsersController extends Controller
 
     public function ranking()
     {
-        return view('ranking.index');
+        $users = User::all()->take(5);
+        return view('ranking.index', ['users'=>$users]);
     }
 
     private static function studyTimeCalc(User $user)

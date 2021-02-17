@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card flex-fill">
   <div class="card-body user-card">
-    <div>
+    <div class="d-flex align-items-center">
       @if ($user->image)
       {{-- base64という形式の画像データを表示する --}}
       <img class="relation-user-image" src="data:image/png;base64,{{ $user->image }}" alt="avatar" />

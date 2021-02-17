@@ -44,6 +44,9 @@ Route::prefix('posts')->name('posts.')->group(function (){
 // 科目名自動補完
 Route::get('/subjects/complement', 'PostsController@Complement')->middleware('auth');
 
+// ランキング
+Route::get('/ranking', 'UsersController@ranking')->name('ranking');
+
 // ユーザー認証関連
 Auth::routes();
 Route::prefix('auth')->middleware('guest')->group(function() {

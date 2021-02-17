@@ -12,7 +12,7 @@ if(url()->current() != URL::previous()){
   {{-- いいねしたユーザー --}}
   <div class="mx-auto user-show">
     <div class="user-show-left">
-      <p class="user-show-left-user-name"><span class="font-weight-bold">いいね<i class="fas fa-heart" style="color: rgb(255, 97, 97); margin-right:10px;"></i></span> したユーザー</p>
+      <p class="user-show-left-user-name">{!! $page_name !!}</p>
     </div>
     {{-- 前のページに戻る --}}
     <a href="{{ session('previous_url') }}" class="previous-link">前に戻る</a>
