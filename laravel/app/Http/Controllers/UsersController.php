@@ -73,7 +73,11 @@ class UsersController extends Controller
 
     public function ranking()
     {
-        $users = User::all()->take(5);
+        $users = User::all()->transform(function($user) {
+            $sum_study_time =  Post::getTargetOfPosts($user)->sum('study_time');
+            $user->sum_study_time = $sum_study_time;
+            return $user;
+        })->sortByDesc('sum_study_time')->take(5);
         return view('ranking.index', ['users'=>$users]);
     }
 
