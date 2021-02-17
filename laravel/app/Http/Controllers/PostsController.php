@@ -16,8 +16,14 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->with('user')->with('subject')->get();
-        return view('post.index', ['posts'=>$posts]);
+        if(session()->has('query_posts')){
+            $posts = session('query_posts');
+        }else{
+            $posts = Post::orderBy('created_at','desc')->with('user')->with('subject')->get();
+            session(['posts'=>$posts]);
+        }
+
+        return view('post.index', ['posts'=>$posts, 'post_search'=>session('post_search')]);
     }
 
     public function new()
@@ -117,5 +123,25 @@ class PostsController extends Controller
     {
         $users = $post->likes;
         return view('like.index', ['users'=>$users]);
+    }
+
+    // 投稿検索
+    public function postSearch(Request $request)
+    {
+        $keyword = $request->post_search;
+        
+        if(!session()->has('posts')){
+            return redirect('/');
+        }
+
+        $query_posts = session('posts')->map(function($post) use($keyword){
+            if(preg_match('/' . $keyword . '/', mb_strtolower($post->subject->name)) > 0){
+                return $post;
+            }
+        })->reject(function ($post) {
+            return $post == null;
+        });
+
+        return redirect(back()->getTargetUrl())->with('query_posts', $query_posts)->with('post_search', $keyword);
     }
 }

@@ -7,10 +7,10 @@
   </div>
 
   {{-- 検索フォーム --}}
-  @if (request()->path() == '/' || preg_match('/users\/\d+/', request()->path()) || request()->path() == 'users/likes_posts')
+  @if (request()->path() == '/' || preg_match('/users\/\d+/', request()->path()) || request()->path() == 'users/likes_posts' || request()->path() == 'post_search')
   <div>
-    <form method="GET" action="#" class="search-form form-inline d-none d-sm-flex">
-      <input name="post-search" type="search" placeholder="科目名で投稿を検索" value="{{ isset($post_search) ? $post_search : '' }}" class="form-control">
+    <form method="GET" action="{{ route('postSearch') }}" class="search-form form-inline d-none d-sm-flex">
+      <input name="post_search" type="search" placeholder="科目名で投稿を検索" value="{{ isset($post_search) ? $post_search : '' }}" class="form-control">
       <button type="submit" class="btn btn-primary header-btn"><i class="fas fa-search"></i></button>
     </form>
   </div>
