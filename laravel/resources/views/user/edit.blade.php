@@ -40,7 +40,7 @@
               </form>
 
               <div class="mt-3">
-                <a href="{{ route('users.show',['user_id'=>$user->id]) }}" class="card-text">マイページに戻る</a>
+                <a href="{{ route('users.show',['user'=>$user]) }}" class="card-text">マイページに戻る</a>
               </div>
 
             </div>

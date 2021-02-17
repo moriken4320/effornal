@@ -26,7 +26,7 @@
     <li class="list-group-item">
       @if (Auth::check())
       {{-- コメント作成部分 --}}
-      <form method="POST" action="{{ route('comment.create', ['post'=>$post]) }}">
+      <form method="POST" action="{{ route('posts.comment', ['post'=>$post]) }}">
         {{ csrf_field() }}
         <div class="form-group row mb-0">
           <div class="col-md-12 p-3 w-100 d-flex align-items-center">
@@ -36,7 +36,7 @@
             @else
             <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
             @endif
-            <a href="{{ route('users.show', ['user_id'=>Auth::user()->id]) }}" class="post-user-name">{{ Auth::user()->name }}</a>
+            <a href="{{ route('users.show', ['user'=>Auth::user()]) }}" class="post-user-name">{{ Auth::user()->name }}</a>
           </div>
           <div class="col-md-12">
             @include('common.errors')
@@ -70,7 +70,7 @@
           @else
           <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
           @endif
-          <a class="post-user-name" href="{{ route('users.show', ['user_id'=>$comment->user->id]) }}">{{ $comment->user->name }}</a>
+          <a class="post-user-name" href="{{ route('users.show', ['user'=>$comment->user]) }}">{{ $comment->user->name }}</a>
         </div>
         <p class="create-time">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
       </div>

@@ -7,7 +7,7 @@
       @else
       <img class="relation-user-image" src="{{ asset('/images/blank_profile.png') }}" alt="avatar" />
       @endif
-      <a class="relation-user-name" href="{{ route('users.show', ['user_id'=>$user->id]) }}">{{ $user->name }}</a>
+      <a class="relation-user-name" href="{{ route('users.show', ['user'=>$user]) }}">{{ $user->name }}</a>
     </div>
     <div>
       @include('relation.button', ['user'=>$user])

@@ -6,7 +6,7 @@
     <a class="navbar-brand font-weight-bold shadow-none app-logo" href="/">Effornal</a>
   </div>
 
-  <ul class="navbar-nav ml-auto">
+  <ul class="navbar-nav ml-auto d-flex align-items-center">
 
     {{-- ランキングボタン --}}
     <a href="#" class="btn btn-warning header-btn">
@@ -45,7 +45,7 @@
         {{-- ドロップダウンで表示 --}}
         <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <button class="dropdown-item" type="button"
-          onclick="location.href='{{ route('users.show', ['user_id' => Auth::user()->id]) }}'">
+          onclick="location.href='{{ route('users.show', ['user' => Auth::user()]) }}'">
           マイページ
           </button>
           <div class="dropdown-divider"></div>

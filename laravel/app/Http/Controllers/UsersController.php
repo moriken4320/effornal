@@ -71,6 +71,11 @@ class UsersController extends Controller
         return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$data['study_data'], 'tab_name'=>'いいねした投稿']);
     }
 
+    public function ranking()
+    {
+        return view('ranking.index');
+    }
+
     private static function studyTimeCalc(User $user)
     {
         // ユーザーの投稿データを取得
