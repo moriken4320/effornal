@@ -71,6 +71,16 @@ class UsersController extends Controller
         return view('user.show',['user'=>$user, 'posts'=>$posts, 'study_data'=>$data['study_data'], 'tab_name'=>'いいねした投稿']);
     }
 
+    public function ranking()
+    {
+        $users = User::all()->transform(function($user) {
+            $sum_study_time =  Post::getTargetOfPosts($user)->sum('study_time');
+            $user->sum_study_time = $sum_study_time;
+            return $user;
+        })->sortByDesc('sum_study_time')->take(5);
+        return view('ranking.index', ['users'=>$users]);
+    }
+
     private static function studyTimeCalc(User $user)
     {
         // ユーザーの投稿データを取得

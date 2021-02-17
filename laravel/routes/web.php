@@ -14,32 +14,38 @@
 // 投稿一覧
 Route::get('/', 'PostsController@index');
 
+// 投稿関連
 Route::prefix('posts')->name('posts.')->group(function (){
+
     // いいね機能
     Route::put('/{post}/like', 'PostsController@like')->name('like');
     // 投稿詳細
     Route::get('/{post}/show', 'PostsController@show')->name('show');
     // 該当する投稿にいいねしたユーザー表示
     Route::get('/{post}/like_index', 'PostsController@likeIndex')->name('likeIndex');
+
+    // ログイン中のみ
+    Route::group(['middleware' => 'auth'], function () {
+        // 投稿作成画面
+        Route::get('/', 'PostsController@new')->name('new');
+        // 投稿作成
+        Route::post('/', 'PostsController@create')->name('create')->middleware('studyTimeCalc');
+        // 投稿編集画面
+        Route::get('/{post}/edit', 'PostsController@edit')->name('edit')->middleware('contributor');
+        // 投稿更新
+        Route::post('/{post}', 'PostsController@update')->name('update')->middleware('contributor')->middleware('studyTimeCalc');
+        // 投稿削除
+        Route::delete('/{post}', 'PostsController@destroy')->name('destroy')->middleware('contributor');
+        // コメント作成
+        Route::post('/{post}/comment', 'CommentsController@create')->name('comment');
+    });
   });
 
-// 投稿関連
-Route::group(['middleware' => 'auth'], function () {
-    // 投稿作成画面
-    Route::get('/posts', 'PostsController@new')->name('posts.new');
-    // 投稿作成
-    Route::post('/posts', 'PostsController@create')->name('posts.create')->middleware('studyTimeCalc');
-    // 投稿編集画面
-    Route::get('/posts/{post}/edit', 'PostsController@edit')->name('posts.edit')->middleware('contributor');
-    // 投稿更新
-    Route::post('/posts/{post}', 'PostsController@update')->name('posts.update')->middleware('contributor')->middleware('studyTimeCalc');
-    // 投稿削除
-    Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')->middleware('contributor');
-    // 科目名自動補完
-    Route::get('/subjects/complement', 'PostsController@Complement');
-    // コメント作成
-    Route::post('/posts/{post}/comment', 'CommentsController@create')->name('comment.create');
-});
+// 科目名自動補完
+Route::get('/subjects/complement', 'PostsController@Complement')->middleware('auth');
+
+// ランキング
+Route::get('/ranking', 'UsersController@ranking')->name('ranking');
 
 // ユーザー認証関連
 Auth::routes();
@@ -54,19 +60,22 @@ Route::prefix('auth')->middleware('guest')->group(function() {
  });
 Route::get('/home', 'PostsController@index')->name('home');
 
-// ログインユーザー情報編集
-Route::get('users/edit', 'UsersController@edit')->name('users.edit')->middleware('auth');
+// ユーザー関連
+Route::prefix('users')->name('users.')->group(function (){
+    // ログイン中のみ
+    Route::group(['middleware' => 'auth'], function () {
+        // ログインユーザー情報編集
+        Route::get('/edit', 'UsersController@edit')->name('edit');
+        // ログインユーザー情報更新
+        Route::post('/update', 'UsersController@update')->name('update');
+        // ログインユーザーがいいねした投稿取得
+        Route::get('/likes_posts', 'UsersController@likedPosts')->name('likedPosts');
+    });
+    // ユーザー詳細
+    Route::get('/{user}', 'UsersController@show')->name('show');
+});
 
-// ログインユーザー情報更新
-Route::post('users/update', 'UsersController@update')->name('users.update')->middleware('auth');
-
-// ログインユーザーがいいねした投稿取得
-Route::get('users/likes_posts', 'UsersController@likedPosts')->name('users.likedPosts')->middleware('auth');
-
-// ユーザー詳細
-Route::get('users/{user_id}', 'UsersController@show')->name('users.show');
-
-// リレーション関連
+// リレーション関連(ログイン中のみ)
 Route::group(['middleware' => 'auth'], function () {
     // フレンド一覧表示
     Route::get('/friends', 'RelationsController@friendsIndex')->name('friends.index');

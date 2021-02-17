@@ -6,7 +6,7 @@
     @else
     <img class="post-user-image" src="{{ asset('/images/blank_profile.png') }}" />
     @endif
-    <a class="post-user-name" href="{{ route('users.show', ['user_id'=>$post->user->id]) }}">{{ $post->user->name }}</a>
+    <a class="post-user-name" href="{{ route('users.show', ['user'=>$post->user]) }}">{{ $post->user->name }}</a>
 
     @if( Auth::check() && Auth::user()->id == $post->user->id )
     {{-- dropdown --}}

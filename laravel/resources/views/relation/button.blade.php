@@ -1,4 +1,4 @@
-@if ($user->id != Auth::user()->id)
+@if (Auth::check() && $user->id != Auth::user()->id)
     
 <form method="POST">
   {{ csrf_field() }}
