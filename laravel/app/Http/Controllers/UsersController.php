@@ -78,6 +78,25 @@ class UsersController extends Controller
             $user->sum_study_time = $sum_study_time;
             return $user;
         })->sortByDesc('sum_study_time')->take(5);
+
+        if(!$users->isEmpty()){
+            $rank = 1;
+            $before = $users->first()->sum_study_time;
+            $add = 0;
+            
+            $users->transform(function($user) use(&$rank, &$before, &$add){
+                if($user->sum_study_time < $before){
+                    $rank += $add;
+                    $before = $user->sum_study_time;
+                    $add = 1;
+                }else{
+                    $add++;
+                }
+                $user->rank = $rank;
+                return $user;
+            });
+        }
+
         return view('ranking.index', ['users'=>$users]);
     }
 
