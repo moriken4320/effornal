@@ -14,7 +14,7 @@
   @foreach ($room_messages as $message)
   {{-- @include('common.user_card') --}}
   @if ($message->user == Auth::user())
-    <div class="message own">
+    <div class="message own {{ $loop->last ? 'last' : '' }}">
       <div class="message-top">
         <div class="message-content">
           {!! nl2br(e($message->message)) !!}
@@ -25,7 +25,7 @@
       </div>
     </div>
   @else
-    <div class="message other">
+    <div class="message other {{ $loop->last ? 'last' : '' }}">
       <div class="message-top">
         @if ($message->user->image)
         {{-- base64という形式の画像データを表示する --}}
@@ -42,7 +42,17 @@
   @endif
   @endforeach
 </div>
-
+  
 {{-- 入力フォーム --}}
-
+<div class="fixed-bottom py-3" style="background-color: gray">
+  <div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 input-group message-input align-items-center">
+    <input type="text" class="form-control" placeholder="メッセージを作成" aria-label="" aria-describedby="basic-addon1">
+    <div class="input-group-append">
+      <button class="btn btn-success send-btn" type="button">
+        <i class="fas fa-paper-plane"></i>
+        <span class="d-none d-sm-inline-block">送信</span>
+      </button>
+    </div>
+  </div>
+</div>
 @endsection
