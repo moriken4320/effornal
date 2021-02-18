@@ -235,6 +235,79 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/js/message_create.js":
+/*!***********************************************!*\
+  !*** ./resources/assets/js/message_create.js ***!
+  \***********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _escape__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./escape */ "./resources/assets/js/escape.js");
+/* harmony import */ var _message_reload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./message_reload */ "./resources/assets/js/message_reload.js");
+
+ //メッセージ表示用ajax関数
+
+var ajax = function ajax(url, form_data, html_create) {
+  $.ajax({
+    url: url,
+    type: "post",
+    data: form_data,
+    dataType: "json",
+    processData: false,
+    contentType: false
+  }).done(function (data) {
+    html_create(data);
+    reset_form();
+  }).fail(function () {
+    location.reload();
+  });
+}; //フォーム送信後のリセット関数
+
+
+var reset_form = function reset_form() {
+  $("textarea[name='message']").val("");
+  $("html, body").animate({
+    scrollTop: $(document).height()
+  }, "fast");
+}; //メッセージ要素作成関数
+
+
+var message_element = function message_element(data) {
+  var message_own = $("<div>").addClass("message own").attr("data-message-id", data.id);
+  var message_top = $("<div>").addClass("message-top");
+  var message_content = $("<div>").addClass("message-content").html(Object(_escape__WEBPACK_IMPORTED_MODULE_0__["escapeStr"])(data.message));
+  message_top.append(message_content);
+  var message_bottom = $("<div>").addClass("message-bottom");
+  var message_time = $("<p>").addClass("message-time").text(data.created_at.substr(0, 16));
+  message_bottom.append(message_time);
+  message_own.append(message_top);
+  message_own.append(message_bottom);
+  $("#message").append(message_own);
+};
+
+$(function () {
+  $("#form-bar").on("submit", function (e) {
+    e.preventDefault();
+    var form_data = new FormData(e.target);
+
+    if (form_data.get('message') == '') {
+      return false;
+    }
+
+    var url = $(e.target).attr("action");
+
+    var create_ajax = function create_ajax() {
+      ajax(url, form_data, message_element);
+    };
+
+    Object(_message_reload__WEBPACK_IMPORTED_MODULE_1__["message_reload"])(create_ajax);
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/message_reload.js":
 /*!***********************************************!*\
   !*** ./resources/assets/js/message_reload.js ***!
@@ -264,11 +337,10 @@ var ajax = function ajax(url, html_create, create_message) {
     dataType: "json"
   }).done(function (data) {
     if (data.length <= 0) {
-      console.log("null");
+      create_message();
       return;
     }
 
-    console.log(data);
     data.forEach(function (data) {
       html_create(data);
     });
@@ -390,9 +462,9 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./resources/assets/js/auto_scroll.js ./resources/assets/js/message_reload.js ./resources/assets/js/escape.js ./public/scss/application.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./resources/assets/js/auto_scroll.js ./resources/assets/js/message_reload.js ./resources/assets/js/message_create.js ./resources/assets/js/escape.js ./public/scss/application.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -404,6 +476,7 @@ __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/a
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/flash.js */"./resources/assets/js/flash.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/auto_scroll.js */"./resources/assets/js/auto_scroll.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/message_reload.js */"./resources/assets/js/message_reload.js");
+__webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/message_create.js */"./resources/assets/js/message_create.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/escape.js */"./resources/assets/js/escape.js");
 module.exports = __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/public/scss/application.scss */"./public/scss/application.scss");
 

@@ -20,6 +20,7 @@ mix.js([
       'resources/assets/js/flash.js',
       'resources/assets/js/auto_scroll.js',
       'resources/assets/js/message_reload.js',
+      'resources/assets/js/message_create.js',
       'resources/assets/js/escape.js',
    ], 'public/js/app.js');
 

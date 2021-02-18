@@ -12,7 +12,6 @@
     <div class="text-center mt-5">メッセージがありません</div>
   @endif
   @foreach ($room_messages as $message)
-  {{-- @include('common.user_card') --}}
   @if ($message->user == Auth::user())
     <div class="message own" data-message-id="{{ $message->id }}">
       <div class="message-top">
@@ -45,7 +44,7 @@
   
 {{-- 入力フォーム --}}
 <div class="fixed-bottom py-3" style="background-color: gray">
-  <form class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 input-group message-input align-items-center" method="POST" action="{{ route('rooms.messages.create', ['room'=>$room]) }}">
+  <form class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 input-group message-input align-items-center" id="form-bar" method="POST" action="{{ route('rooms.messages.create', ['room'=>$room]) }}">
   {{ csrf_field() }}
     <textarea name="message" rows="1" class="form-control" placeholder="メッセージを作成"></textarea>
     <div class="input-group-append">

@@ -15,10 +15,9 @@ const ajax = (url, html_create, create_message)=>{
   })
   .done((data)=>{
     if(data.length <= 0){
-      console.log("null");
+      create_message();
       return;
     }
-    console.log(data);
     data.forEach((data)=>{
       html_create(data);
     });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MessageRequest;
 use App\Room;
 use App\RoomMessage;
 use Auth;
@@ -25,7 +26,7 @@ class MessagesController extends Controller
         return view('room.message.index', ['room'=>$room,'opponent_user_name'=>$opponent_user->name, 'room_messages'=>$room_messages]);
     }
 
-    public function create(Request $request, Room $room)
+    public function create(MessageRequest $request, Room $room)
     {
         // RoomMessageモデル作成
         $room_message = new RoomMessage(); 
@@ -34,14 +35,14 @@ class MessagesController extends Controller
         $room_message->user_id = Auth::user()->id;
         $room_message->save();
 
-        return back();
+        // return back();
+        return response()->json($room_message);
     }
 
     public function reload(Request $request, Room $room)
     {
         $last_message_id = $request->last_message_id;
         $messages = $room->roomMessage()->where('id', '>', $last_message_id)->where('user_id', '!=', Auth::user()->id)->orderBy('created_at','asc')->with('user')->get();
-        // dd($messages);
         return response()->json($messages);
     }
 }
