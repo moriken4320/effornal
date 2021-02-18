@@ -132,7 +132,9 @@
 /***/ (function(module, exports) {
 
 $(function () {
-  window.scrollTo(0, document.body.scrollHeight);
+  if (location.href.match(/\/rooms\/\d+/)) {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 });
 
 /***/ }),
