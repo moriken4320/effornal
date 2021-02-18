@@ -102,5 +102,7 @@ Route::prefix('rooms')->name('rooms.')->group(function (){
         Route::get('{room}', 'MessagesController@index')->name('messages.index');
         // メッセージ作成
         Route::post('/{room}/message', 'MessagesController@create')->name('messages.create');
+        // メッセージリロード
+        Route::get('/{room}/reload', 'MessagesController@reload')->name('messages.reload');
     });
 });

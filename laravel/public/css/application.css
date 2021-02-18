@@ -553,6 +553,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 8px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .message-content {
@@ -583,8 +584,8 @@
   margin-right: 70px;
 }
 
-.message.last {
-  margin-bottom: 90px;
+#message {
+  padding-bottom: 90px;
 }
 
 .message-input .send-btn {

@@ -36,4 +36,12 @@ class MessagesController extends Controller
 
         return back();
     }
+
+    public function reload(Request $request, Room $room)
+    {
+        $last_message_id = $request->last_message_id;
+        $messages = $room->roomMessage()->where('id', '>', $last_message_id)->where('user_id', '!=', Auth::user()->id)->orderBy('created_at','asc')->with('user')->get();
+        // dd($messages);
+        return response()->json($messages);
+    }
 }

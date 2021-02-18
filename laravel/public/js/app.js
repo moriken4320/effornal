@@ -137,6 +137,25 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/js/escape.js":
+/*!***************************************!*\
+  !*** ./resources/assets/js/escape.js ***!
+  \***************************************/
+/*! exports provided: escapeStr */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeStr", function() { return escapeStr; });
+var escapeStr = function escapeStr(s) {
+  s = s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#039;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+  return s;
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/fixed.js":
 /*!**************************************!*\
   !*** ./resources/assets/js/fixed.js ***!
@@ -212,6 +231,85 @@ $(function () {
       alert("エラーが発生しました。");
     });
   });
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/message_reload.js":
+/*!***********************************************!*\
+  !*** ./resources/assets/js/message_reload.js ***!
+  \***********************************************/
+/*! exports provided: message_reload */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "message_reload", function() { return message_reload; });
+/* harmony import */ var _escape__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./escape */ "./resources/assets/js/escape.js");
+ //メッセージ表示用ajax関数
+
+var ajax = function ajax(url, html_create, create_message) {
+  var last_message_id = $(".message:last").data("message-id");
+
+  if (last_message_id == null) {
+    last_message_id = 0;
+  }
+
+  $.ajax({
+    url: url,
+    type: "get",
+    data: {
+      last_message_id: last_message_id
+    },
+    dataType: "json"
+  }).done(function (data) {
+    if (data.length <= 0) {
+      console.log("null");
+      return;
+    }
+
+    console.log(data);
+    data.forEach(function (data) {
+      html_create(data);
+    });
+    create_message();
+  }).fail(function () {
+    location.reload();
+  }).always(function () {});
+};
+
+var html_create = function html_create(data) {
+  var message_other = $("<div>").addClass("message other").attr("data-message-id", data.id);
+  var message_top = $("<div>").addClass("message-top");
+  var user_image = '';
+
+  if (data.user.image != null) {
+    user_image = "data:image/png;base64,".concat(data.user.image);
+  } else {
+    user_image = "/images/blank_profile.png";
+  }
+
+  var message_user_image = $("<img>").addClass("message-user-image").attr("src", user_image).attr("alt", "avatar");
+  var message_content = $("<div>").addClass("message-content").html(Object(_escape__WEBPACK_IMPORTED_MODULE_0__["escapeStr"])(data.message));
+  message_top.append(message_user_image);
+  message_top.append(message_content);
+  var message_bottom = $("<div>").addClass("message-bottom");
+  var message_time = $("<p>").addClass("message-time").text(data.created_at.substr(0, 16));
+  message_bottom.append(message_time);
+  message_other.append(message_top);
+  message_other.append(message_bottom);
+  $("#message").append(message_other);
+};
+
+var message_reload = function message_reload(create_message) {
+  ajax("/rooms/".concat($("#message").attr("data-room-id"), "/reload"), html_create, create_message);
+};
+$(function () {
+  if (location.href.match(/\/rooms\/\d+/)) {
+    setInterval(function () {
+      message_reload(function () {});
+    }, 5000);
+  }
 });
 
 /***/ }),
@@ -292,9 +390,9 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./resources/assets/js/auto_scroll.js ./public/scss/application.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./resources/assets/js/auto_scroll.js ./resources/assets/js/message_reload.js ./resources/assets/js/escape.js ./public/scss/application.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -305,6 +403,8 @@ __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/a
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/like.js */"./resources/assets/js/like.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/flash.js */"./resources/assets/js/flash.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/auto_scroll.js */"./resources/assets/js/auto_scroll.js");
+__webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/message_reload.js */"./resources/assets/js/message_reload.js");
+__webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/escape.js */"./resources/assets/js/escape.js");
 module.exports = __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/public/scss/application.scss */"./public/scss/application.scss");
 
 

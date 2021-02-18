@@ -7,14 +7,14 @@
 
 @section('content')
 {{-- ルームを表示 --}}
-<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto" id="message">
+<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto" id="message" data-room-id='{{ $room->id }}'>
   @if (count($room_messages) == 0)
     <div class="text-center mt-5">メッセージがありません</div>
   @endif
   @foreach ($room_messages as $message)
   {{-- @include('common.user_card') --}}
   @if ($message->user == Auth::user())
-    <div class="message own {{ $loop->last ? 'last' : '' }}">
+    <div class="message own" data-message-id="{{ $message->id }}">
       <div class="message-top">
         <div class="message-content">
           {!! nl2br(e($message->message)) !!}
@@ -25,7 +25,7 @@
       </div>
     </div>
   @else
-    <div class="message other {{ $loop->last ? 'last' : '' }}">
+    <div class="message other" data-message-id="{{ $message->id }}">
       <div class="message-top">
         @if ($message->user->image)
         {{-- base64という形式の画像データを表示する --}}
