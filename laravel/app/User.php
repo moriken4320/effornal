@@ -60,6 +60,18 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'relations', 'throw_id', 'receive_id');
     }
 
+    //belongsToMany設定
+    public function rooms()
+    {
+        return $this->belongsToMany('App\Room', 'room_users');
+    }
+
+    //hasMany設定
+    public function roomMessage()
+    {
+        return $this->hasMany('App\RoomMessage');
+    }
+
     // フレンドを取得
     public function getFriends()
     {

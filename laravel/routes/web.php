@@ -92,3 +92,17 @@ Route::group(['middleware' => 'auth'], function () {
     // ユーザー検索
     Route::get('/search', 'RelationsController@searchUsersIndex')->name('searchUsers.index');
 });
+
+// ダイレクトメッセージ関連(room,message)
+Route::prefix('rooms')->name('rooms.')->group(function (){
+    Route::group(['middleware' => 'auth'], function () {
+        // ルーム一覧表示
+        Route::get('/', 'RoomsController@index')->name('index');
+        // メッセージルーム表示
+        Route::get('{room}', 'MessagesController@index')->name('messages.index');
+        // メッセージ作成
+        Route::post('/{room}/message', 'MessagesController@create')->name('messages.create');
+        // メッセージリロード
+        Route::get('/{room}/reload', 'MessagesController@reload')->name('messages.reload');
+    });
+});

@@ -16,6 +16,12 @@
             {{ intdiv($user->sum_study_time, 60) }} h
             {{ $user->sum_study_time % 60 }} m
           </p>
+      @elseif(request()->path() == 'rooms')
+      {{-- メッセージルーム入場ボタン --}}
+      <a href="{{ route('rooms.messages.index', ['room'=>$room]) }}" class="btn btn-primary px-3">
+        <i class="fas fa-envelope"></i>
+        <span class="d-none d-sm-inline-block">メッセージを開始</span>
+      </a>
       @else
       @include('relation.button', ['user'=>$user])
       @endif

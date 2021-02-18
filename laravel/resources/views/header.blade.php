@@ -56,15 +56,24 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <button class="dropdown-item" type="button"
           onclick="location.href='{{ route('users.show', ['user' => Auth::user()]) }}'">
+          <i class="fas fa-user"></i>
           マイページ
           </button>
           <div class="dropdown-divider"></div>
           <button class="dropdown-item" type="button"
           onclick="location.href='{{ route('friends.index') }}'">
+          <i class="fas fa-handshake active"></i>
           フレンド
           </button>
           <div class="dropdown-divider"></div>
+          <button class="dropdown-item" type="button"
+          onclick="location.href='{{ route('rooms.index') }}'">
+          <i class="fas fa-envelope"></i>
+          メッセージ
+          </button>
+          <div class="dropdown-divider"></div>
           <button form="logout-button" class="dropdown-item" type="submit">
+            <i class="fas fa-sign-out-alt"></i>
             ログアウト
           </button>
         </div>

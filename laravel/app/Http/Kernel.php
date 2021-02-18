@@ -51,6 +51,9 @@ class Kernel extends HttpKernel
         'studyTimeCalc' => [
             \App\Http\Middleware\StudyTimeCalcMiddleware::class,
         ],
+        'roomUserCheck' => [
+            \App\Http\Middleware\RoomUserCheckMiddleware::class,
+        ],
     ];
 
     /**

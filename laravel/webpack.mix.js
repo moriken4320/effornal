@@ -18,6 +18,10 @@ mix.js([
       'resources/assets/js/subject_complement.js',
       'resources/assets/js/like.js',
       'resources/assets/js/flash.js',
+      'resources/assets/js/auto_scroll.js',
+      'resources/assets/js/message_reload.js',
+      'resources/assets/js/message_create.js',
+      'resources/assets/js/escape.js',
    ], 'public/js/app.js');
 
    mix.sass('public/scss/application.scss', 'public/css/application.css'); // assets/sass配下のapplication.scssを、public/css配下にapplication.cssとしてコンパイル
