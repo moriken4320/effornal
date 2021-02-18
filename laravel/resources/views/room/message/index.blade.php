@@ -7,7 +7,7 @@
 
 @section('content')
 {{-- ルームを表示 --}}
-<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto">
+<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto" id="message">
   @if (count($room_messages) == 0)
     <div class="text-center mt-5">メッセージがありません</div>
   @endif

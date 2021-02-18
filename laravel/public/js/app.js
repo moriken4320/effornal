@@ -124,6 +124,19 @@
 
 /***/ }),
 
+/***/ "./resources/assets/js/auto_scroll.js":
+/*!********************************************!*\
+  !*** ./resources/assets/js/auto_scroll.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/fixed.js":
 /*!**************************************!*\
   !*** ./resources/assets/js/fixed.js ***!
@@ -279,9 +292,9 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./public/scss/application.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/js/user_image_preview.js ./resources/assets/js/fixed.js ./resources/assets/js/subject_complement.js ./resources/assets/js/like.js ./resources/assets/js/flash.js ./resources/assets/js/auto_scroll.js ./public/scss/application.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -291,6 +304,7 @@ __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/a
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/subject_complement.js */"./resources/assets/js/subject_complement.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/like.js */"./resources/assets/js/like.js");
 __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/flash.js */"./resources/assets/js/flash.js");
+__webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/resources/assets/js/auto_scroll.js */"./resources/assets/js/auto_scroll.js");
 module.exports = __webpack_require__(/*! /Users/MoritaKenta/projects/effornal/laravel/public/scss/application.scss */"./public/scss/application.scss");
 
 
