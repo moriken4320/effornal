@@ -30,5 +30,5 @@ if(isset($post))
 </div>
 
 <div class="form-group">
-  <textarea name="text" class="form-control" row="16" placeholder="詳細">{{ old('text') ?? $text }}</textarea>
+  <textarea name="text" class="form-control" rows="10" placeholder="詳細">{{ old('text') ?? $text }}</textarea>
 </div>

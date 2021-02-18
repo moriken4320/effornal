@@ -45,14 +45,15 @@
   
 {{-- 入力フォーム --}}
 <div class="fixed-bottom py-3" style="background-color: gray">
-  <div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 input-group message-input align-items-center">
-    <input type="text" class="form-control" placeholder="メッセージを作成" aria-label="" aria-describedby="basic-addon1">
+  <form class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 input-group message-input align-items-center" method="POST" action="{{ route('rooms.messages.create', ['room'=>$room]) }}">
+  {{ csrf_field() }}
+    <textarea name="message" rows="1" class="form-control" placeholder="メッセージを作成"></textarea>
     <div class="input-group-append">
-      <button class="btn btn-success send-btn" type="button">
+      <button type="submit" class="btn btn-success send-btn">
         <i class="fas fa-paper-plane"></i>
         <span class="d-none d-sm-inline-block">送信</span>
       </button>
     </div>
-  </div>
+  </form>
 </div>
 @endsection

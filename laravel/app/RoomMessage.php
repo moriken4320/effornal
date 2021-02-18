@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomMessage extends Model
 {
+    protected $fillable = [
+        'message',
+    ];
+
     // belongsToの設定
     public function user()
     {
