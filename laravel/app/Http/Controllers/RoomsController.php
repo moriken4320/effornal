@@ -44,6 +44,10 @@ class RoomsController extends Controller
 
     public function create(User $user)
     {
+        $check = Auth::user()->rooms()->where('user_id', $user->id)->first();
+        if($check){
+            return back();
+        }
         DB::beginTransaction();
         try {
             $room = Room::create();
