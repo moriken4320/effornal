@@ -1,5 +1,4 @@
 @php
-session()->regenerate();
 if(url()->current() != URL::previous()){
   session(['previous_url'=>URL::previous()]);
 }
