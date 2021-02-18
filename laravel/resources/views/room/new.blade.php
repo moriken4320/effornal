@@ -11,6 +11,6 @@
   @foreach ($relations as $relation)
   @include('common.user_card', ['user'=>$relation])
   @endforeach
-  <div class="text-center mt-5">※メッセージはフレンドとのみ可能です。</div>
+  <div class="text-center my-5">※メッセージはフレンドとのみ可能です。</div>
 </div>
 @endsection

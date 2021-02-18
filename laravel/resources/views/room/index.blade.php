@@ -7,7 +7,7 @@
 
 @section('content')
 {{-- ルームを表示 --}}
-<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto">
+<div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto" id="room">
   @foreach ($rooms as $room)
   @include('common.user_card', ['user'=>$room->opponent_user])
   @endforeach
