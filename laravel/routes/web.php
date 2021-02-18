@@ -98,6 +98,11 @@ Route::prefix('rooms')->name('rooms.')->group(function (){
     Route::group(['middleware' => 'auth'], function () {
         // ルーム一覧表示
         Route::get('/', 'RoomsController@index')->name('index');
+        // メッセージルーム作成画面
+        Route::get('new', 'RoomsController@new')->name('new');
+        // メッセージルーム作成機能
+        Route::put('{user}/create', 'RoomsController@create')->name('create');
+
         // メッセージルーム表示
         Route::get('{room}', 'MessagesController@index')->name('messages.index');
         // メッセージ作成

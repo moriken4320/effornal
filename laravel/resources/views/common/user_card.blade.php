@@ -20,8 +20,18 @@
       {{-- メッセージルーム入場ボタン --}}
       <a href="{{ route('rooms.messages.index', ['room'=>$room]) }}" class="btn btn-primary px-3">
         <i class="fas fa-envelope"></i>
-        <span class="d-none d-sm-inline-block">メッセージを開始</span>
+        <span class="d-none d-sm-inline-block">メッセージを送る</span>
       </a>
+      @elseif(request()->path() == 'rooms/new')
+      {{-- メッセージルーム作成ボタン --}}
+      <form method="POST" action="{{ route('rooms.create', ['user'=>$user]) }}">
+        {{ csrf_field() }}
+        <input type="hidden" name="_method" value="PUT">
+        <button type="submit" class="btn btn-primary px-3">
+          <i class="fas fa-envelope"></i>
+          <span class="d-none d-sm-inline-block">メッセージを開始</span>
+        </button>
+      </form>
       @else
       @include('relation.button', ['user'=>$user])
       @endif

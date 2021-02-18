@@ -16,7 +16,7 @@ class RoomUserCheckMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // 自分のルームに入場しようとしたらルートにリダイレクトする
+        // 自分のルーム以外に入場しようとしたらルートにリダイレクトする
         if(!$request->room->roomUserCheck(Auth::user())){
             return redirect('/');
         }

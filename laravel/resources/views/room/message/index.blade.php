@@ -9,7 +9,7 @@
 {{-- ルームを表示 --}}
 <div class="container col-xl-5 col-lg-7 col-md-10 col-sm-12 mx-auto" id="message" data-room-id='{{ $room->id }}'>
   @if (count($room_messages) == 0)
-    <div class="text-center mt-5">メッセージがありません</div>
+    <div class="text-center mt-5" id="no-text">メッセージがありません</div>
   @endif
   @foreach ($room_messages as $message)
   @if ($message->user == Auth::user())
