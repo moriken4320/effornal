@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room_Message extends Model
+class RoomMessage extends Model
 {
     // belongsToの設定
     public function user()
