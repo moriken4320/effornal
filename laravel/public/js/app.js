@@ -277,6 +277,7 @@ var reset_form = function reset_form() {
 
 
 var message_element = function message_element(data) {
+  $("#no-text").remove();
   var message_own = $("<div>").addClass("message own").attr("data-message-id", data.id);
   var message_top = $("<div>").addClass("message-top");
   var message_content = $("<div>").addClass("message-content").html(Object(_escape__WEBPACK_IMPORTED_MODULE_0__["escapeStr"])(data.message));
@@ -353,6 +354,7 @@ var ajax = function ajax(url, html_create, create_message) {
 };
 
 var html_create = function html_create(data) {
+  $("#no-text").remove();
   var message_other = $("<div>").addClass("message other").attr("data-message-id", data.id);
   var message_top = $("<div>").addClass("message-top");
   var user_image = '';

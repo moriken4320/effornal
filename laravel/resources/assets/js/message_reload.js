@@ -31,6 +31,7 @@ const ajax = (url, html_create, create_message)=>{
 };
 
 const html_create = (data) =>{
+  $("#no-text").remove();
   const message_other = $("<div>").addClass("message other").attr("data-message-id", data.id);
 
   const message_top = $("<div>").addClass("message-top");

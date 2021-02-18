@@ -29,6 +29,7 @@ const reset_form = ()=>{
 
 //メッセージ要素作成関数
 const message_element = (data)=>{
+  $("#no-text").remove();
   const message_own = $("<div>").addClass("message own").attr("data-message-id", data.id);
 
   const message_top = $("<div>").addClass("message-top");
