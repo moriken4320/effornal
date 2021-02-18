@@ -44,7 +44,12 @@ class RoomsController extends Controller
 
     public function create(User $user)
     {
-        $check = Auth::user()->rooms()->where('user_id', $user->id)->first();
+        $check = false;
+        Auth::user()->rooms->each(function($room) use(&$check, $user){
+            if($room->users()->where('user_id', $user->id)->first() != null){
+                return $check = true;
+            }
+        });
         if($check){
             return back();
         }
