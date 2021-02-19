@@ -64,7 +64,7 @@ test0user
 ### バックエンド
 - PHP 7.4.14
 - Laravel Framework 6.20.16
-- PHPUnit 7.5.20
+<!-- - PHPUnit 7.5.20 -->
 ### フロント
 - HTML
 - CSS
