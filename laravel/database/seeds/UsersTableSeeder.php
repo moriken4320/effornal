@@ -17,14 +17,22 @@ class UsersTableSeeder extends Seeder
 
       // faker
       $faker = \Faker\Factory::create('ja_JP');
-        
-        for($i=0;$i<5;$i++)
-        {
-          User::create([ 
-            'name' => $faker->name(),
-            'email' => $faker->email(),
-            'password' => bcrypt('111111'),
-           ]);
-        }
+
+      // テストアカウント作成
+      User::create([ 
+        'name' => 'テストユーザー',
+        'email' => 'test@user.com',
+        'password' => bcrypt('test0user'),
+       ]);
+
+      // その他アカウント作成
+      for($i=0;$i<30;$i++)
+      {
+        User::create([ 
+          'name' => $faker->name(),
+          'email' => $faker->email(),
+          'password' => bcrypt('111111'),
+          ]);
+      }
     }
 }
