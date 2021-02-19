@@ -37,13 +37,21 @@ Twitterを利用し、勉強したことをアウトプットしてきた中で�
 
 ## 使用画面のイメージ
 
-<!-- | 投稿一覧ページ |
-| --- |
-| ![投稿一覧](./laravel/public/images/gifs/post_index.gif) |
+| 投稿一覧ページ | 投稿作成ページ |
+| --- | --- |
+| ![投稿一覧](./laravel/public/images/readme_images/post_index.png) | ![投稿作成](./laravel/public/images/readme_images/post_new.png) |
 
-| ユーザー詳細ページ |
-| --- |
-| ![ユーザー詳細](./laravel/public/images/gifs/user_show.gif) | -->
+| 投稿詳細ページ | ユーザー詳細ページ |
+| --- | --- |
+| ![投稿詳細](./laravel/public/images/readme_images/post_show.png) | ![ユーザー詳細](./laravel/public/images/readme_images/user_show.png) |
+
+| プロフィール編集ページ | ランキングページ |
+| --- | --- |
+| ![プロフィール編集](./laravel/public/images/readme_images/profile_edit.png) | ![ランキング](./laravel/public/images/readme_images/ranking.png) |
+
+| フレンドページ | DMページ |
+| --- | --- |
+| ![フレンド](./laravel/public/images/readme_images/friend.png) | ![DM](./laravel/public/images/readme_images/dm.png) |
 
 ## テストアカウント
 ### メールアドレス  
