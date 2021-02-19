@@ -30,7 +30,12 @@ class SubjectsTableSeeder extends Seeder
             'SQL',
             'C#',
             'C',
-            'C++'
+            'C++',
+            '化学',
+            '国語',
+            '社会',
+            '数学',
+            'AWS',
         ];
         
         foreach($subjects as $subject)
