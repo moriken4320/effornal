@@ -20,7 +20,11 @@ class UsersControllerTest extends TestCase
 
         $response = $this->get(route('users.show', ['user' => $user]));
 
-        $response->assertStatus(200)->assertViewIs('user.show');
+        $response->assertStatus(200)
+        ->assertViewIs('user.show')
+        ->assertSee('ユーザー登録')
+        ->assertSee('ログイン')
+        ->assertSee('科目名で投稿を検索');
     }
 
     // ログイン時
@@ -30,7 +34,11 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('users.show', ['user' => $user]));
 
-        $response->assertStatus(200)->assertViewIs('user.show');
+        $response->assertStatus(200)
+        ->assertSee('投稿する')
+        ->assertSee('header-user-icon')
+        ->assertViewIs('user.show')
+        ->assertSee('科目名で投稿を検索');
     }
 
 
@@ -40,6 +48,7 @@ class UsersControllerTest extends TestCase
     public function testGuestEdit()
     {
         $response = $this->get(route('users.edit'));
+
         $response->assertRedirect(route('login'));
     }
 
@@ -50,16 +59,18 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('users.edit'));
 
-        $response->assertStatus(200)->assertViewIs('user.edit');
+        $response->assertStatus(200)
+        ->assertViewIs('user.edit');
     }
 
 
-    ### ユーザー編集画面のテスト
+    ### ユーザー更新機能のテスト
 
     // 未ログイン時
     public function testGuestUpdate()
     {
         $response = $this->post(route('users.update'));
+
         $response->assertRedirect(route('login'));
     }
 
@@ -90,6 +101,7 @@ class UsersControllerTest extends TestCase
     public function testGuestLikedPosts()
     {
         $response = $this->get(route('users.likedPosts'));
+
         $response->assertRedirect(route('login'));
     }
 
@@ -100,7 +112,11 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('users.likedPosts'));
 
-        $response->assertStatus(200)->assertViewIs('user.show', ['user' => $user]);
+        $response->assertStatus(200)
+        ->assertViewIs('user.show', ['user' => $user])
+        ->assertSee('投稿する')
+        ->assertSee('header-user-icon')
+        ->assertSee('科目名で投稿を検索');
     }
 
     ### ランキング画面のテスト
@@ -109,7 +125,11 @@ class UsersControllerTest extends TestCase
     public function testGuestRanking()
     {
         $response = $this->get(route('ranking'));
-        $response->assertStatus(200)->assertViewIs('ranking.index');
+        $response->assertStatus(200)
+        ->assertViewIs('ranking.index')
+        ->assertSee('ユーザー登録')
+        ->assertSee('ログイン')
+        ->assertDontSee('科目名で投稿を検索');
     }
 
     // ログイン時
@@ -119,6 +139,10 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('ranking'));
 
-        $response->assertStatus(200)->assertViewIs('ranking.index');
+        $response->assertStatus(200)
+        ->assertViewIs('ranking.index')
+        ->assertSee('投稿する')
+        ->assertSee('header-user-icon')
+        ->assertDontSee('科目名で投稿を検索');
     }
 }
