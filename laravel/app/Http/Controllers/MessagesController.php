@@ -35,7 +35,6 @@ class MessagesController extends Controller
         $room_message->user_id = Auth::user()->id;
         $room_message->save();
 
-        // return back();
         return response()->json($room_message);
     }
 
