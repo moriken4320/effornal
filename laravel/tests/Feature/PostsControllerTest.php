@@ -322,7 +322,7 @@ class PostsControllerTest extends TestCase
 
         $response = $this->put(route('posts.like', ['post'=>$post]));
 
-        $response->assertJsonMissing([['liked']]);
+        $response->assertJsonMissing(['liked']);
     }
     // ログイン時 & いいねしていない状態の時
     public function testAuthLike()
