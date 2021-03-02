@@ -1,6 +1,5 @@
 # effornal (エフォーナル) 
 URL: http://effornal.com
-test
 
 ## アプリ概要
 このアプリのコンセプトは、以下の2点です。
