@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\PostRequest;
 use App\Like;
 use App\Post;
 use App\Subject;
-use App\Comment;
 use Auth;
-use Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 
 class PostsController extends Controller
 {
     public function index()
     {
-        if(session()->has('query_posts')){
+        if (session()->has('query_posts')) {
             $posts = session('query_posts');
-        }else{
-            $posts = Post::orderBy('created_at','desc')->with('user')->with('subject')->get();
+        } else {
+            $posts = Post::orderBy('created_at', 'desc')->with('user')->with('subject')->get();
             session(['posts'=>$posts]);
         }
 
@@ -33,10 +31,11 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        $comments = Comment::where('post_id', $post->id)->orderBy('created_at','desc')->with('user')->get();
+        $comments = Comment::where('post_id', $post->id)->orderBy('created_at', 'desc')->with('user')->get();
+
         return view('post.show', ['post'=>$post, 'comments'=>$comments]);
     }
-    
+
     public function create(PostRequest $request, Post $post)
     {
         // Subjectモデルの作成
@@ -48,9 +47,9 @@ class PostsController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
-        return redirect(route("users.show",Auth::user()))->with('flash_message', '投稿が完了しました');
+        return redirect(route('users.show', Auth::user()))->with('flash_message', '投稿が完了しました');
     }
-    
+
     public function edit(Post $post)
     {
         return view('post.edit', ['post'=>$post]);
@@ -69,7 +68,7 @@ class PostsController extends Controller
         $post->subject_id = $after_subject->id;
         $post->save();
         // 該当の科目名が使用されていなければデータベースから削除
-        if(Post::where('subject_id',$before_subject->id)->count() <= 0){
+        if (Post::where('subject_id', $before_subject->id)->count() <= 0) {
             $before_subject->delete();
         }
 
@@ -81,18 +80,20 @@ class PostsController extends Controller
         $subject = $post->subject;
         $post->delete();
         // 該当の科目名が使用されていなければデータベースから削除
-        if(Post::where('subject_id',$subject->id)->count() <= 0){
+        if (Post::where('subject_id', $subject->id)->count() <= 0) {
             $subject->delete();
         }
-        return redirect(route('users.show',Auth::user()))->with('flash_message', '削除が完了しました');
+
+        return redirect(route('users.show', Auth::user()))->with('flash_message', '削除が完了しました');
     }
 
     // 科目名自動補完用アクション
     public function Complement(Request $request)
     {
-        $subjects = Subject::where('name', 'like', '%' . $request->keyword . '%')->get()->map(function($subject){
+        $subjects = Subject::where('name', 'like', '%' . $request->keyword . '%')->get()->map(function ($subject) {
             return ['name'=>$subject->name];
         });
+
         return response()->json($subjects);
     }
 
@@ -100,17 +101,17 @@ class PostsController extends Controller
     public function like(Post $post)
     {
         // ログインしていない場合、空のjsonを返す
-        if(!Auth::check()){
+        if (! Auth::check()) {
             return response()->json();
         }
 
         $user = Auth::user();
 
-        // // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する            
-        if($post->isLikedBy($user)){
+        // // 該当の投稿に「いいね」をしていたら削除し、していなければ「いいね」する
+        if ($post->isLikedBy($user)) {
             $post->likes()->detach($user->id);
             $data = ['liked'=>false, 'count'=>$post->likes()->count()];
-        }else{
+        } else {
             $post->likes()->attach($user->id);
             $data = ['liked'=>true, 'count'=>$post->likes()->count()];
         }
@@ -122,6 +123,7 @@ class PostsController extends Controller
     public function likeIndex(Post $post)
     {
         $users = $post->likes;
+
         return view('like.index', ['users'=>$users]);
     }
 
@@ -129,13 +131,13 @@ class PostsController extends Controller
     public function postSearch(Request $request)
     {
         $keyword = $request->post_search;
-        
-        if(!session()->has('posts')){
+
+        if (! session()->has('posts')) {
             return redirect('/');
         }
 
-        $query_posts = session('posts')->map(function($post) use($keyword){
-            if(preg_match('/' . mb_convert_kana(mb_strtolower($keyword), "ASHc") . '/', mb_convert_kana(mb_strtolower($post->subject->name), "ASHc")) > 0){
+        $query_posts = session('posts')->map(function ($post) use ($keyword) {
+            if (preg_match('/' . mb_convert_kana(mb_strtolower($keyword), 'ASHc') . '/', mb_convert_kana(mb_strtolower($post->subject->name), 'ASHc')) > 0) {
                 return $post;
             }
         })->reject(function ($post) {

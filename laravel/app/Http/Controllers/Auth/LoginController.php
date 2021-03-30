@@ -38,12 +38,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // ログイン後の処理
-    protected function authenticated()
-    {
-        return redirect('/')->with('flash_message', 'ログインしました');
-    }
-
     // ログアウトの処理
     public function logout(Request $request)
     {
@@ -51,5 +45,11 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         return $this->loggedOut($request) ?: redirect('/')->with('flash_message', 'ログアウトしました');
+    }
+
+    // ログイン後の処理
+    protected function authenticated()
+    {
+        return redirect('/')->with('flash_message', 'ログインしました');
     }
 }

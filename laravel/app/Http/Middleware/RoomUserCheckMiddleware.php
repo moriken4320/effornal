@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
+use Closure;
 
 class RoomUserCheckMiddleware
 {
@@ -17,9 +17,10 @@ class RoomUserCheckMiddleware
     public function handle($request, Closure $next)
     {
         // 自分のルーム以外に入場しようとしたらルートにリダイレクトする
-        if(!$request->room->roomUserCheck(Auth::user())){
+        if (! $request->room->roomUserCheck(Auth::user())) {
             return redirect('/');
         }
+
         return $next($request);
     }
 }

@@ -2,16 +2,15 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class RelationsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    ### フレンド一覧画面
+    //## フレンド一覧画面
     // 未ログイン時
     public function testGuestFriendsIndex()
     {
@@ -19,6 +18,7 @@ class RelationsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthFriendsIndex()
     {
@@ -34,8 +34,7 @@ class RelationsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### フレンド申請中のユーザー一覧画面
+    //## フレンド申請中のユーザー一覧画面
     // 未ログイン時
     public function testGuestReceiversIndex()
     {
@@ -43,6 +42,7 @@ class RelationsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthReceiversIndex()
     {
@@ -58,8 +58,7 @@ class RelationsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### フレンド承認待ちのユーザー一覧画面
+    //## フレンド承認待ちのユーザー一覧画面
     // 未ログイン時
     public function testGuestThrowersIndex()
     {
@@ -67,6 +66,7 @@ class RelationsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthThrowersIndex()
     {
@@ -82,8 +82,7 @@ class RelationsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### ユーザー検索画面
+    //## ユーザー検索画面
     // 未ログイン時
     public function testGuestSearchUsersIndex()
     {
@@ -91,6 +90,7 @@ class RelationsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthSearchUsersIndex()
     {
@@ -106,17 +106,17 @@ class RelationsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### フレンド申請機能
+    //## フレンド申請機能
     // 未ログイン時
     public function testGuestFollow()
     {
         $other_user = factory(User::class)->create();
 
-        $response = $this->put(route('relations.follow',['user'=>$other_user]));
+        $response = $this->put(route('relations.follow', ['user'=>$other_user]));
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthFollow()
     {
@@ -125,23 +125,23 @@ class RelationsControllerTest extends TestCase
 
         $this->get(route('friends.index'));
 
-        $response = $this->actingAs($user)->put(route('relations.follow',['user'=>$other_user]));
+        $response = $this->actingAs($user)->put(route('relations.follow', ['user'=>$other_user]));
 
         $response->assertRedirect(route('friends.index'))
         ->assertSessionHas('flash_message');
     }
 
-
-    ### フレンド申請解除機能
+    //## フレンド申請解除機能
     // 未ログイン時
     public function testGuestUnFollow()
     {
         $other_user = factory(User::class)->create();
 
-        $response = $this->delete(route('relations.unFollow',['user'=>$other_user]));
+        $response = $this->delete(route('relations.unFollow', ['user'=>$other_user]));
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthUnFollow()
     {
@@ -151,7 +151,7 @@ class RelationsControllerTest extends TestCase
 
         $this->get(route('friends.index'));
 
-        $response = $this->actingAs($user)->delete(route('relations.unFollow',['user'=>$other_user]));
+        $response = $this->actingAs($user)->delete(route('relations.unFollow', ['user'=>$other_user]));
 
         $response->assertRedirect(route('friends.index'))
         ->assertSessionHas('flash_message');

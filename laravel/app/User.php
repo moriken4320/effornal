@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use phpDocumentor\Reflection\Types\Boolean;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -78,11 +77,12 @@ class User extends Authenticatable
         $throwers = $this->throwers;
         $receivers = $this->receivers;
         $friends = collect();
-        $throwers->each(function ($thrower) use ($receivers, $friends){
-            if($receivers->contains($thrower)){
+        $throwers->each(function ($thrower) use ($receivers, $friends) {
+            if ($receivers->contains($thrower)) {
                 $friends->push($thrower);
             }
         });
+
         return $friends;
     }
 
@@ -90,11 +90,12 @@ class User extends Authenticatable
     public function getThrowers()
     {
         $throwers = collect();
-        $this->throwers->each(function($t) use ($throwers){
-            if(!$this->receivers->contains($t)){
+        $this->throwers->each(function ($t) use ($throwers) {
+            if (! $this->receivers->contains($t)) {
                 $throwers->push($t);
             }
         });
+
         return $throwers;
     }
 
@@ -102,11 +103,12 @@ class User extends Authenticatable
     public function getReceivers()
     {
         $receivers = collect();
-        $this->receivers->each(function($r) use ($receivers){
-            if(!$this->throwers->contains($r)){
+        $this->receivers->each(function ($r) use ($receivers) {
+            if (! $this->throwers->contains($r)) {
                 $receivers->push($r);
             }
         });
+
         return $receivers;
     }
 
@@ -114,11 +116,12 @@ class User extends Authenticatable
     public function friendCheck(User $user): bool
     {
         $flag = false;
-        $this->getFriends()->each(function($value) use($user, &$flag){
-            if($value->attributes == $user->attributes){
+        $this->getFriends()->each(function ($value) use ($user, &$flag) {
+            if ($value->attributes == $user->attributes) {
                 $flag = true;
             }
         });
+
         return $flag;
     }
 
@@ -126,23 +129,25 @@ class User extends Authenticatable
     public function throwerCheck(User $user): bool
     {
         $flag = false;
-        $this->getThrowers()->each(function($value) use($user, &$flag){
-            if($value->attributes == $user->attributes){
+        $this->getThrowers()->each(function ($value) use ($user, &$flag) {
+            if ($value->attributes == $user->attributes) {
                 $flag = true;
             }
         });
+
         return $flag;
     }
-    
+
     // フレンド申請中か判定
     public function receiverCheck(User $user): bool
     {
         $flag = false;
-        $this->getReceivers()->each(function($value) use($user, &$flag){
-            if($value->attributes == $user->attributes){
+        $this->getReceivers()->each(function ($value) use ($user, &$flag) {
+            if ($value->attributes == $user->attributes) {
                 $flag = true;
             }
         });
+
         return $flag;
     }
 }

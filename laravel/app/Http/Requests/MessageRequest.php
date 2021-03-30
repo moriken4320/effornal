@@ -13,9 +13,9 @@ class MessageRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->is('rooms/*/message')){
+        if ($this->is('rooms/*/message')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
