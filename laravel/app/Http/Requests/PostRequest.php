@@ -13,9 +13,9 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->path() == 'posts' || $this->is('posts/*')){
+        if ($this->path() == 'posts' || $this->is('posts/*')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -28,18 +28,18 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:15',
+            'name'       => 'required|string|max:15',
             'study_time' => 'required|integer|min:1|max:1439',
-            'text' => 'required|string|max:250',
+            'text'       => 'required|string|max:250',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => '科目名',
+            'name'       => '科目名',
             'study_time' => '勉強時間',
-            'text' => '詳細',
+            'text'       => '詳細',
         ];
     }
 

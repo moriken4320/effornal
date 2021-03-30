@@ -2,19 +2,17 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\User;
 use App\Post;
 use App\Subject;
-use League\OAuth1\Client\Server\Tumblr;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    ### 全投稿一覧画面
+    //## 全投稿一覧画面
     // 未ログイン時
     public function testGuestIndex()
     {
@@ -26,6 +24,7 @@ class PostsControllerTest extends TestCase
             ->assertSee('ログイン')
             ->assertSee('科目名で投稿を検索');
     }
+
     // ログイン時
     public function testAuthIndex()
     {
@@ -40,8 +39,7 @@ class PostsControllerTest extends TestCase
             ->assertSee('科目名で投稿を検索');
     }
 
-
-    ### 投稿詳細画面
+    //## 投稿詳細画面
     // 未ログイン時
     public function testGuestShow()
     {
@@ -55,6 +53,7 @@ class PostsControllerTest extends TestCase
             ->assertSee('ログイン')
             ->assertDontSee('科目名で投稿を検索');
     }
+
     // ログイン時
     public function testAuthShow()
     {
@@ -70,8 +69,7 @@ class PostsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### 投稿作成画面
+    //## 投稿作成画面
     // 未ログイン時
     public function testGuestNew()
     {
@@ -79,6 +77,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthNew()
     {
@@ -93,8 +92,7 @@ class PostsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### 投稿作成機能のテスト
+    //## 投稿作成機能のテスト
     // 未ログイン時
     public function testGuestCreate()
     {
@@ -102,6 +100,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthCreate()
     {
@@ -112,11 +111,11 @@ class PostsControllerTest extends TestCase
         $study_time_min = 0;
         $text = 'text';
 
-        $response = $this->actingAs($user)->post(route('posts.create',[
-            'name' => $subject_name,
+        $response = $this->actingAs($user)->post(route('posts.create', [
+            'name'            => $subject_name,
             'study_time_hour' => $study_time_hour,
-            'study_time_min' => $study_time_min,
-            'text' => $text,
+            'study_time_min'  => $study_time_min,
+            'text'            => $text,
         ]));
 
         // テストデータがDBに登録されているかテスト
@@ -126,15 +125,14 @@ class PostsControllerTest extends TestCase
         $subject = Subject::where('name', $subject_name)->first();
         $this->assertDatabaseHas('posts', [
             'subject_id' => $subject->id,
-            'text' => $text,
-            'user_id' => $user->id,
+            'text'       => $text,
+            'user_id'    => $user->id,
         ]);
 
         $response->assertRedirect(route('users.show', ['user' => $user]));
     }
 
-
-    ### 投稿編集画面
+    //## 投稿編集画面
     // 未ログイン時
     public function testGuestEdit()
     {
@@ -144,6 +142,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン & 自分の投稿ではない時
     public function testAuthNotContributorEdit()
     {
@@ -154,6 +153,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertRedirect('/');
     }
+
     // ログイン & 自分の投稿である時
     public function testAuthContributorEdit()
     {
@@ -169,17 +169,17 @@ class PostsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### 投稿更新機能のテスト
+    //## 投稿更新機能のテスト
     // 未ログイン時
     public function testGuestUpdate()
     {
         $post = factory(Post::class)->create();
-        
+
         $response = $this->post(route('posts.update', ['post'=>$post]));
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン & 自分の投稿ではない時
     public function testAuthNotContributorUpdate()
     {
@@ -191,12 +191,12 @@ class PostsControllerTest extends TestCase
         $study_time_min = 0;
         $text = 'text';
 
-        $response = $this->actingAs($user)->post(route('posts.update',[
-            'name' => $subject_name,
+        $response = $this->actingAs($user)->post(route('posts.update', [
+            'name'            => $subject_name,
             'study_time_hour' => $study_time_hour,
-            'study_time_min' => $study_time_min,
-            'text' => $text,
-            'post' => $post,
+            'study_time_min'  => $study_time_min,
+            'text'            => $text,
+            'post'            => $post,
         ]));
 
         // テストデータがDBに存在しないかテスト
@@ -204,12 +204,13 @@ class PostsControllerTest extends TestCase
             'name' => $subject_name,
         ]);
         $this->assertDatabaseMissing('posts', [
-            'text' => $text,
+            'text'    => $text,
             'user_id' => $user->id,
         ]);
 
         $response->assertRedirect('/');
     }
+
     // ログイン & 自分の投稿である時
     public function testAuthContributorUpdate()
     {
@@ -221,12 +222,12 @@ class PostsControllerTest extends TestCase
         $study_time_min = 0;
         $text = 'text';
 
-        $response = $this->actingAs($user)->post(route('posts.update',[
-            'name' => $subject_name,
+        $response = $this->actingAs($user)->post(route('posts.update', [
+            'name'            => $subject_name,
             'study_time_hour' => $study_time_hour,
-            'study_time_min' => $study_time_min,
-            'text' => $text,
-            'post' => $post,
+            'study_time_min'  => $study_time_min,
+            'text'            => $text,
+            'post'            => $post,
         ]));
 
         // テストデータがDBに登録されているかテスト
@@ -236,65 +237,65 @@ class PostsControllerTest extends TestCase
         $subject = Subject::where('name', $subject_name)->first();
         $this->assertDatabaseHas('posts', [
             'subject_id' => $subject->id,
-            'text' => $text,
-            'user_id' => $user->id,
+            'text'       => $text,
+            'user_id'    => $user->id,
         ]);
 
         $response->assertRedirect(route('posts.show', ['post' => $post]));
     }
 
-
-    ### 投稿削除機能のテスト
+    //## 投稿削除機能のテスト
     // 未ログイン時
     public function testGuestDestroy()
     {
         $post = factory(Post::class)->create();
-        
+
         $response = $this->delete(route('posts.destroy', ['post'=>$post]));
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン & 自分の投稿ではない時
     public function testAuthNotContributorDestroy()
     {
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create();
 
-        $response = $this->actingAs($user)->delete(route('posts.destroy',[
+        $response = $this->actingAs($user)->delete(route('posts.destroy', [
             'post' => $post,
         ]));
 
         // テストデータがDBに登録されているかテスト
         $this->assertDatabaseHas('posts', [
-            'id' => $post->id,
-            'text' => $post->text,
+            'id'      => $post->id,
+            'text'    => $post->text,
             'user_id' => $post->user_id,
         ]);
 
         $response->assertRedirect('/');
     }
+
     // ログイン & 自分の投稿である時
     public function testAuthContributorDestroy()
     {
         $post = factory(Post::class)->create();
         $user = $post->user;
 
-        $response = $this->actingAs($user)->delete(route('posts.destroy',[
+        $response = $this->actingAs($user)->delete(route('posts.destroy', [
             'post' => $post,
         ]));
 
         // テストデータがDBに存在しないかテスト
         $this->assertDatabaseMissing('posts', [
-            'id' => $post->id,
-            'text' => $post->text,
+            'id'      => $post->id,
+            'text'    => $post->text,
             'user_id' => $post->user_id,
         ]);
 
         $response->assertRedirect(route('users.show', ['user' => $user]));
     }
 
-
-    ### 科目名自動補完機能のテスト
+    //## 科目名自動補完機能のテスト
     // 未ログイン時
     public function testGuestComplement()
     {
@@ -302,6 +303,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthComplement()
     {
@@ -313,8 +315,7 @@ class PostsControllerTest extends TestCase
         $response->assertJson([['name'=>$subject->name]]);
     }
 
-
-    ### いいね機能のテスト
+    //## いいね機能のテスト
     // 未ログイン時
     public function testGuestLike()
     {
@@ -324,6 +325,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertJsonMissing(['liked']);
     }
+
     // ログイン時 & いいねしていない状態の時
     public function testAuthLike()
     {
@@ -334,6 +336,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertJson(['liked'=>true, 'count'=>$post->likes()->count()]);
     }
+
     // ログイン時 & いいねしてある状態の時
     public function testAuthUnLike()
     {
@@ -346,14 +349,13 @@ class PostsControllerTest extends TestCase
         $response->assertJson(['liked'=>false, 'count'=>$post->likes()->count()]);
     }
 
-
-    ### 対象の投稿に対していいねしたユーザーリスト表示画面のテスト
+    //## 対象の投稿に対していいねしたユーザーリスト表示画面のテスト
     // 未ログイン時
     public function testGuestLikeIndex()
     {
         $post = factory(Post::class)->create();
 
-        $response = $this->get(route('posts.likeIndex',['post'=>$post]));
+        $response = $this->get(route('posts.likeIndex', ['post'=>$post]));
 
         $response->assertStatus(200)
             ->assertViewIs('like.index')
@@ -361,13 +363,14 @@ class PostsControllerTest extends TestCase
             ->assertSee('ログイン')
             ->assertDontSee('科目名で投稿を検索');
     }
+
     // ログイン時
     public function testAuthLikeIndex()
     {
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create();
 
-        $response = $this->actingAs($user)->get(route('posts.likeIndex',['post'=>$post]));
+        $response = $this->actingAs($user)->get(route('posts.likeIndex', ['post'=>$post]));
 
         $response->assertStatus(200)
             ->assertViewIs('like.index')
@@ -376,11 +379,10 @@ class PostsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### 投稿検索機能のテスト
+    //## 投稿検索機能のテスト
     public function testGuestPostSearch()
     {
-        for($i=0;$i<2;$i++){
+        for ($i = 0; $i < 2; $i++) {
             factory(Post::class)->create();
         }
 
@@ -388,7 +390,7 @@ class PostsControllerTest extends TestCase
 
         $response->assertSessionHas('posts');
 
-        $response = $this->get(route('postSearch',['post_search'=>'test']));
+        $response = $this->get(route('postSearch', ['post_search'=>'test']));
 
         $response->assertRedirect('/')
             ->assertSessionHas('query_posts')

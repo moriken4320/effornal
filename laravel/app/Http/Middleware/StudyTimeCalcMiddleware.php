@@ -17,7 +17,7 @@ class StudyTimeCalcMiddleware
     {
         $study_time = $request->study_time_hour * 60 + $request->study_time_min;
         $request->merge([
-            'study_time'=>$study_time,
+            'study_time'=> $study_time,
         ]);
 
         return $next($request);

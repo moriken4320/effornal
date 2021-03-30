@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Room;
 use App\User;
 use Auth;
-use Illuminate\Http\Request;
-use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\DB;
 
 class RoomsController extends Controller
@@ -15,10 +13,12 @@ class RoomsController extends Controller
     {
         $auth_user = Auth::user();
         $rooms = $auth_user->rooms;
-        $rooms->transform(function($room) use($auth_user){
-            $room->opponent_user =  $room->getOpponent($auth_user);
+        $rooms->transform(function ($room) use ($auth_user) {
+            $room->opponent_user = $room->getOpponent($auth_user);
+
             return $room;
         });
+
         return view('room.index', ['rooms'=>$rooms]);
     }
 
@@ -27,13 +27,14 @@ class RoomsController extends Controller
         $auth_user = Auth::user();
         $rooms = $auth_user->rooms;
         $relations = $auth_user->getFriends();
-        $relations = $relations->transform(function($relation) use($auth_user, $rooms){
+        $relations = $relations->transform(function ($relation) use ($auth_user, $rooms) {
             $user = $relation;
-            $rooms->each(function($room) use($auth_user, $relation, &$user){
-                if($room->getOpponent($auth_user)->id == $relation->id){
+            $rooms->each(function ($room) use ($auth_user, $relation, &$user) {
+                if ($room->getOpponent($auth_user)->id == $relation->id) {
                     $user = null;
                 }
             });
+
             return $user;
         })->reject(function ($user) {
             return $user == null;
@@ -45,12 +46,12 @@ class RoomsController extends Controller
     public function create(User $user)
     {
         $check = false;
-        Auth::user()->rooms->each(function($room) use(&$check, $user){
-            if($room->users()->where('user_id', $user->id)->first() != null){
+        Auth::user()->rooms->each(function ($room) use (&$check, $user) {
+            if ($room->users()->where('user_id', $user->id)->first() != null) {
                 return $check = true;
             }
         });
-        if($check){
+        if ($check) {
             return back();
         }
         DB::beginTransaction();
@@ -63,6 +64,7 @@ class RoomsController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+
             return back();
         }
 

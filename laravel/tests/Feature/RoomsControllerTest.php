@@ -2,17 +2,16 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\User;
 use App\Room;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class RoomsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    ### ルーム一覧画面のテスト
+    //## ルーム一覧画面のテスト
     // 未ログイン時
     public function testGuestIndex()
     {
@@ -20,6 +19,7 @@ class RoomsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthIndex()
     {
@@ -34,8 +34,7 @@ class RoomsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### ルーム作成画面のテスト
+    //## ルーム作成画面のテスト
     // 未ログイン時
     public function testGuestNew()
     {
@@ -43,6 +42,7 @@ class RoomsControllerTest extends TestCase
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時
     public function testAuthNew()
     {
@@ -57,34 +57,35 @@ class RoomsControllerTest extends TestCase
             ->assertDontSee('科目名で投稿を検索');
     }
 
-
-    ### ルーム作成機能のテスト
+    //## ルーム作成機能のテスト
     // 未ログイン時
     public function testGuestCreate()
     {
         $other_user = factory(User::class)->create();
 
-        $response = $this->put(route('rooms.create',['user'=>$other_user]));
+        $response = $this->put(route('rooms.create', ['user'=>$other_user]));
 
         $response->assertRedirect(route('login'));
     }
+
     // ログイン時 & 対象のユーザーとのルームが存在しない時
     public function testAuthCreate()
     {
         $user = factory(User::class)->create();
         $other_user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->put(route('rooms.create',['user'=>$other_user]));
+        $response = $this->actingAs($user)->put(route('rooms.create', ['user'=>$other_user]));
 
         $room = new Room;
-        $other_user->rooms->each(function($r) use(&$room, $user){
-            if($r->roomUserCheck($user)){
+        $other_user->rooms->each(function ($r) use (&$room, $user) {
+            if ($r->roomUserCheck($user)) {
                 $room = $r;
             }
         });
 
-        $response->assertRedirect(route('rooms.messages.index',['room'=>$room]));
+        $response->assertRedirect(route('rooms.messages.index', ['room'=>$room]));
     }
+
     // ログイン時 & 対象のユーザーとのルームが存在する時
     public function testAuthOverCreate()
     {
@@ -97,7 +98,7 @@ class RoomsControllerTest extends TestCase
 
         $this->actingAs($user)->get(route('rooms.index'));
 
-        $response = $this->actingAs($user)->put(route('rooms.create',['user'=>$other_user]));
+        $response = $this->actingAs($user)->put(route('rooms.create', ['user'=>$other_user]));
 
         $response->assertRedirect(route('rooms.index'));
     }

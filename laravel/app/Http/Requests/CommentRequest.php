@@ -13,9 +13,9 @@ class CommentRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->is('posts/*/comment')){
+        if ($this->is('posts/*/comment')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

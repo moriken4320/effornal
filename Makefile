@@ -3,8 +3,8 @@ init:
 	cp laravel/.env.example .env
 	cp laravel/.env.example laravel/.env
 	docker-compose up -d --build
-	docker-compose exec app composer install
-	docker-compose exec app npm ci
+	@make composer
+	@make npm
 	docker-compose exec app php artisan key:generate
 	@make migrate
 	@make seed
@@ -38,6 +38,14 @@ nginx:
 app:
 	docker-compose exec app bash
 
+.PHONY: composer
+composer:
+	docker-compose exec app composer install
+
+.PHONY: npm
+npm:
+	docker-compose exec app npm ci
+
 .PHONY: clear
 clear:
 	docker-compose exec app php artisan config:clear
@@ -65,5 +73,10 @@ tinker:
 .PHONY: volume-remove
 vorm:
 	docker volume rm effornal_docker-volume
+
+.PHONY: format-php
+format-php: ## format php files : ## e.g. make format-php
+	@echo 'php-cs-fixer:'
+	docker-compose exec app ./vendor/bin/php-cs-fixer fix --config=../.php_cs.dist -v --using-cache=no
 
 

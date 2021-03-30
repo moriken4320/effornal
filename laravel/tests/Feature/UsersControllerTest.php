@@ -2,16 +2,15 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    ### ユーザー詳細画面のテスト
+    //## ユーザー詳細画面のテスト
 
     // 未ログイン時
     public function testGuestShow()
@@ -41,8 +40,7 @@ class UsersControllerTest extends TestCase
         ->assertSee('科目名で投稿を検索');
     }
 
-
-    ### ユーザー編集画面のテスト
+    //## ユーザー編集画面のテスト
 
     // 未ログイン時
     public function testGuestEdit()
@@ -63,8 +61,7 @@ class UsersControllerTest extends TestCase
         ->assertViewIs('user.edit');
     }
 
-
-    ### ユーザー更新機能のテスト
+    //## ユーザー更新機能のテスト
 
     // 未ログイン時
     public function testGuestUpdate()
@@ -81,21 +78,20 @@ class UsersControllerTest extends TestCase
 
         $name = 'test';
 
-        $response = $this->actingAs($user)->post(route('users.update',[
+        $response = $this->actingAs($user)->post(route('users.update', [
             'name' => $name,
         ]));
 
         // テストデータがDBに登録されているかテスト
         $this->assertDatabaseHas('users', [
             'name' => $name,
-            'id' => $user->id
+            'id'   => $user->id
         ]);
 
         $response->assertRedirect(route('users.show', ['user' => $user]));
     }
 
-
-    ### ログインユーザーがいいねした投稿を表示する画面のテスト
+    //## ログインユーザーがいいねした投稿を表示する画面のテスト
 
     // 未ログイン時
     public function testGuestLikedPosts()
@@ -119,7 +115,7 @@ class UsersControllerTest extends TestCase
         ->assertSee('科目名で投稿を検索');
     }
 
-    ### ランキング画面のテスト
+    //## ランキング画面のテスト
 
     // 未ログイン時
     public function testGuestRanking()

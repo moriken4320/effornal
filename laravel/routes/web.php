@@ -15,7 +15,7 @@
 Route::get('/', 'PostsController@index');
 
 // 投稿関連
-Route::prefix('posts')->name('posts.')->group(function (){
+Route::prefix('posts')->name('posts.')->group(function () {
 
     // いいね機能
     Route::put('/{post}/like', 'PostsController@like')->name('like');
@@ -39,7 +39,7 @@ Route::prefix('posts')->name('posts.')->group(function (){
         // コメント作成
         Route::post('/{post}/comment', 'CommentsController@create')->name('comment');
     });
-  });
+});
 
 // 科目名自動補完
 Route::get('/subjects/complement', 'PostsController@Complement')->middleware('auth');
@@ -52,18 +52,18 @@ Route::get('/post_search', 'PostsController@postSearch')->name('postSearch');
 
 // ユーザー認証関連
 Auth::routes();
-Route::prefix('auth')->middleware('guest')->group(function() {
+Route::prefix('auth')->middleware('guest')->group(function () {
     Route::get('/{provider}', 'Auth\OAuthController@socialOAuth')
-        ->where('provider','google')
+        ->where('provider', 'google')
         ->name('socialOAuth');
- 
-     Route::get('/{provider}/callback', 'Auth\OAuthController@handleProviderCallback')
-         ->where('provider','google')
+
+    Route::get('/{provider}/callback', 'Auth\OAuthController@handleProviderCallback')
+         ->where('provider', 'google')
          ->name('oauthCallback');
- });
+});
 
 // ユーザー関連
-Route::prefix('users')->name('users.')->group(function (){
+Route::prefix('users')->name('users.')->group(function () {
     // ログイン中のみ
     Route::group(['middleware' => 'auth'], function () {
         // ログインユーザー情報編集
@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // ダイレクトメッセージ関連(room,message)
-Route::prefix('rooms')->name('rooms.')->group(function (){
+Route::prefix('rooms')->name('rooms.')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         // ルーム一覧表示
         Route::get('/', 'RoomsController@index')->name('index');

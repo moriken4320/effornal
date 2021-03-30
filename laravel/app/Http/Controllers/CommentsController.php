@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Post;
-use App\Comment;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
@@ -18,6 +17,6 @@ class CommentsController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->save();
 
-        return redirect(route("posts.show",$post))->with('flash_message', 'コメントを投稿しました');
+        return redirect(route('posts.show', $post))->with('flash_message', 'コメントを投稿しました');
     }
 }
