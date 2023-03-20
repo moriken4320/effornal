@@ -1,5 +1,5 @@
 # effornal (エフォーナル) 
-URL: http://effornal.com
+URL: http://effornal.com (現在は利用できません)
 
 ## アプリ概要
 このアプリのコンセプトは、以下の2点です。
